@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Kitchen Queue";
+}
+
+@section Styles {
+     <link rel="stylesheet" href="~/css/admin/kitchen.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Kitchen Queue</div>
+        <div class="page-subtitle">Confirmed Indian catering orders for preparation with utensils pick list</div>
+    </div>
+</div>
+
+<div class="card" id="kitchenQueueBoard">
+    <div class="panel-header">
+        <div class="panel-title">Kitchen Queue</div>
+    </div>
+    <div class="muted kitchen-subtitle">Track confirmed orders scheduled for kitchen preparation.</div>
+    <div class="kitchen-toolbar">
+        <div class="kitchen-filters">
+            <div class="kitchen-filter-group">
+                <label for="kitchenFromDate">From Date</label>
+                <input type="date" id="kitchenFromDate" class="form-control" placeholder="dd-mm-yyyy" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="kitchen-filter-group">
+                <label for="kitchenToDate">To Date</label>
+                <input type="date" id="kitchenToDate" class="form-control" placeholder="dd-mm-yyyy" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="kitchen-filter-actions">
+                <button type="button" class="btn btn-primary" id="btnKitchenFilter" onclick="applyKitchenFilter()">Apply</button>
+                <button type="button" class="btn btn-light" id="btnKitchenReset" onclick="resetKitchenFilter()">Reset</button>
+            </div>
+        </div>
+
+        <div class="kitchen-search-shell">
+            <div class="kitchen-search-group" id="queueSearchWrap">
+                <label for="kitchenQueueSearch">Search Queue</label>
+                <input type="text" id="kitchenQueueSearch" class="form-control kitchen-search-input" placeholder="Search queue orders...">
+            </div>
+            <div class="kitchen-search-group hidden" id="readySearchWrap">
+                <label for="kitchenReadySearch">Search Ready</label>
+                <input type="text" id="kitchenReadySearch" class="form-control kitchen-search-input" placeholder="Search ready orders...">
+            </div>
+        </div>
+    </div>
+    <div class="pageloaderpanel hidden">
+        <div class="admin-skeleton-board" aria-label="Loading kitchen queue" role="status">
+            <div class="admin-skeleton-board-head shimmer"></div>
+            <div class="admin-skeleton-board-grid">
+                <div class="admin-skeleton-board-card shimmer"></div>
+                <div class="admin-skeleton-board-card shimmer"></div>
+                <div class="admin-skeleton-board-card shimmer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="kitchen-content-wrap" id="kitchenContentWrap">
+        <div class="kitchen-content" id="kitchenContent"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/kitchen.js" asp-append-version="true"></script>
+}

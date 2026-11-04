@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "Utensils";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/utensils.css" asp-append-version="true">
+    }
+
+    <div class="page-header">
+        <div>
+            <div class="page-title">Utensils Configuration</div>
+            <div class="page-subtitle">Configure chafing dish, fork, spoon and serving utensil rules per pax</div>
+        </div>
+    </div>
+
+    <div class="pageloaderfull hidden">
+        <div class="spinner"></div>
+        <div class="loader-text">Loading utensils...</div>
+    </div>
+
+    <div id="utensilListPanel" class="card">
+        <div class="panel-header">
+            <div class="panel-title">Manage Utensils</div>
+            <div class="panel-actions">
+                <div class="app-header-filter">
+                    <input type="text" id="utensilsSearch" class="tbl-search" data-table="utensilList" placeholder="Search utensils...">
+                </div>
+                <button class="btn btn-orange btn-add" id="btnAddutensil" data-permission="create" onclick="openMenuModal()">+ Add Utensil</button>
+            </div>
+        </div>
+                <div class="pageloaderpanel hidden">
+            <div class="spinner"></div>
+            <div class="loader-text">Loading Utensil...</div>
+        </div>
+        <div class="table-wrap">
+            <table class="tbl" id="utensilList" data-page-size="10">
+                <thead>
+                    <tr>
+                        <th class="sortable">#</th>
+                        <th class="sortable">Utensil</th>
+                        <th class="sortable">Rule</th>
+                        <th class="sortable">Price</th>
+                        <th class="sortable">Deposit Amount</th>
+                        <th class="sortable">Status</th>
+                        <th class="no-sort">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- rows are rendered dynamically by ~/js/admin/utensils.js -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="utensilsModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <span class="modal-title" id="utensils-title">Create Utensil</span>
+                <button class="modal-close" type="button" onclick="closeMenuModal()">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>Utensil</label>
+                <input id="utName" maxlength="200" class="form-control" placeholder="Enter utensil name">
+            </div>
+            <div class="form-row col2">
+                <div class="form-group">
+                    <label>Rule Type</label>
+                    <input id="utRuleType" type="text" maxlength="100" class="form-control" placeholder="e.g. PAX or CHAFING_DISH_QTY">
+                </div>
+                <div class="form-group">
+                    <label>Rule Operator</label>
+                    <select id="utRuleOperator" class="form-control" aria-describedby="utRuleOperatorDescription">
+                        <option value="SAME">SAME</option>
+                        <option value="ADD">ADD</option>
+                        <option value="MULTIPLY">MULTIPLY</option>
+                        <option value="DIVIDE">DIVIDE</option>
+                        <option value="PERCENTAGE">PERCENTAGE</option>
+                        <option value="FIXED">FIXED</option>
+                    </select>
+                    <div id="utRuleOperatorDescription" class="hint" aria-live="polite"></div>
+                </div>
+            </div>
+            <div class="form-row col2">
+                <div class="form-group">
+                    <label>Rule Value</label>
+                    <input id="utRuleValue" type="number" min="0" step="0.01" value="1" class="form-control">
+                </div>
+                <div class="form-group" id="utRulePercentageGroup">
+                    <label>Rule Percentage</label>
+                    <input id="utRulePercentage" type="number" min="0" step="0.01" value="0" class="form-control" disabled>
+                </div>
+            </div>
+            <div class="form-row col2">
+                <div class="form-group">
+                    <label>Minimum Qty</label>
+                    <input id="utMinimumQty" type="number" min="0" step="1" value="0" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Rule Description</label>
+                    <input id="utRuleDescription" maxlength="250" class="form-control" placeholder="Generated from the rule" readonly>
+                </div>
+            </div>
+            <div class="form-row col2">
+                <div class="form-group">
+                    <label>Price</label>
+                    <input id="utPrice" type="number" value="0.00" class="form-control" placeholder="0.00">
+                </div>
+                <div class="form-group">
+                    <label>Deposit Amount</label>
+                    <input id="utDepAmt" type="number" value="0.00" class="form-control" placeholder="0.00">
+                </div>
+            </div>
+            <input type="hidden" id="utensilId" />
+            <div class="actions">
+                <button type="button" class="btn btn-light" id="btnClearUtensil" onclick="clearUtensilForm()">Clear</button>
+                <button type="button" class="btn btn-primary" id="btnSaveUtensil" onclick="saveutensil()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+        <script src="~/js/admin/utensils.js" asp-append-version="true"></script>
+    }
+
+

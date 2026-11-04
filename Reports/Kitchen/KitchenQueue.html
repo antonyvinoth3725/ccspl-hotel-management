@@ -1,0 +1,460 @@
+<style>
+  .kq-sheet {
+    --kq-ink: #1b2d24;
+    --kq-muted: #5d6f66;
+    --kq-line: #d5e3db;
+    --kq-bg: #f4faf6;
+    --kq-accent: #1a6e3c;
+    --kq-accent-soft: #e8f5ee;
+    --kq-warn: #c17b2d;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    color: var(--kq-ink);
+    background: var(--kq-bg);
+    border: 1px solid var(--kq-line);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 16px 36px rgba(15, 35, 24, 0.10);
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  }
+
+  .kq-sheet * { box-sizing: border-box; }
+
+  .kq-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px;
+    align-items: center;
+    padding: 22px 26px;
+    color: #fff;
+    background: linear-gradient(120deg, #144f2e 0%, #1a6e3c 58%, #237d49 100%);
+  }
+
+  .kq-eyebrow {
+    margin: 0 0 6px;
+    color: #f9d7b6;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+  }
+
+  .kq-title {
+    margin: 0;
+    font-size: 27px;
+    line-height: 1.08;
+    font-weight: 800;
+  }
+
+  .kq-subtitle {
+    margin: 7px 0 0;
+    color: #deebe3;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .kq-executed {
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.10);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .kq-executed strong {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    letter-spacing: 0;
+    color: #fff;
+    text-transform: none;
+  }
+
+  .kq-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--kq-line);
+    border-bottom: 1px solid var(--kq-line);
+  }
+
+  .kq-metric {
+    background: #fff;
+    padding: 14px 20px;
+  }
+
+  .kq-metric-label {
+    color: var(--kq-muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+  }
+
+  .kq-metric-value {
+    margin-top: 6px;
+    font-size: 25px;
+    line-height: 1;
+    font-weight: 800;
+    color: #163b28;
+  }
+
+  .kq-metric--focus .kq-metric-value {
+    color: var(--kq-warn);
+  }
+
+  .kq-content {
+    padding: 18px 22px 22px;
+  }
+
+  .kq-content-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .kq-content-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .kq-content-note {
+    color: var(--kq-muted);
+    font-size: 11px;
+  }
+
+  .kq-grouped-wrap {
+    display: grid;
+    gap: 14px;
+  }
+
+  .kq-date-group {
+    border: 1px solid var(--kq-line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .kq-date-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: linear-gradient(180deg, #eff9f3 0%, #e5f3eb 100%);
+    border-bottom: 1px solid #c6dfd0;
+  }
+
+  .kq-date-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 800;
+    color: #165238;
+  }
+
+  .kq-date-total {
+    font-size: 11px;
+    font-weight: 700;
+    color: #3b5f4b;
+  }
+
+  .kq-date-total strong {
+    margin-left: 6px;
+    color: #1b4e34;
+    font-size: 13px;
+  }
+
+  .kq-cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .kq-cat-card {
+    border: 1px solid #e2ece6;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .kq-cat-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ebf1ed;
+    background: #fbfefc;
+  }
+
+  .kq-cat-title {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 800;
+    color: #1d3f2e;
+  }
+
+  .kq-cat-subtotal {
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #eef8f3;
+    border: 1px solid #d3e8dd;
+    color: #1d563b;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .kq-mini-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .kq-mini-table thead th {
+    padding: 7px 10px;
+    background: #fcfefc;
+    border-bottom: 1px solid #edf2ef;
+    color: #51685b;
+    font-size: 10px;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .kq-mini-table thead th:last-child,
+  .kq-mini-table tbody td:last-child {
+    width: 86px;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .kq-mini-table tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #f1f5f2;
+    font-size: 12px;
+    color: #24392e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .kq-mini-table tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .kq-mini-qty {
+    text-align: right;
+    font-weight: 800;
+    color: #173a29;
+  }
+
+  .kq-table-wrap {
+    border: 1px solid var(--kq-line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .kq-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .kq-table thead th {
+    padding: 11px 12px;
+    background: linear-gradient(180deg, #eef8f2 0%, #e6f4ec 100%);
+    border-bottom: 1px solid #b8d7c6;
+    color: #165238;
+    font-size: 11px;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    font-weight: 800;
+    text-align: left;
+  }
+
+  .kq-table tbody td {
+    padding: 11px 12px;
+    border-bottom: 1px solid #ecf2ee;
+    font-size: 12px;
+    vertical-align: middle;
+    color: #20352a;
+  }
+
+  .kq-table tbody tr:nth-child(even) td {
+    background: #fbfefc;
+  }
+
+  .kq-table tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .kq-col-date { width: 22%; }
+  .kq-col-category { width: 24%; }
+  .kq-col-menu { width: 38%; }
+  .kq-col-qty {
+    width: 16%;
+    text-align: right;
+    font-weight: 800;
+  }
+
+  .kq-badge {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--kq-accent-soft);
+    color: #175636;
+    border: 1px solid #cce7d8;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .kq-menu-name {
+    display: block;
+    font-weight: 700;
+    color: #17372a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .kq-empty {
+    padding: 44px 18px;
+    border: 1px dashed var(--kq-line);
+    border-radius: 12px;
+    background: #fff;
+    text-align: center;
+    color: var(--kq-muted);
+    font-size: 13px;
+  }
+
+  .kq-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 20px;
+    border-top: 1px solid var(--kq-line);
+    background: #fff;
+    color: var(--kq-muted);
+    font-size: 10px;
+    letter-spacing: .3px;
+  }
+
+  @media (max-width: 860px) {
+    .kq-top {
+      grid-template-columns: 1fr;
+      padding: 20px;
+    }
+
+    .kq-executed {
+      text-align: left;
+      white-space: normal;
+    }
+
+    .kq-metrics {
+      grid-template-columns: 1fr;
+    }
+
+    .kq-content {
+      padding: 14px;
+    }
+
+    .kq-content-head {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .kq-cat-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .kq-table-wrap {
+      overflow-x: auto;
+    }
+
+    .kq-table {
+      min-width: 680px;
+    }
+  }
+
+  @media print {
+    .kq-sheet {
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .kq-content {
+      padding: 12px 0;
+    }
+
+    .kq-table-wrap {
+      border-radius: 0;
+    }
+
+    .kq-table tbody tr {
+      break-inside: avoid;
+    }
+  }
+</style>
+
+<article class="kq-sheet">
+  <header class="kq-top">
+    <div>
+      <p class="kq-eyebrow">Kitchen Production Sheet</p>
+      <h1 class="kq-title">{{report.displayName}}</h1>
+      <p class="kq-subtitle">Combined menu preparation quantity across all In Kitchen orders for the selected event date range.</p>
+    </div>
+    <div class="kq-executed">Generated At<strong>{{meta.executedAt|datetime}}</strong></div>
+  </header>
+
+  <section class="kq-metrics">
+    <div class="kq-metric">
+      <div class="kq-metric-label">Menu Lines</div>
+      <div class="kq-metric-value">{{meta.rowCount|number}}</div>
+    </div>
+    <div class="kq-metric kq-metric--focus" data-report-column="TotalQty,Qty">
+      <div class="kq-metric-label">Total Production Qty</div>
+      <div class="kq-metric-value">{{sumTotalQty|number}}</div>
+    </div>
+    <div class="kq-metric" data-report-column="EventDate">
+      <div class="kq-metric-label">First Event Date</div>
+      <div class="kq-metric-value">{{header.EventDate|date}}</div>
+    </div>
+  </section>
+
+  <section class="kq-content">
+    <div class="kq-content-head">
+      <h2 class="kq-content-title">Date-wise Menu Requirement</h2>
+      <span class="kq-content-note">Tip: kitchen can directly use this sheet for batch preparation planning.</span>
+    </div>
+
+    <div class="kq-grouped-wrap">{{kitchenGroupedTable}}</div>
+
+    {{#emptyRows}}
+    <div class="kq-empty">No kitchen queue data found for the selected filters.</div>
+    {{/emptyRows}}
+  </section>
+
+  <footer class="kq-foot">
+    <span>Gayatri Catering Kitchen Report</span>
+    <span>{{meta.rowCount|number}} row(s)</span>
+  </footer>
+</article>

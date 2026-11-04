@@ -1,0 +1,62 @@
+@model GayatriCateringPortal.Models.OrderSignatureViewModel
+@{ Layout = null; var order = Model.Order; }
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sign Order - Gayatri Catering</title>
+    <link rel="stylesheet" href="~/css/order-signature.css" asp-append-version="true" />
+</head>
+<body>
+    <main class="signature-shell">
+        <section class="signature-card @(Model.IsValid ? string.Empty : "signature-card-complete")">
+            <header><div class="brand">Gayatri Catering</div><p>Order acknowledgement</p></header>
+            @if (Model.IsValid)
+            {
+                <h1>Review and sign your order</h1>
+                <p class="intro">Hello <strong>@order.CustomerName</strong>, please confirm the order information below and add your signature.</p>
+                <div class="details-grid">
+                    <div><span>Order</span><strong>@order.OrderNumber</strong></div>
+                    <div><span>Event date</span><strong>@(order.EventDate?.ToString("dd MMM yyyy") ?? "-")</strong></div>
+                    <div><span>Event</span><strong>@order.EventName</strong></div>
+                    <div><span>Meal period</span><strong>@order.MealPeriodName</strong></div>
+                    <div><span>Package</span><strong>@order.PackageName</strong></div>
+                    <div><span>Guests</span><strong>@order.Pax</strong></div>
+                    <div class="wide"><span>Delivery address</span><strong>@order.DeliveryAddress</strong></div>
+                    <div><span>Total</span><strong>@order.TotalAmount.ToString("C2")</strong></div>
+                    <div><span>Balance</span><strong>@order.BalanceAmount.ToString("C2")</strong></div>
+                </div>
+                <form id="signatureForm" onsubmit="return false;">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="Token" value="@Model.Token" />
+                    <input type="hidden" name="Signature" id="signatureValue" />
+                    <label class="signature-label" for="signatureCanvas">Your signature</label>
+                    <div class="canvas-wrap"><canvas id="signatureCanvas"></canvas></div>
+                    <div class="form-actions"><button type="button" class="secondary" onclick="clearOrderSignature()">Clear</button><button type="button" id="submitSignature" onclick="submitOrderSignature()">Submit signature</button></div>
+                    <p id="signatureMessage" role="alert"></p>
+                </form>
+                <p class="consent">By submitting, you confirm that you have reviewed and acknowledged these order details.</p>
+            }
+            else
+            {
+                <div class="result-card signature-status-card">
+                    <div class="result-icon">@(Model.Status == "signed" ? "✓" : "!")</div>
+                    <h1>@(Model.Status == "signed" ? "Signature Already Submitted" : "Signature Link Unavailable")</h1>
+                    @if (Model.Status == "signed" && !string.IsNullOrWhiteSpace(order.OrderNumber))
+                    {
+                        <p>Order <strong>@order.OrderNumber</strong></p>
+                    }
+                    <p>@Model.Message</p>
+                    <p>You can now close this page.</p>
+                </div>
+            }
+        </section>
+    </main>
+    @if (Model.IsValid)
+    {
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/js/order-signature.js" asp-append-version="true"></script>
+    }
+</body>
+</html>

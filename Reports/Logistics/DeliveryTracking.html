@@ -1,0 +1,248 @@
+<style>
+  .dt-report {
+    --navy: #124d2b;
+    --blue: #1a6e3c;
+    --cyan: #2d8a52;
+    --mist: #e8f5ee;
+    --line: #d4e4da;
+    --ink: #173126;
+    --muted: #68786e;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 14px 36px rgba(18, 77, 43, .09);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  .dt-report * { box-sizing: border-box; }
+
+  .dt-hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: center;
+    min-height: 172px;
+    padding: 30px 36px;
+    overflow: hidden;
+    color: #fff;
+    background: linear-gradient(120deg, var(--navy), var(--blue));
+  }
+
+  .dt-hero::before,
+  .dt-hero::after {
+    position: absolute;
+    content: "";
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 50%;
+  }
+
+  .dt-hero::before { width: 270px; height: 270px; right: -70px; top: -135px; }
+  .dt-hero::after { width: 170px; height: 170px; right: 30px; top: -85px; }
+
+  .dt-heading { position: relative; z-index: 1; }
+  .dt-kicker {
+    margin-bottom: 8px;
+    color: #b9ebcb;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .dt-title { margin: 0; font-size: 32px; line-height: 1.12; }
+  .dt-subtitle {
+    max-width: 680px;
+    margin: 9px 0 0;
+    color: #d9eee1;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .dt-generated {
+    position: relative;
+    z-index: 1;
+    min-width: 174px;
+    padding: 13px 16px;
+    border: 1px solid rgba(255,255,255,.24);
+    border-radius: 12px;
+    background: rgba(255,255,255,.09);
+    font-size: 10px;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+  }
+
+  .dt-generated strong {
+    display: block;
+    margin-top: 5px;
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .dt-summary {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 20px;
+    align-items: center;
+    padding: 18px 36px;
+    background: var(--mist);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .dt-count {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 220px;
+  }
+
+  .dt-count-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    color: #fff;
+    background: var(--cyan);
+    border-radius: 12px;
+    font-size: 21px;
+    font-weight: 800;
+  }
+
+  .dt-count-label {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .dt-count-value { margin-top: 2px; font-size: 22px; font-weight: 800; line-height: 1; }
+  .dt-route-note { color: var(--muted); font-size: 12px; text-align: right; }
+
+  .dt-body { padding: 26px 30px 30px; }
+  .dt-body-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+
+  .dt-body-title { margin: 0; font-size: 18px; }
+  .dt-body-note { color: var(--muted); font-size: 11px; }
+
+  .dt-report .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+
+  .dt-report .table {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  .dt-report .table th {
+    padding: 12px 14px;
+    color: #fff;
+    background: var(--navy);
+    border-right: 1px solid rgba(255,255,255,.12);
+    font-size: 10px;
+    letter-spacing: .65px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .dt-report .table td {
+    padding: 12px 14px;
+    border-right: 1px solid #e5edef;
+    border-bottom: 1px solid #e5edef;
+    vertical-align: middle;
+  }
+
+  .dt-report .table tbody tr:nth-child(even) { background: #f7fbfb; }
+  .dt-report .table tbody tr:hover { background: #edf8f1; }
+  .dt-report .report-col-number { text-align: right; }
+  .dt-report .report-col-date { text-align: center; }
+  .dt-report .report-col-text { text-align: left; }
+
+  .dt-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 13px 30px;
+    color: var(--muted);
+    background: #f8fbfb;
+    border-top: 1px solid var(--line);
+    font-size: 10px;
+  }
+
+  @media (max-width: 700px) {
+    .dt-hero { grid-template-columns: 1fr; padding: 25px 22px; }
+    .dt-generated { width: fit-content; }
+    .dt-summary { grid-template-columns: 1fr; padding: 17px 22px; }
+    .dt-route-note { text-align: left; }
+    .dt-body { padding: 22px 16px; }
+    .dt-body-head, .dt-footer { align-items: flex-start; flex-direction: column; }
+  }
+
+  @media print {
+    .dt-report { border: 0; border-radius: 0; box-shadow: none; }
+    .dt-report .table-wrap { overflow: visible; }
+    .dt-report .table { font-size: 9px; white-space: normal; }
+    .dt-report .table th, .dt-report .table td { padding: 7px; }
+    .dt-report .table tbody tr { break-inside: avoid; }
+  }
+</style>
+
+<article class="dt-report">
+  <header class="dt-hero">
+    <div class="dt-heading">
+      <div class="dt-kicker">Live Dispatch Overview</div>
+      <h1 class="dt-title">{{report.displayName}}</h1>
+      <p class="dt-subtitle">Track delivery assignments, destinations and current fulfilment progress for the selected reporting period.</p>
+    </div>
+    <div class="dt-generated">
+      Tracking snapshot
+      <strong>{{meta.executedAt|date}}</strong>
+    </div>
+  </header>
+
+  <section class="dt-summary">
+    <div class="dt-count">
+      <div class="dt-count-icon">&#8599;</div>
+      <div>
+        <div class="dt-count-label">Tracked Deliveries</div>
+        <div class="dt-count-value">{{meta.rowCount|number}}</div>
+      </div>
+    </div>
+    <div class="dt-route-note">Visible fields and headings follow the configured report columns.</div>
+  </section>
+
+  <section class="dt-body">
+    <div class="dt-body-head">
+      <h2 class="dt-body-title">Delivery Movement</h2>
+      <span class="dt-body-note">Scroll horizontally inside the table to view additional details.</span>
+    </div>
+    {{table}}
+  </section>
+
+  <footer class="dt-footer">
+    <span>Gayatri Catering &middot; Delivery tracking report</span>
+    <span>{{meta.rowCount|number}} delivery record(s)</span>
+  </footer>
+</article>

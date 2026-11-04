@@ -1,0 +1,97 @@
+@{
+    ViewData["Title"] = "Report Permission";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/report-permission.css" asp-append-version="true">
+}
+
+<div class="page-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1 class="page-title">Report Permission</h1>
+        <p class="page-subtitle">Manage access permissions for reports by role</p>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content-area">
+        <!-- Page Loader - Inside Content Area -->
+        <div class="pageloaderpanel" id="pageLoader">
+            <div class="spinner"></div>
+            <div class="loader-text">Loading roles...</div>
+        </div>
+
+        <!-- Role Selection -->
+        <div class="role-selector-section hidden" id="roleSelectorSection">
+            <div class="role-selector-wrapper">
+                <label for="roleSelect" class="role-label">Select Role:</label>
+                <select id="roleSelect" class="form-control role-dropdown">
+                    <option value="">-- Choose a role --</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="contentLoader" class="content-loader hidden">
+            <div class="spinner"></div>
+            <div>Loading report permissions...</div>
+        </div>
+
+        <!-- Reports Permission Grid -->
+        <div id="permissionGridWrap" class="permission-grid-wrap hidden">
+            <div class="permission-header">
+                <h3>Viewing permissions for role: <strong id="selectedRoleName"></strong></h3>
+                <div class="permission-header-actions">
+                    <div class="app-header-filter permission-search-wrap">
+                        <input type="text"
+                               id="reportPermissionSearch"
+                               class="form-control"
+                               placeholder="Search functions..."
+                               autocomplete="off">
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="permission-table">
+                    <thead>
+                        <tr>
+                            <th class="col-function">
+                                <span>FUNCTION</span>
+                            </th>
+                            <th class="col-all">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="selectAllPermissions" />
+                                    <span>ALL</span>
+                                </label>
+                            </th>
+                            <th class="col-view">VIEW</th>
+                            <th class="col-print">PRINT</th>
+                            <th class="col-export-pdf">EXPORT PDF</th>
+                            <th class="col-export-excel">EXPORT EXCEL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="permissionTableBody">
+                        <!-- Rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="permission-actions">
+                <button type="button" class="btn btn-light" onclick="resetRoleSelection()">Reset</button>
+                <button type="button" id="btnSavePermissions" class="btn btn-primary" onclick="saveAllPermissions()">Save</button>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state hidden">
+            <div class="empty-state-icon">📋</div>
+            <p>Select a role to manage report permissions</p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/report-permission.js" asp-append-version="true"></script>
+}

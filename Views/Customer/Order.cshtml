@@ -1,0 +1,157 @@
+@{
+    ViewData["Title"] = "Place Order";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/customer/order.css" asp-append-version="true">
+    }
+
+    <div class="page-header">
+        <div>
+            <div class="page-title">Place New Order</div>
+            <div class="page-subtitle">Step 1 package choices are included in the package value. Step 2 is only for additional menu items customer wants to add with prices.</div>
+        </div>
+        <div class="page-header-actions order-top-actions">
+            <button type="button" class="btn btn-light" id="btnResetOrder">Start Over</button>
+        </div>
+    </div>
+
+    <div class="order-layout">
+        <div class="order-main">
+            <div class="wizard-steps order-steps" id="orderSteps">
+                <div class="wizard-step active" data-step="1"><span class="wizard-step-num">1</span><span class="wizard-step-label">Event Details &amp; Package Choices</span></div>
+                <div class="wizard-step" data-step="2"><span class="wizard-step-num">2</span><span class="wizard-step-label">Extra Items + Qty</span></div>
+                <div class="wizard-step" data-step="3"><span class="wizard-step-num">3</span><span class="wizard-step-label">Add-ons &amp; Utensils</span></div>
+                <div class="wizard-step" data-step="6" data-display-step="4"><span class="wizard-step-num">4</span><span class="wizard-step-label">Review</span></div>
+            </div>
+
+            <div id="orderStepWrap">
+                <div class="pageloaderpanel hidden">
+                    <div class="spinner"></div>
+                    <div class="loader-text">Loading...</div>
+                </div>
+                <div id="orderStepContent"></div>
+            </div>
+            @Html.AntiForgeryToken()
+        </div>
+
+        <aside class="order-summary-box" aria-labelledby="orderSummaryTitle">
+            <div class="order-summary-header">
+                <span class="order-summary-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M7 3h10a2 2 0 0 1 2 2v16l-3-2-4 2-4-2-3 2V5a2 2 0 0 1 2-2Z"></path>
+                        <path d="M8.5 8h7M8.5 12h7M8.5 16h4"></path>
+                    </svg>
+                </span>
+                <div class="order-summary-heading">
+                    <span>Your selection</span>
+                    <div class="section-label" id="orderSummaryTitle">Order Summary</div>
+                </div>
+                <span class="order-summary-live"><i aria-hidden="true"></i> Live</span>
+            </div>
+
+            <div class="order-summary-status">
+                <span class="order-summary-status-icon" aria-hidden="true">&#10003;</span>
+                <span><strong>Up to date</strong> &middot; Total refreshes automatically</span>
+            </div>
+
+            <div class="order-summary-content">
+                <div class="order-summary-group order-summary-selection">
+                    <div class="summary-row"><span>Event</span><strong id="summaryEvent">-</strong></div>
+                    <div class="summary-row"><span>Package</span><strong id="summaryPkg">-</strong></div>
+                    <div class="summary-row" id="summaryPaxRow"><span>Pax</span><strong id="summaryPax">0</strong></div>
+                </div>
+
+                <div class="order-summary-breakdown-title"><span>Price breakdown</span></div>
+                <div class="order-summary-group order-summary-pricing">
+                    <div class="summary-row"><span id="summaryBaseLabel">Package Base</span><strong id="summaryBase">S$0.00</strong></div>
+                    <div class="summary-row"><span id="summaryAdditionalLabel">Additional Menu</span><strong id="summaryAdditional">S$0.00</strong></div>
+                    <div class="summary-row"><span>Add-ons</span><strong id="summaryAddons">S$0.00</strong></div>
+                    <div class="summary-row"><span>Utensils / Setup</span><strong id="summaryUtensils">S$0.00</strong></div>
+                    <div class="summary-row"><span>Delivery Amount</span><strong id="summaryDelivery">S$0.00</strong></div>
+                    <div class="summary-row"><span id="summaryGstLabel">GST (0%)</span><strong id="summaryGst">S$0.00</strong></div>
+                </div>
+
+                <div class="summary-row total">
+                    <span><small>Amount payable</small>Total</span>
+                    <span id="summaryTotal">S$0.00</span>
+                </div>
+
+                <div class="hint">
+                    <span class="order-summary-hint-icon" aria-hidden="true">i</span>
+                    <span>Step 1 dish choices are included in the selected package. Step 2 items are additional chargeable items.</span>
+                </div>
+            </div>
+            <div class="actions order-summary-actions">
+                <button type="button" class="btn btn-light btn-sm hidden" id="summaryBackBtn">&larr; Back</button>
+                <button type="button" class="btn btn-orange btn-sm" id="summaryNextBtn">Continue &rarr;</button>
+                <button type="button" class="btn btn-orange btn-sm hidden" id="summarySubmitBtn">Submit</button>
+                <button type="button" class="btn btn-quotation btn-sm hidden" id="summaryQuoteBtn">Send Quotation</button>
+            </div>
+        </aside>
+    </div>
+
+    <div id="quotationOptionsModal" style="display:none;" class="quotation-overlay">
+
+        <div class="quotation-popup">
+
+            <div class="quotation-popup-badge">Share Options</div>
+            <h3>Send Quotation</h3>
+
+            <p>Select how you want to send the quotation.</p>
+
+            <div class="quotation-buttons">
+                <button type="button" id="btnQuoteEmail" class="btn quotation-send-btn quotation-email-btn">
+                    📧 Email
+                </button>
+
+                <button type="button" id="btnQuoteWhatsapp" class="btn quotation-send-btn quotation-whatsapp-btn">
+                    💬 WhatsApp
+                </button>
+
+                <button type="button" id="btnQuoteBoth" class="btn quotation-send-btn quotation-both-btn">
+                    Email + WhatsApp
+                </button>
+            </div>
+
+            <div class="quotation-cancel-wrap">
+                <button type="button" id="btnCancelQuotation" class="btn btn-light quotation-cancel-btn">
+                    Cancel
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal-overlay hidden" id="signatureModal" role="dialog" aria-modal="true" aria-labelledby="signatureModalTitle">
+        <div class="modal-box signature-modal-box">
+            <div class="modal-header">
+                <span class="modal-title" id="signatureModalTitle">Digital Signature</span>
+                <button class="modal-close" type="button" id="btnCloseSignature" aria-label="Close signature dialog">
+                    &times;
+                </button>
+            </div>
+
+            <p class="signature-help">Please sign inside the box using your mouse or finger before submitting the order.</p>
+
+            <div class="signature-canvas-wrap">
+                <canvas id="signatureCanvas" aria-label="Signature drawing area"></canvas>
+                <span class="signature-line-label">Sign above</span>
+            </div>
+            <div class="signature-error hidden" id="signatureError" role="alert">Signature is required before submitting.</div>
+
+            <div class="actions signature-actions">
+                <button type="button" class="btn btn-light" id="btnClearSignature">Clear</button>
+                <button type="button" class="btn btn-orange" id="btnConfirmSignature">Confirm &amp; Submit</button>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+        <script src="~/lib/select2/dist/js/select2.min.js" asp-append-version="true"></script>
+        <script src="~/js/admin/order-share.js" asp-append-version="true"></script>
+        <script src="~/js/customer/order.js" asp-append-version="true"></script>
+    }

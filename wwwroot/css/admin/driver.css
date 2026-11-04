@@ -1,0 +1,15 @@
+﻿body {
+}
+
+.driver-row-actions .actions-menu{min-width:220px;padding:10px 0;border-radius:16px}
+.driver-row-actions .action-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;font-weight:700}
+.driver-row-actions .action-icon-text{display:inline-flex;align-items:center;justify-content:center;width:16px;font-size:14px;line-height:1}
+.driver-row-actions .dots-btn{width:36px;height:36px;border-radius:12px}
+.driver-row-actions .driver-action-edit{color:#334155}
+.driver-row-actions .driver-action-edit:hover{background:#f8fafc;color:#0f172a}
+.driver-row-actions .driver-action-active{color:#166534}
+.driver-row-actions .driver-action-active:hover{background:#effdf5;color:#14532d}
+.driver-row-actions .driver-action-inactive{color:#92400e}
+.driver-row-actions .driver-action-inactive:hover{background:#fffbeb;color:#78350f}
+.driver-row-actions .driver-action-delete{color:#b91c1c}
+.driver-row-actions .driver-action-delete:hover{background:#fef2f2;color:#991b1b}

@@ -1,0 +1,402 @@
+.driver-cell {
+    font-weight: 700;
+    color: var(--green-dark)
+}
+
+.vehicle-cell {
+    font-size: 12px;
+    color: var(--gray-500)
+}
+
+.logistics-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.left-toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.delivery-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.delivery-tab {
+    padding: 10px 18px;
+    border: 1px solid #cfe3d7;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #ffffff 0%, #f4fbf7 100%);
+    color: #0f5b38;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+    font-size: 12px;
+    box-shadow: 0 6px 14px rgba(15,91,56,.06);
+}
+
+    .delivery-tab:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 18px rgba(15,91,56,.1);
+    }
+
+    .delivery-tab.active {
+        background: linear-gradient(180deg, #0f5b38 0%, #155f39 100%);
+        color: #fff;
+        border-color: #0f5b38;
+        box-shadow: 0 10px 18px rgba(15,91,56,.22);
+    }
+
+        .delivery-tab.active:hover {
+            transform: translateY(-1px);
+        }
+
+.delivery-tab:focus-visible,
+.btn-assign:focus-visible {
+    outline: 2px solid rgba(245, 158, 11, .35);
+    outline-offset: 2px;
+}
+
+#LogiListPanel {
+    padding-top: 18px;
+}
+
+#LogiListPanel .table-wrap {
+    overflow-x: auto;
+}
+
+#LogiListPanel .tbl td,
+#LogiListPanel .tbl th {
+    vertical-align: middle;
+}
+
+#LogiListPanel .tbl td:nth-child(1),
+#LogiListPanel .tbl td:nth-child(2),
+#LogiListPanel .tbl td:nth-child(3),
+#PendingTable th:nth-child(4),
+#PendingTable td:nth-child(4),
+#PendingTable th:nth-child(5),
+#PendingTable td:nth-child(5) {
+    white-space: nowrap;
+}
+
+#PendingTable th:nth-child(4),
+#PendingTable td:nth-child(4),
+#PendingTable th:nth-child(5),
+#PendingTable td:nth-child(5) {
+    min-width: 130px;
+}
+
+#LogiListPanel select.form-select.driver {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.action-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.driver-cell {
+    min-width: 0;
+}
+
+.logistics-skeleton {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #e2ebe5;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #fff, #f7fbf8);
+}
+
+.logistics-skeleton-head,
+.logistics-skeleton-row {
+    border-radius: 7px;
+    background: #e7f1eb;
+}
+
+.logistics-skeleton-head {
+    width: 42%;
+    height: 34px;
+    margin-bottom: 12px;
+}
+
+.logistics-skeleton-row {
+    height: 34px;
+    margin: 8px 0;
+    background: #edf4ef;
+}
+
+.logistics-skeleton.shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.logistics-skeleton.shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.72), transparent);
+    animation: logistics-skeleton-shimmer 1.25s ease-in-out infinite;
+}
+
+@keyframes logistics-skeleton-shimmer {
+    to { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .logistics-skeleton.shimmer::after { animation: none; }
+}
+
+.btn-assign {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(180deg, #166534 0%, #0f5b38 100%);
+    color: #fff;
+    border: 1px solid #0f5b38;
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-weight: 800;
+    box-shadow: 0 8px 16px rgba(15, 91, 56, .18);
+}
+
+.btn-assign:hover {
+    background: linear-gradient(180deg, #1b7340 0%, #166534 100%);
+    color: #fff;
+    box-shadow: 0 10px 18px rgba(15, 91, 56, .24);
+}
+
+.btn-assign-icon {
+    font-size: 12px;
+    line-height: 1;
+    transform: translateY(-1px);
+}
+
+/* =========================================
+   LOGISTICS TABLE PAGINATION
+   Show pagination only for active section
+   ========================================= */
+
+ Pending Delivery is visible
+   => Hide Delivered pagination 
+#LogiListPanel:has(#pendingSection:not([style*="display: none"]))
+.datatable-footer[data-table-id="DeliveredTable"] {
+    display: none !important;
+}
+
+ Delivered is visible
+   => Hide Pending pagination 
+#LogiListPanel:has(#deliveredSection:not([style*="display: none"]))
+.datatable-footer[data-table-id="PendingTable"] {
+    display: none !important;
+}
+
+.btn-view-delivery {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid #bbf7d0;
+    background: #f0fdf4;
+    color: #166534;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+    .btn-view-delivery:hover {
+        background: #dcfce7;
+        color: #14532d;
+    }
+
+.delivery-details-modal {
+    padding: 0 0 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.delivery-details-modal-title {
+    margin: 0;
+    padding: 22px 28px 18px;
+    color: #183c2b;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.delivery-details {
+    text-align: left;
+    padding: 0 28px;
+}
+
+.delivery-record-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 16px;
+    background: #edf7f1;
+    border: 1px solid #cde5d6;
+    border-radius: 6px;
+}
+
+.delivery-record-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #166534;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.delivery-status-dot {
+    width: 8px;
+    height: 8px;
+    background: #2f9e61;
+    border-radius: 50%;
+}
+
+.delivery-record-caption {
+    color: #557064;
+    font-size: 12px;
+}
+
+.delivery-info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 14px 0 18px;
+}
+
+.delivery-info-item {
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid #dfe9e3;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.delivery-info-item dt {
+    margin-bottom: 5px;
+    color: #6b7c72;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.delivery-info-item dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: #1f2937;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.delivery-images {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.delivery-image-card {
+    min-width: 0;
+    border: 1px solid #d7e4dc;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.delivery-image-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 13px;
+    border-bottom: 1px solid #d7e4dc;
+    background: #f7fbf8;
+}
+
+.delivery-image-card-title {
+    color: #174b32;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.delivery-evidence-label {
+    padding: 3px 7px;
+    border-radius: 3px;
+    background: #e2f2e8;
+    color: #28724b;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.delivery-image-frame {
+    height: 276px;
+    padding: 10px;
+    background: #f3f6f4;
+}
+
+.delivery-preview-image,
+.no-delivery-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #fff;
+}
+
+.delivery-preview-image {
+    object-fit: contain;
+}
+
+.no-delivery-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #b8c9be;
+    color: #6b7c72;
+    font-size: 13px;
+    text-align: center;
+}
+
+.delivery-details-close {
+    min-width: 88px;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
+}
+
+@media (max-width: 700px) {
+
+    .delivery-details {
+        padding: 0 18px;
+    }
+
+    .delivery-images,
+    .delivery-info {
+        grid-template-columns: 1fr;
+    }
+
+    .delivery-record-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .delivery-image-frame {
+        height: 240px;
+    }
+}

@@ -1,0 +1,129 @@
+﻿@model GayatriCateringPortal.Models.DriverVerificationVM
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Driver Verification";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1" />
+
+    <title>Driver Verification</title>
+
+    <link href="~/css/driver/driver-delivery.css"
+          rel="stylesheet"
+          asp-append-version="true" />
+
+    <link href="~/css/driver/verify.css"
+          rel="stylesheet"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+</head>
+
+<body>
+
+    <div class="driver-page">
+        <div class="driver-card">
+            <div class="driver-header">
+                <i class="fas fa-truck"></i>
+                <h2>Driver Verification</h2>
+                <p>Gayatri Catering Delivery Portal</p>
+            </div>
+            <div class="driver-body">
+                <div class="driver-info">
+                    <h3>@Model.DriverName</h3>
+                    <p>📞 @Model.MobileNo</p>
+                </div>
+                <input type="hidden"
+                       id="token"
+                       value="@Model.Token" />
+                <div class="form-group">
+                    <label>Enter OTP</label>
+                    <input class="form-control"
+                           id="txtOtp"
+                           type="text"
+                           inputmode="numeric"
+                           autocomplete="one-time-code"
+                           pattern="[0-9]*"
+                           maxlength="6"
+                           placeholder="Enter 6 digit OTP" />
+                </div>
+                <button class="btn-verify" id="btnVerify">
+                    Verify & Continue
+                </button>
+                <div id="otpMessage"></div>
+            </div>
+            <div class="footer-text">
+                Secure Driver Authentication
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden"
+           id="Token"
+           value="@Model.Token" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+
+        $("#btnVerify").click(function () {
+
+        var token=$("#Token").val();
+
+        var otp=$("#txtOtp").val();
+
+        if(otp=="")
+        {
+        $("#otpMessage").text("Please enter OTP");
+        return;
+        }
+
+        $.ajax({
+
+        url:'/DriverDelivery/VerifyOtp',
+
+        type:'POST',
+
+        data:
+        {
+        token:token,
+        otp:otp
+        },
+
+        success:function(res)
+        {
+        if(res.success)
+        {
+        window.location=res.redirect;
+        }
+        else
+        {
+        $("#otpMessage").text(res.message);
+        }
+        },
+        error:function()
+        {
+        $("#otpMessage").text("Unable to verify right now. Please try again.");
+        }
+
+        });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

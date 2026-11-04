@@ -1,0 +1,110 @@
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Reports</div>
+        <div class="page-subtitle">Dynamic report catalog, filter-driven preview and invoice-ready output</div>
+    </div>
+    <div class="search-bar">
+        <input type="text" id="txtReportSearch" class="form-control" placeholder="Search reports...">
+    </div>
+</div>
+
+<!-- Reports Catalog View with Content Loader -->
+<div id="reportsCatalogView" class="reports-catalog-view">
+    <!-- Centered Content Loader (appears only in content area) -->
+    <div class="content-loader hidden" id="contentLoader">
+        <div class="admin-skeleton-catalog" aria-label="Loading reports" role="status">
+            <div class="admin-skeleton-catalog-card shimmer"></div>
+            <div class="admin-skeleton-catalog-card shimmer"></div>
+            <div class="admin-skeleton-catalog-card shimmer"></div>
+            <div class="admin-skeleton-catalog-card shimmer"></div>
+        </div>
+    </div>
+    
+    <div id="reportCategoriesGrid" class="categories-grid">
+        <!-- Categories with cards will be rendered here -->
+    </div>
+</div>
+
+<!-- Report Preview View -->
+<div id="reportsPreviewView" class="reports-preview-view" style="display: none;">
+    <div class="preview-header">
+        <button type="button" class="btn btn-light btn-sm" id="btnBackToCatalog">← Back to Reports</button>
+        <div class="report-title-info">
+            <div class="report-name"></div>
+            <div class="report-description"></div>
+        </div>
+        <div class="preview-actions">
+            <button type="button" class="btn btn-sm btn-columns" id="btnColumnsReport" title="Manage columns">⚙ Columns</button>
+            <button type="button" class="btn btn-sm btn-preview" id="btnPreviewReport">▶ Preview</button>
+            <button type="button" class="btn btn-light btn-sm" id="btnPrintReport">🖨 Print</button>
+            <button type="button" class="btn btn-light btn-sm btn-excel" id="btnExportExcelReport">📗 Export Excel</button>
+            <button type="button" class="btn btn-light btn-sm btn-pdf" id="btnExportPdfReport">📄 Export PDF</button>
+        </div>
+    </div>
+
+    <div class="preview-content">
+        <div class="filters-section" id="filtersSectionWrap">
+            <div class="loader-overlay hidden" id="filtersLoader">
+                <div class="report-skeleton-filters" aria-label="Loading report filters" role="status">
+                    <div class="shimmer"></div><div class="shimmer"></div><div class="shimmer"></div>
+                </div>
+            </div>
+            <div class="filters-header">Filters</div>
+            <div id="reportFilterWrap" class="filters-wrap"></div>
+        </div>
+
+        <div class="results-section" id="resultsSectionWrap">
+            <div class="loader-overlay hidden" id="previewLoader">
+                <div class="report-skeleton-preview" aria-label="Loading report preview" role="status">
+                    <div class="shimmer"></div><div class="shimmer"></div><div class="shimmer"></div><div class="shimmer"></div>
+                </div>
+            </div>
+            <div class="results-header">Preview</div>
+            <div id="reportResultWrap" class="table-wrap"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Column Selection Modal -->
+<div class="modal-overlay hidden" id="columnsModal">
+    <div class="modal-box modal-columns">
+        <div class="modal-header">
+            <span class="modal-title">Headers (Columns)</span>
+            <button class="modal-close" type="button" onclick="closeColumnsModal()">✕</button>
+        </div>
+        
+        <div class="modal-subtitle">Pick columns for the report. Uncheck to hide columns from preview.</div>
+
+        <div class="columns-search-wrap">
+            <input type="text" id="columnsSearch" class="form-control" placeholder="Search columns...">
+        </div>
+
+        <div class="columns-content">
+            <div class="columns-select-all">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="selectAllColumns" onchange="toggleAllColumns()">
+                    <span>Select all</span>
+                </label>
+            </div>
+
+            <div class="columns-list" id="columnsList">
+                <!-- Columns will be rendered here -->
+            </div>
+
+            <div class="columns-count">
+                <span id="columnsSelectedCount">0</span> / <span id="columnsTotalCount">0</span> selected
+            </div>
+        </div>
+
+        <div class="modal-actions">
+            <button type="button" class="btn btn-light" onclick="closeColumnsModal()">Cancel</button>
+            <button type="button" class="btn btn-secondary" onclick="resetColumnsToDefault()" title="Show all columns">Reset to Default</button>
+            <button type="button" class="btn btn-primary" onclick="saveColumnsPreferences()">Apply</button>
+        </div>
+    </div>
+</div>
+

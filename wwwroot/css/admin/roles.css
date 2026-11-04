@@ -1,0 +1,176 @@
+.permission-grid {
+    display: grid;
+    grid-template-columns: 200px repeat(5,1fr);
+    gap: 0;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    overflow: hidden
+}
+
+    .permission-grid .ph {
+        background: var(--gray-50);
+        padding: 10px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--gray-500);
+        border-bottom: 1px solid var(--gray-200)
+    }
+
+    .permission-grid .pc {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--gray-100);
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+    .permission-grid .pl {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--gray-100);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gray-700)
+}
+
+#btnBackToRoles {
+    margin: 0;
+    padding: 10px 18px
+}
+
+#rolesMatrix .perm-all-head {
+    white-space: nowrap;
+}
+
+#rolesMatrix {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#rolesMatrix th:first-child,
+#rolesMatrix td:first-child {
+    width: 220px;
+}
+
+#rolesMatrix th:not(:first-child),
+#rolesMatrix td:not(:first-child) {
+    width: calc((100% - 220px) / 8);
+}
+
+#rolesMatrix th {
+    white-space: normal;
+    line-height: 1.2;
+}
+
+#rolesMatrix th:not(:first-child),
+#rolesMatrix td:not(:first-child) {
+    text-align: center;
+}
+
+#rolesMatrix .perm-all-head-inner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+}
+
+#rolesMatrix #permAllHeader {
+    margin: 0;
+    vertical-align: middle;
+}
+
+/* Rich checkbox styling scoped only to Role Permission matrix */
+#rolesMatrix input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    border: 1.5px solid #9ccab0;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+    display: inline-grid;
+    place-content: center;
+    vertical-align: middle;
+    transform: translateY(1px);
+    cursor: pointer;
+    transition: border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+
+#rolesMatrix input[type="checkbox"]:hover {
+    border-color: #5aa77f;
+    box-shadow: 0 0 0 2px rgba(31,122,71,.10);
+}
+
+#rolesMatrix input[type="checkbox"]:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(30,122,71,.20);
+}
+
+#rolesMatrix input[type="checkbox"]::after {
+    content: "";
+    width: 4px;
+    height: 8px;
+    border: solid #fff;
+    border-width: 0 1.8px 1.8px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform .12s ease;
+    margin-top: -0.5px;
+}
+
+#rolesMatrix input[type="checkbox"]:checked {
+    border-color: #1f7a47;
+    background: #22834c;
+    box-shadow: 0 1px 3px rgba(22,85,58,.24);
+}
+
+#rolesMatrix input[type="checkbox"]:checked::after {
+    transform: rotate(45deg) scale(1);
+}
+
+#rolesMatrix input[type="checkbox"]:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+#rolesMatrix #permAllHeader {
+    width: 16px;
+    height: 16px;
+}
+
+/* panel-specific positioning is kept here */
+#rolesListPanel {
+    position: relative;
+}
+
+/* migrated loader styles now live in site.css as .pageloaderpanel and .pageloaderfull */
+
+/* Role list badges */
+/* role-specific styles remain here; badge styles are shared in site.css */
+
+
+/* Roles modal: larger size than default modal-box */
+/*#rolesModal .modal-box {
+    width: 820px;*/ /* desktop width */
+    /*max-width: 96vw;
+    max-height: 92vh;
+    padding: 28px;
+    overflow: auto;
+}*/
+.roles-row-actions .actions-menu{min-width:220px;padding:10px 0;border-radius:16px}
+.roles-row-actions .action-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;font-weight:700}
+.roles-row-actions .action-icon-text{display:inline-flex;align-items:center;justify-content:center;width:16px;font-size:14px;line-height:1}
+.roles-row-actions .dots-btn{width:36px;height:36px;border-radius:12px}
+.roles-row-actions .roles-action-edit{color:#334155}
+.roles-row-actions .roles-action-edit:hover{background:#f8fafc;color:#0f172a}
+.roles-row-actions .roles-action-active{color:#166534}
+.roles-row-actions .roles-action-active:hover{background:#effdf5;color:#14532d}
+.roles-row-actions .roles-action-inactive{color:#92400e}
+.roles-row-actions .roles-action-inactive:hover{background:#fffbeb;color:#78350f}
+.roles-row-actions .roles-action-delete{color:#b91c1c}
+.roles-row-actions .roles-action-delete:hover{background:#fef2f2;color:#991b1b}
+.roles-row-actions .roles-action-permission{color:#4338ca}
+.roles-row-actions .roles-action-permission:hover{background:#eef2ff;color:#3730a3}

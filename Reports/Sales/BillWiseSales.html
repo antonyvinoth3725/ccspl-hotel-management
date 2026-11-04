@@ -1,0 +1,265 @@
+<style>
+  .bws-ledger {
+    --ink: #124d2b;
+    --muted: #68786e;
+    --line: #d9e6de;
+    --paper: #ffffff;
+    --soft: #f3f8f5;
+    --accent: #e4772d;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    box-shadow: 0 12px 32px rgba(23,36,58,.08);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 14px;
+  }
+
+  .bws-ledger * { box-sizing: border-box; }
+
+  .bws-masthead {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 28px;
+    align-items: center;
+    padding: 30px 34px 24px;
+    border-top: 7px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bws-overline {
+    margin-bottom: 7px;
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .bws-title {
+    margin: 0;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.05;
+  }
+
+  .bws-description {
+    max-width: 680px;
+    margin: 9px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .bws-stamp {
+    min-width: 190px;
+    padding: 12px 15px;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+  }
+
+  .bws-stamp strong {
+    display: block;
+    margin-top: 5px;
+    color: var(--ink);
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .bws-summary {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    background: var(--soft);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bws-stat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px 24px;
+    border-right: 1px solid var(--line);
+  }
+
+  .bws-stat:last-child { border-right: 0; }
+
+  .bws-stat-label {
+    display: flex;
+    align-items: center;
+    min-height: 14px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .bws-stat-value {
+    display: flex;
+    align-items: center;
+    min-height: 30px;
+    margin-top: 7px;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 30px;
+    white-space: nowrap;
+  }
+
+  .bws-stat:first-child .bws-stat-value { color: var(--accent); }
+
+  .bws-body { padding: 28px 34px 34px; }
+
+  .bws-body-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+
+  .bws-body-title {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+  }
+
+  .bws-body-note { color: var(--muted); font-size: 11px; }
+
+  .bws-ledger .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    border: 1px solid var(--line);
+  }
+
+  .bws-ledger .table {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .bws-ledger .table th {
+    padding: 12px 13px;
+    color: #fff;
+    background: var(--ink);
+    border-right: 1px solid rgba(255,255,255,.13);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .7px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .bws-ledger .table td {
+    padding: 12px 13px;
+    border-right: 1px solid #edf0f2;
+    border-bottom: 1px solid #e7eaed;
+  }
+
+  .bws-ledger .report-col-number { text-align: right; }
+  .bws-ledger .report-col-date { text-align: center; white-space: nowrap; }
+  .bws-ledger .report-col-text { text-align: left; }
+
+  .bws-ledger .table tbody tr:nth-child(even) { background: #fafafa; }
+  .bws-ledger .table tbody tr:hover { background: #edf8f1; }
+  .bws-ledger .table tbody tr:last-child td { border-bottom: 0; }
+
+  .bws-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 13px 34px;
+    color: var(--muted);
+    background: var(--soft);
+    border-top: 1px solid var(--line);
+    font-size: 10px;
+  }
+
+  @media (max-width: 850px) {
+    .bws-masthead { grid-template-columns: 1fr; }
+    .bws-stamp { width: fit-content; }
+    .bws-summary { grid-template-columns: repeat(2, 1fr); }
+    .bws-stat:nth-child(2) { border-right: 0; }
+    .bws-stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  }
+
+  @media (max-width: 520px) {
+    .bws-masthead, .bws-body { padding: 22px 18px; }
+    .bws-title { font-size: 28px; }
+    .bws-summary { grid-template-columns: 1fr; }
+    .bws-stat { border-right: 0; border-bottom: 1px solid var(--line); }
+    .bws-body-head, .bws-footer { align-items: flex-start; flex-direction: column; }
+  }
+
+  @media print {
+    .bws-ledger { border: 0; border-radius: 0; box-shadow: none; }
+    .bws-ledger .table-wrap { overflow: visible; }
+    .bws-ledger .table { font-size: 9px; white-space: normal; }
+    .bws-ledger .table th, .bws-ledger .table td { padding: 7px; }
+    .bws-ledger .table tbody tr { break-inside: avoid; }
+  }
+</style>
+
+<article class="bws-ledger">
+  <header class="bws-masthead">
+    <div>
+      <div class="bws-overline">Invoice Ledger</div>
+      <h1 class="bws-title">{{report.displayName}}</h1>
+      <p class="bws-description">A detailed invoice register showing sales value, tax and receivable position for the selected reporting period.</p>
+    </div>
+    <div class="bws-stamp">
+      Statement generated
+      <strong>{{meta.executedAt|date}}</strong>
+    </div>
+  </header>
+
+  <section class="bws-summary">
+    <div class="bws-stat">
+      <div class="bws-stat-label">Invoice Records</div>
+      <div class="bws-stat-value">{{meta.rowCount|number}}</div>
+    </div>
+    <div class="bws-stat">
+      <div class="bws-stat-label">Gross Invoice Value</div>
+      <div class="bws-stat-value">S${{sumTotalAmount|currency}}</div>
+    </div>
+    <div class="bws-stat">
+      <div class="bws-stat-label">Tax Value</div>
+      <div class="bws-stat-value">S${{sumTaxAmount|currency}}</div>
+    </div>
+    <div class="bws-stat">
+      <div class="bws-stat-label">Balance Receivable</div>
+      <div class="bws-stat-value">S${{sumBalanceAmount|currency}}</div>
+    </div>
+  </section>
+
+  <section class="bws-body">
+    <div class="bws-body-head">
+      <h2 class="bws-body-title">Invoice Register</h2>
+      <span class="bws-body-note">Headers and visible fields follow the database column configuration.</span>
+    </div>
+    {{table}}
+  </section>
+
+  <footer class="bws-footer">
+    <span>Gayatri Catering · Bill-wise sales ledger</span>
+    <span>{{meta.rowCount|number}} record(s)</span>
+  </footer>
+</article>

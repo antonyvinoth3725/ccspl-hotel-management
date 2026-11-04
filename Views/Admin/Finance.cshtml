@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Finance & Payments";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/finance.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Finance &amp; Payments</div>
+        <div class="page-subtitle">GST, deposit, balance and payment tracking</div>
+    </div>
+</div>
+
+<div class="stats-grid" style="margin-bottom:18px">
+    <div class="stat-card">
+        <div class="stat-value" id="finRevenue">S$0.00</div>
+        <div class="stat-label">Total Invoice</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value" id="finCollected">S$0.00</div>
+        <div class="stat-label">Paid</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value" id="finOutstanding">S$0.00</div>
+        <div class="stat-label">Outstanding</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value" id="finGst">S$0.00</div>
+        <div class="stat-label">GST View</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="panel-header">
+        <div class="panel-title">Finance Register</div>
+    </div>
+        <div class="table-wrap" id="financeTable"></div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/finance.js" asp-append-version="true"></script>
+}
+
+

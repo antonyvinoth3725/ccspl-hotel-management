@@ -1,0 +1,77 @@
+@{
+    ViewData["Title"] = "Quotations";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/quotations.css" asp-append-version="true">
+    }
+
+    <div class="page-header">
+        <div>
+            <div class="page-title">Quotations</div>
+            <div class="page-subtitle">Create, preview, print, email and WhatsApp quotations</div>
+        </div>
+        <div class="page-header-actions">
+            <div class="app-header-filter quotation-date-filter">
+                <label for="quotationsFromDate">From</label>
+                <input type="date" id="quotationsFromDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="app-header-filter quotation-date-filter">
+                <label for="quotationsToDate">To</label>
+                <input type="date" id="quotationsToDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+            </div>
+        </div>
+    </div>
+
+    <div id="QuotListPanel" class="quotations-shell">
+        <div class="card quotations-register-card">
+            <div class="panel-header">
+                <div class="panel-title">Quotation Register</div>
+                <div class="panel-actions">
+                    <div class="app-header-filter">
+                        <input type="text" id="QuotationSearch" class="tbl-search" data-table="quotationsTable" placeholder="Search Quotation...">
+                    </div>
+                </div>
+            </div>
+            <div class="pageloaderpanel hidden">
+                <div class="admin-skeleton-table" aria-label="Loading quotations" role="status">
+                    <div class="admin-skeleton-toolbar shimmer"></div>
+                    <div class="admin-skeleton-row shimmer"></div>
+                    <div class="admin-skeleton-row shimmer"></div>
+                    <div class="admin-skeleton-row shimmer"></div>
+                    <div class="admin-skeleton-row shimmer"></div>
+                </div>
+            </div>
+            <div class="table-wrap" >
+                <table class="tbl" id="quotationsTable" data-page-size="10">
+                    <thead>
+                        <tr>
+                            <th class="sortable">#</th>
+                            <th class="sortable">Order No</th>
+                            <th class="sortable">Customer</th>
+                            <th class="sortable">Package</th>
+                            <th class="sortable">Pax</th>
+                            <th class="sortable">Quotation Date</th>
+                            <th class="sortable">Event Date</th>
+                            <th class="sortable">Status</th>
+                            <th class="sortable">Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!-- Ajax -->
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+        <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+        <script src="~/js/admin/order-share.js" asp-append-version="true"></script>
+        <script src="~/js/admin/quotations.js" asp-append-version="true"></script>
+    }

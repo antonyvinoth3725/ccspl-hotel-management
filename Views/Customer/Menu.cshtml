@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Full Indian Menu";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/customer/menu.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Full Indian Menu</div>
+    </div>
+</div>
+
+<div id="menuSections">
+    <div class="card menu-loading-card">
+        <div class="pageloaderpanel">
+            <div class="spinner" aria-hidden="true"></div>
+            <div class="loader-text">Loading menu items...</div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/customer/menu.js" asp-append-version="true"></script>
+}

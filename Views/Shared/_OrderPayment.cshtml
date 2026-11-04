@@ -1,0 +1,45 @@
+@* Shared Omise payment modal. Open from any customer page with window.OrderPayment.open(...). *@
+<div class="payment-modal-overlay hidden" id="orderPaymentModal">
+    <div class="payment-modal order-payment-card" role="dialog" aria-modal="true" aria-labelledby="orderPaymentTitle" aria-describedby="orderPaymentSubtitle">
+        <button type="button" class="payment-close" id="btnCloseOrderPayment" aria-label="Close">&times;</button>
+        <div class="payment-title" id="orderPaymentTitle">Complete Payment</div>
+        <div class="payment-subtitle" id="orderPaymentSubtitle">Choose a secure payment method</div>
+        <div class="payment-amount" id="orderPaymentAmount"></div>
+
+        <div class="form-group order-payment-amount-field">
+            <label for="orderPaymentPayAmount">Amount to Pay (S$) <span class="field-required">*</span></label>
+            <input type="number" id="orderPaymentPayAmount" class="form-control" min="0.01" step="0.01"
+                   inputmode="decimal" autocomplete="off" placeholder="Enter amount to pay" />
+            <div class="field-help" id="orderPaymentHelpText">You may edit this amount to make a partial payment. The remaining balance can be paid later. Kindly ensure that the remaining amount is paid no later than 4 days before the event.</div>
+            <div class="field-error hidden" id="orderPaymentPayAmountError"></div>
+        </div>
+
+        <div class="order-payment-modes" role="radiogroup" aria-label="Payment method">
+            <label class="order-payment-mode-option"><input type="radio" name="orderPaymentMode" value="card" checked><span>Card</span></label>
+            <label class="order-payment-mode-option"><input type="radio" name="orderPaymentMode" value="upi"><span>UPI</span></label>
+            <label class="order-payment-mode-option"><input type="radio" name="orderPaymentMode" value="qr"><span>QR/Pay Now</span></label>
+        </div>
+
+        <div id="orderPaymentCardFields">
+            <input class="form-control" id="paymentCardName" placeholder="Name on card" autocomplete="cc-name">
+            <input class="form-control" id="paymentCardNumber" placeholder="Card number" inputmode="numeric" autocomplete="cc-number" maxlength="19">
+            <div class="order-payment-row">
+                <input class="form-control" id="paymentExpiryMonth" placeholder="MM" inputmode="numeric" autocomplete="cc-exp-month" minlength="2" maxlength="2" pattern="(0[1-9]|1[0-2])">
+                <input class="form-control" id="paymentExpiryYear" placeholder="YY" inputmode="numeric" autocomplete="cc-exp-year" minlength="2" maxlength="2" pattern="[0-9]{2}">
+                <input class="form-control" id="paymentSecurityCode" type="password" placeholder="CVV or CVC" inputmode="numeric" autocomplete="cc-csc" minlength="3" maxlength="3" pattern="[0-9]{3}">
+            </div>
+            <div class="field-error hidden" id="orderPaymentCardError"></div>
+        </div>
+        <div class="hidden" id="orderPaymentSourceHelp">A secure payment QR will be generated after you click Pay Now.</div>
+        <div class="hidden payment-qr-wrap" id="omiseQrWrap"><img id="omiseQrImage" class="payment-qr-image" alt="Payment QR"></div>
+        <div class="field-error hidden" id="orderPaymentError" role="alert" aria-live="assertive"></div>
+        <div class="payment-actions">
+            <button type="button" class="btn btn-light" id="btnCancelOrderPayment"><span>Cancel</span></button>
+            <button type="button" class="btn btn-primary" id="btnPayNow">
+                <span class="pay-btn-loader hidden" aria-hidden="true"></span>
+                <span class="pay-btn-success hidden" aria-hidden="true">&#10003;</span>
+                <span class="pay-btn-text">Pay Now</span>
+            </button>
+        </div>
+    </div>
+</div>

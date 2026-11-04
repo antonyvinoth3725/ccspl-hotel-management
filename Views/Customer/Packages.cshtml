@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Packages";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/customer/packages.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Catering Packages</div>
+        <div class="page-subtitle">Pre-configured packages with dish choices and pricing per pax</div>
+    </div>
+    <div class="package-header-actions">
+        <label class="package-search" for="packageNameSearch">
+            <input type="search" id="packageNameSearch" placeholder="Search package name" aria-label="Search packages by name" autocomplete="off">
+        </label>
+        <a href="/Customer/Order" class="btn btn-orange">Order Now</a>
+    </div>
+</div>
+
+<!-- PACKAGES -->
+<div class="packages-layout">
+    <section>
+        <div class="preset-grid" id="packageCards">
+            <div class="card package-loading-card">
+                <div class="pageloaderpanel">
+                    <div class="spinner" aria-hidden="true"></div>
+                    <div class="loader-text">Loading packages...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <aside class="package-sidebar" id="packageSidebar" aria-live="polite">
+        <div class="package-detail-heading">
+            <div class="package-detail-kicker">Package menu</div>
+            <h2 id="packageDetailTitle">Select a package</h2>
+            <div class="package-detail-subtitle">Click View on any package card to see menu categories.</div>
+            <div class="package-detail-meta" id="packageDetailMeta">
+                <span class="meta-pill">Ready</span>
+            </div>
+        </div>
+        <div class="package-detail-content" id="packageDetailContent">
+            <div class="package-detail-status">Package details will appear here.</div>
+        </div>
+    </aside>
+</div>
+
+@*
+<!-- PACKAGE INCLUDES -->
+<div class="card" style="margin-bottom:18px">
+    <div class="section-label">What's Included in Every Package</div>
+    <div class="includes-grid">
+        <div class="include-item">
+            <div class="include-icon">ðŸ¥„</div>
+            <strong>Utensils</strong>
+            <div style="font-size:11px;color:var(--gray-500);margin-top:4px">Chafing dishes, serving spoons, plates</div>
+        </div>
+        <div class="include-item">
+            <div class="include-icon">ðŸ‘¨â€ðŸ³</div>
+            <strong>Service Staff</strong>
+            <div style="font-size:11px;color:var(--gray-500);margin-top:4px">Trained serving staff on-site</div>
+        </div>
+        <div class="include-item">
+            <div class="include-icon">ðŸšš</div>
+            <strong>Delivery & Setup</strong>
+            <div style="font-size:11px;color:var(--gray-500);margin-top:4px">Delivery and buffet line setup</div>
+        </div>
+        <div class="include-item">
+            <div class="include-icon">ðŸ§¹</div>
+            <strong>Cleanup</strong>
+            <div style="font-size:11px;color:var(--gray-500);margin-top:4px">Post-event cleanup and collection</div>
+        </div>
+    </div>
+    <p class="hint">LED wall, sound system, and table setting available as add-ons. Contact us for custom packages.</p>
+</div>
+*@
+
+@section Scripts {
+    <script src="~/js/customer/packages.js" asp-append-version="true"></script>
+}

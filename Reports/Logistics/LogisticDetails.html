@@ -1,0 +1,208 @@
+<style>
+  .ld-report {
+    --charcoal: #124d2b;
+    --orange: #e4772d;
+    --cream: #f7fbf8;
+    --sand: #e8f5ee;
+    --line: #d6e5db;
+    --ink: #173126;
+    --muted: #68786e;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(39, 50, 57, .08);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  .ld-report * { box-sizing: border-box; }
+
+  .ld-head {
+    display: grid;
+    grid-template-columns: 8px minmax(0, 1fr) auto;
+    gap: 25px;
+    align-items: center;
+    padding: 29px 34px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ld-mark { align-self: stretch; min-height: 88px; background: var(--orange); border-radius: 8px; }
+  .ld-kicker {
+    margin-bottom: 7px;
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .ld-title {
+    margin: 0;
+    color: var(--charcoal);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    line-height: 1.1;
+  }
+
+  .ld-description {
+    max-width: 720px;
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .ld-date {
+    min-width: 170px;
+    padding: 12px 15px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+  }
+
+  .ld-date strong {
+    display: block;
+    margin-top: 5px;
+    color: var(--charcoal);
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .ld-strip {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: center;
+    padding: 15px 34px;
+    color: var(--charcoal);
+    background: var(--sand);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ld-records { display: flex; align-items: baseline; gap: 10px; }
+  .ld-records strong { color: var(--orange); font-family: Georgia, serif; font-size: 26px; line-height: 1; }
+  .ld-records span {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .ld-config-note { color: var(--muted); font-size: 11px; }
+  .ld-body { padding: 27px 34px 32px; }
+  .ld-body-title { margin: 0 0 12px; font-family: Georgia, serif; font-size: 19px; }
+
+  .ld-report .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    border-top: 2px solid var(--charcoal);
+    border-bottom: 2px solid var(--charcoal);
+  }
+
+  .ld-report .table {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  .ld-report .table th {
+    padding: 12px 13px;
+    color: #5d6467;
+    background: var(--sand);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-size: 10px;
+    letter-spacing: .75px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .ld-report .table td {
+    padding: 12px 13px;
+    border-right: 1px solid #eee7de;
+    border-bottom: 1px solid #eee7de;
+    vertical-align: top;
+  }
+
+  .ld-report .table tbody tr:nth-child(even) { background: #fafcfb; }
+  .ld-report .table tbody tr:hover { background: #edf8f1; }
+  .ld-report .table tbody tr:last-child td { border-bottom: 0; }
+  .ld-report .report-col-number { text-align: right; }
+  .ld-report .report-col-date { text-align: center; }
+  .ld-report .report-col-text { text-align: left; }
+
+  .ld-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 13px 34px;
+    color: var(--muted);
+    background: var(--cream);
+    border-top: 1px solid var(--line);
+    font-size: 10px;
+  }
+
+  @media (max-width: 700px) {
+    .ld-head { grid-template-columns: 6px 1fr; padding: 23px 20px; }
+    .ld-date { grid-column: 2; width: fit-content; }
+    .ld-strip { align-items: flex-start; flex-direction: column; padding: 15px 20px; }
+    .ld-body { padding: 22px 16px; }
+    .ld-footer { align-items: flex-start; flex-direction: column; }
+  }
+
+  @media print {
+    .ld-report { border: 0; border-radius: 0; box-shadow: none; }
+    .ld-report .table-wrap { overflow: visible; }
+    .ld-report .table { font-size: 9px; white-space: normal; }
+    .ld-report .table th, .ld-report .table td { padding: 7px; }
+    .ld-report .table tbody tr { break-inside: avoid; }
+  }
+</style>
+
+<article class="ld-report">
+  <header class="ld-head">
+    <div class="ld-mark"></div>
+    <div>
+      <div class="ld-kicker">Dispatch Register</div>
+      <h1 class="ld-title">{{report.displayName}}</h1>
+      <p class="ld-description">A detailed operational register of delivery orders, assigned drivers, destinations and dispatch activity.</p>
+    </div>
+    <div class="ld-date">
+      Report generated
+      <strong>{{meta.executedAt|date}}</strong>
+    </div>
+  </header>
+
+  <section class="ld-strip">
+    <div class="ld-records">
+      <strong>{{meta.rowCount|number}}</strong>
+      <span>Logistics Records</span>
+    </div>
+    <div class="ld-config-note">Column labels and visibility are managed from report settings.</div>
+  </section>
+
+  <section class="ld-body">
+    <h2 class="ld-body-title">Logistics Register</h2>
+    {{table}}
+  </section>
+
+  <footer class="ld-footer">
+    <span>Gayatri Catering &middot; Internal logistics statement</span>
+    <span>{{meta.rowCount|number}} record(s)</span>
+  </footer>
+</article>

@@ -1,0 +1,60 @@
+#customersModal .customers-modal-box {
+    width: min(940px, 94vw);
+    max-width: min(940px, 94vw);
+}
+
+#customersModal textarea.form-control {
+    min-height: 40px;
+    height: 40px;
+    resize: vertical;
+}
+
+#customersModal .form-control {
+    min-height: 40px;
+}
+
+@media (max-width: 900px) {
+    #customersModal .customers-modal-box {
+        max-width: calc(100vw - 28px);
+        padding: 18px;
+    }
+
+    #customersModal .form-row.col3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    #customersModal .form-row.col3 .form-group:only-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 640px) {
+    #customersModal .customers-modal-box {
+        max-width: calc(100vw - 18px);
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    #customersModal .form-row.col3 {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    #customersModal textarea.form-control {
+        min-height: 40px;
+        height: 40px;
+    }
+}
+.customers-row-actions .actions-menu{min-width:220px;padding:10px 0;border-radius:16px}
+.customers-row-actions .action-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;font-weight:700}
+.customers-row-actions .action-icon-text{display:inline-flex;align-items:center;justify-content:center;width:16px;font-size:14px;line-height:1}
+.customers-row-actions .dots-btn{width:36px;height:36px;border-radius:12px}
+.customers-row-actions .customers-action-edit{color:#334155}
+.customers-row-actions .customers-action-edit:hover{background:#f8fafc;color:#0f172a}
+.customers-row-actions .customers-action-active{color:#166534}
+.customers-row-actions .customers-action-active:hover{background:#effdf5;color:#14532d}
+.customers-row-actions .customers-action-inactive{color:#92400e}
+.customers-row-actions .customers-action-inactive:hover{background:#fffbeb;color:#78350f}
+.customers-row-actions .customers-action-delete{color:#b91c1c}
+.customers-row-actions .customers-action-delete:hover{background:#fef2f2;color:#991b1b}

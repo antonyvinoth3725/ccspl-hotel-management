@@ -1,0 +1,264 @@
+<style>
+  .orders-report {
+    background: #ffffff;
+    color: #173126;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 4px;
+  }
+
+  .orders-report * {
+    box-sizing: border-box;
+  }
+
+  .orders-card {
+    border: 1px solid #d8e5df;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 10px 26px rgba(18, 77, 43, .07);
+  }
+
+  .orders-table-wrap {
+    overflow-x: auto;
+    overflow-y: visible;
+    max-height: none;
+  }
+
+  .orders-table-wrap.table-wrap {
+    overflow-x: auto;
+    overflow-y: visible;
+    max-height: none;
+  }
+
+  .orders-table {
+    width: 100%;
+    min-width: 1120px;
+    border-collapse: collapse;
+    background: #ffffff;
+  }
+
+  .orders-table thead th {
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #185239;
+    background: #e8f5ee;
+    border-right: 1px solid #d3e8df;
+    border-bottom: 2px solid #2d8a52;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .orders-table thead th:last-child {
+    border-right: 0;
+  }
+
+  .orders-table tbody td {
+    padding: 8px 12px;
+    border-right: 1px solid #e4ece8;
+    border-bottom: 1px solid #e9efec;
+    vertical-align: top;
+    font-size: 13px;
+    color: #1b2b43;
+  }
+
+  .orders-table tbody td:last-child {
+    border-right: 0;
+  }
+
+  .cell-order {
+    color: #1a6e3c;
+    font-weight: 800;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .cell-customer-name {
+    display: block;
+    font-weight: 800;
+    color: #124d2b;
+    line-height: 1.2;
+  }
+
+  .cell-muted {
+    display: block;
+    margin-top: 1px;
+    color: #566f8d;
+    font-size: 12px;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  .status-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    border: 1px solid transparent;
+  }
+
+  .status-pill[data-status="Pending"],
+  .status-pill[data-status="0"] {
+    background: #fff1c9;
+    color: #9d5a00;
+    border-color: #ffe29b;
+  }
+
+  .status-pill[data-status="In Kitchen"],
+  .status-pill[data-status="1"] {
+    background: #dbeafe;
+    color: #1e40af;
+    border-color: #bfdbfe;
+  }
+
+  .status-pill[data-status="Ready for Delivery"],
+  .status-pill[data-status="2"] {
+    background: #ede9fe;
+    color: #5b21b6;
+    border-color: #ddd6fe;
+  }
+
+  .status-pill[data-status="Assigned for Driver"],
+  .status-pill[data-status="3"] {
+    background: #fce7f3;
+    color: #9d174d;
+    border-color: #fbcfe8;
+  }
+
+  .status-pill[data-status="Delivered"],
+  .status-pill[data-status="4"] {
+    background: #d1fae5;
+    color: #065f46;
+    border-color: #a7f3d0;
+  }
+
+  .status-pill[data-status="Amended"],
+  .status-pill[data-status="8"] {
+    background: #ecfeff;
+    color: #115e59;
+    border-color: #bdeff4;
+  }
+
+  .status-pill[data-status="Unknown"],
+  .status-pill[data-status=""] {
+    background: #f3f4f6;
+    color: #374151;
+    border-color: #e5e7eb;
+  }
+
+  .status-payment {
+    background: #f3f4f6;
+    color: #374151;
+    border-color: #e5e7eb;
+  }
+
+  .status-payment[data-payment-status="Pending"],
+  .status-payment[data-payment-status="pending"],
+  .status-payment[data-payment-status="Unpaid"],
+  .status-payment[data-payment-status="unpaid"],
+  .status-payment[data-payment-status="0"] {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #f8d77a;
+  }
+
+  .status-payment[data-payment-status="Paid"],
+  .status-payment[data-payment-status="paid"],
+  .status-payment[data-payment-status="2"] {
+    background: #d1fae5;
+    color: #065f46;
+    border-color: #a7f3d0;
+  }
+
+  .status-payment[data-payment-status="Partially Paid"],
+  .status-payment[data-payment-status="partially paid"],
+  .status-payment[data-payment-status="Partial Paid"],
+  .status-payment[data-payment-status="partial paid"],
+  .status-payment[data-payment-status="1"] {
+    background: #ffedd5;
+    color: #9a3412;
+    border-color: #fed7aa;
+  }
+
+  .status-payment[data-payment-status="Failed"],
+  .status-payment[data-payment-status="failed"],
+  .status-payment[data-payment-status="Declined"],
+  .status-payment[data-payment-status="declined"],
+  .status-payment[data-payment-status="Cancelled"],
+  .status-payment[data-payment-status="cancelled"],
+  .status-payment[data-payment-status="Canceled"],
+  .status-payment[data-payment-status="canceled"] {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-color: #f8c0c0;
+  }
+
+  .amount-value {
+    font-weight: 800;
+    color: #124d2b;
+    white-space: nowrap;
+  }
+
+  .text-nowrap {
+    white-space: nowrap;
+  }
+</style>
+
+<div class="orders-report">
+  <div class="orders-card">
+    <div class="orders-table-wrap table-wrap">
+      <table class="orders-table" id="reportResultTable">
+        <thead>
+          <tr>
+            <th data-report-column="SerialNo"></th>
+            <th data-report-column="OrderNumber"></th>
+            <th data-report-column="CustomerName,MobileNo,EmailId"></th>
+            <th data-report-column="PackageName,Pax"></th>
+            <th data-report-column="EventDate,MealPeriodName"></th>
+            <th data-report-column="OrderStatusName"></th>
+            <th data-report-column="PaymentStatusName,PaidAmount"></th>
+            <th data-report-column="TotalAmount"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#rows}}
+          <tr>
+            <td data-report-column="SerialNo" class="text-nowrap">{{SerialNo}}</td>
+            <td data-report-column="OrderNumber">
+              <span class="cell-order">{{OrderNumber}}</span>
+            </td>
+            <td data-report-column="CustomerName,MobileNo,EmailId">
+              <span class="cell-customer-name">{{CustomerName}}</span>
+              <span class="cell-muted">{{MobileNo}} | {{EmailId}}</span>
+            </td>
+            <td data-report-column="PackageName,Pax">
+              <span>{{PackageName}}</span>
+              <span class="cell-muted">Pax: {{Pax|number}} | -</span>
+            </td>
+            <td data-report-column="EventDate,MealPeriodName">
+              <span class="text-nowrap">{{EventDate|date}}</span>
+              <span class="cell-muted">{{MealPeriodName}}</span>
+            </td>
+            <td data-report-column="OrderStatusName">
+              <span class="status-pill" data-status="{{OrderStatusName}}">{{OrderStatusName}}</span>
+            </td>
+            <td data-report-column="PaymentStatusName,PaidAmount">
+              <span class="status-pill status-payment" data-payment-status="{{PaymentStatusName}}">{{PaymentStatusName}}</span>
+              <span class="cell-muted">Paid S${{PaidAmount|currency}}</span>
+            </td>
+            <td data-report-column="TotalAmount">
+              <span class="amount-value">S${{TotalAmount|currency}}</span>
+            </td>
+          </tr>
+          {{/rows}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

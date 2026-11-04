@@ -1,0 +1,293 @@
+<style>
+  .pay-dashboard {
+    --ink: #173126;
+    --muted: #68786e;
+    --line: #d8e6dd;
+    --blue: #1a6e3c;
+    --cyan: #2d8a52;
+    --amber: #e89132;
+    --rose: #d65b65;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--ink);
+    background: #f4f9f6;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 16px 38px rgba(22,38,58,.09);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  .pay-dashboard * { box-sizing: border-box; }
+
+  .pay-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: center;
+    padding: 27px 32px;
+    color: #fff;
+    background: linear-gradient(120deg, #124d2b 0%, #1a6e3c 58%, #2d8a52 100%);
+  }
+
+  .pay-kicker {
+    margin-bottom: 7px;
+    color: #b9ebcb;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .pay-title { margin: 0; font-size: 30px; line-height: 1.12; }
+  .pay-subtitle { margin: 7px 0 0; color: #d5e2f5; font-size: 12px; }
+  .pay-date {
+    flex: 0 0 auto;
+    padding: 11px 14px;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 10px;
+    background: rgba(255,255,255,.08);
+    color: #d9eee1;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  .pay-date strong { display: block; margin-top: 4px; color: #fff; font-size: 12px; text-transform: none; }
+  .pay-content { padding: 24px; }
+
+  .pay-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .pay-kpi {
+    position: relative;
+    min-height: 108px;
+    padding: 18px 18px 16px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+  }
+
+  .pay-kpi::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    content: "";
+    background: var(--kpi-color, var(--blue));
+  }
+
+  .pay-kpi-label {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+  }
+
+  .pay-kpi-value { margin-top: 10px; font-size: 23px; font-weight: 800; line-height: 1.15; white-space: nowrap; }
+  .pay-kpi-note { margin-top: 6px; color: var(--muted); font-size: 10px; }
+
+  .pay-visuals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 18px;
+  }
+
+  .pay-panel {
+    min-width: 0;
+    padding: 22px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+
+  .pay-panel-title { margin: 0; font-size: 16px; }
+  .pay-panel-note { margin: 5px 0 0; color: var(--muted); font-size: 10px; }
+
+  .pay-donut-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 245px;
+  }
+
+  .pay-donut {
+    --paid: {{paidPercentage}}%;
+    position: relative;
+    display: grid;
+    width: 178px;
+    height: 178px;
+    place-items: center;
+    border-radius: 50%;
+    background: conic-gradient(var(--cyan) 0 var(--paid), #e8edf2 var(--paid) 100%);
+  }
+
+  .pay-donut::after {
+    position: absolute;
+    width: 124px;
+    height: 124px;
+    content: "";
+    background: #fff;
+    border-radius: 50%;
+  }
+
+  .pay-donut-value { position: relative; z-index: 1; font-size: 27px; font-weight: 800; }
+  .pay-donut-value small { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; letter-spacing: .8px; text-align: center; text-transform: uppercase; }
+
+  .pay-legend { display: flex; justify-content: center; gap: 18px; color: var(--muted); font-size: 10px; }
+  .pay-legend span::before {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 6px;
+    content: "";
+    background: var(--legend-color);
+    border-radius: 50%;
+  }
+
+  .pay-bars { margin-top: 22px; }
+  .pay-bar-row { margin-bottom: 17px; }
+  .pay-bar-head { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 7px; font-size: 11px; }
+  .pay-bar-name { font-weight: 700; }
+  .pay-bar-amount { color: var(--muted); white-space: nowrap; }
+  .pay-bar-track { height: 11px; overflow: hidden; background: #edf1f5; border-radius: 999px; }
+  .pay-bar-fill {
+    width: 0;
+    max-width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), #43a66b);
+    border-radius: inherit;
+  }
+
+  .pay-empty {
+    padding: 54px 16px;
+    color: var(--muted);
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .pay-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 13px 28px;
+    color: var(--muted);
+    background: #fff;
+    border-top: 1px solid var(--line);
+    font-size: 10px;
+  }
+
+  @media (max-width: 950px) {
+    .pay-kpis { grid-template-columns: repeat(2, 1fr); }
+    .pay-visuals { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .pay-head, .pay-footer { align-items: flex-start; flex-direction: column; }
+    .pay-head { padding: 23px 20px; }
+    .pay-content { padding: 15px; }
+    .pay-kpis { grid-template-columns: 1fr; }
+    .pay-panel { padding: 18px; }
+  }
+
+  @media print {
+    .pay-dashboard { border: 0; box-shadow: none; }
+    .pay-kpis { grid-template-columns: repeat(4, 1fr); }
+    .pay-visuals { grid-template-columns: .8fr 1.7fr; }
+  }
+</style>
+
+<article class="pay-dashboard">
+  <header class="pay-head">
+    <div>
+      <div class="pay-kicker">Finance Intelligence</div>
+      <h1 class="pay-title">{{report.displayName}}</h1>
+      <p class="pay-subtitle">Collection performance, outstanding exposure and payment movement for the selected period.</p>
+    </div>
+    <div class="pay-date">Generated <strong>{{meta.executedAt|date}}</strong></div>
+  </header>
+
+  <main class="pay-content">
+    <section class="pay-kpis">
+      <div class="pay-kpi" data-report-column="TotalAmount" style="--kpi-color:var(--blue)">
+        <div class="pay-kpi-label">Total Billed</div>
+        <div class="pay-kpi-value">S${{sumTotalAmount|currency}}</div>
+        <div class="pay-kpi-note">{{meta.rowCount|number}} reporting period(s)</div>
+      </div>
+      <div class="pay-kpi" data-report-column="InvoiceCount" style="--kpi-color:#7a64d1">
+        <div class="pay-kpi-label">Invoices</div>
+        <div class="pay-kpi-value">{{sumInvoiceCount|number}}</div>
+        <div class="pay-kpi-note">Invoices in selected period</div>
+      </div>
+      <div class="pay-kpi" data-report-column="CollectedAmount" style="--kpi-color:var(--cyan)">
+        <div class="pay-kpi-label">Amount Collected</div>
+        <div class="pay-kpi-value">S${{sumPaidAmount|currency}}</div>
+        <div class="pay-kpi-note">Payments received</div>
+      </div>
+      <div class="pay-kpi" data-report-column="BalanceRemaining" style="--kpi-color:var(--rose)">
+        <div class="pay-kpi-label">Outstanding</div>
+        <div class="pay-kpi-value">S${{sumBalanceAmount|currency}}</div>
+        <div class="pay-kpi-note">Balance receivable</div>
+      </div>
+      <div class="pay-kpi" data-report-column="CollectionPercentage" style="--kpi-color:var(--amber)">
+        <div class="pay-kpi-label">Collection Rate</div>
+        <div class="pay-kpi-value">{{paidPercentage}}%</div>
+        <div class="pay-kpi-note">Collected against billed</div>
+      </div>
+    </section>
+
+    <section class="pay-visuals">
+      <div class="pay-panel" data-report-column="CollectedAmount,BalanceRemaining,CollectionPercentage">
+        <h2 class="pay-panel-title">Collection Health</h2>
+        <p class="pay-panel-note">Collected versus outstanding value</p>
+        <div class="pay-donut-area">
+          <div class="pay-donut" data-report-column="CollectionPercentage">
+            <div class="pay-donut-value">{{paidPercentage}}%<small>Collected</small></div>
+          </div>
+        </div>
+        <div class="pay-legend">
+          <span data-report-column="CollectedAmount" style="--legend-color:var(--cyan)">Collected</span>
+          <span data-report-column="BalanceRemaining" style="--legend-color:#e8edf2">Outstanding {{outstandingPercentage}}%</span>
+        </div>
+      </div>
+
+      <div class="pay-panel" data-report-column="PeriodLabel,CollectedAmount,CollectionPercentage">
+        <h2 class="pay-panel-title">Payment Performance</h2>
+        <p class="pay-panel-note">Collection value by reporting period</p>
+        <div class="pay-bars">
+          {{#rows}}
+          <div class="pay-bar-row">
+            <div class="pay-bar-head">
+              <span class="pay-bar-name" data-report-column="PeriodLabel">{{PeriodLabel}}</span>
+              <span class="pay-bar-amount">
+                <span data-report-column="CollectedAmount">S${{CollectedAmount|currency}}</span>
+                <span data-report-column="CollectionPercentage">&middot; {{CollectionPercentage}}%</span>
+              </span>
+            </div>
+            <div class="pay-bar-track">
+              <div class="pay-bar-fill" data-report-column="CollectionPercentage" style="width: {{CollectionPercentage}}%;"></div>
+            </div>
+          </div>
+          {{/rows}}
+          {{#emptyRows}}
+          <div class="pay-empty">Run the report to display payment performance charts.</div>
+          {{/emptyRows}}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pay-footer">
+    <span>Gayatri Catering &middot; Finance collection dashboard</span>
+    <span>{{meta.rowCount|number}} period(s) analysed</span>
+  </footer>
+</article>

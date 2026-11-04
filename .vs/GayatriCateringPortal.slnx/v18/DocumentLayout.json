@@ -1,0 +1,275 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\wwwroot\\js\\customer\\order.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:wwwroot\\js\\customer\\order.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\views\\customer\\order.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:views\\customer\\order.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\views\\admin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:views\\admin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\repositories\\foodmenurepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:repositories\\foodmenurepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\models\\foodmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:models\\foodmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\wwwroot\\js\\admin\\foodmenu.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:wwwroot\\js\\admin\\foodmenu.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\interfaces\\iquotationsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:interfaces\\iquotationsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\repositories\\quotationsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:repositories\\quotationsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\views\\admin\\orders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:views\\admin\\orders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\wwwroot\\js\\admin\\dashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:wwwroot\\js\\admin\\dashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\views\\admin\\quotations.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:views\\admin\\quotations.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\wwwroot\\js\\admin\\quotations.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:wwwroot\\js\\admin\\quotations.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\wwwroot\\js\\admin\\logistics.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:wwwroot\\js\\admin\\logistics.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\wwwroot\\css\\admin\\logistics.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:wwwroot\\css\\admin\\logistics.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|c:\\rajesh\\gayatricateringportal\\gayatricateringportal\\controllers\\admin\\quotationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32EEDCDE-D046-22CA-9712-FA277F3ED655}|GayatriCateringPortal.csproj|solutionrelative:controllers\\admin\\quotationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "order.js",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\js\\customer\\order.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\customer\\order.js",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\js\\customer\\order.js",
+              "RelativeToolTip": "wwwroot\\js\\customer\\order.js",
+              "ViewState": "AgIAANoAAAAAAAAAAAAmwOgAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-07-20T10:02:31.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Order.cshtml",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Views\\Customer\\Order.cshtml",
+              "RelativeDocumentMoniker": "Views\\Customer\\Order.cshtml",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Views\\Customer\\Order.cshtml",
+              "RelativeToolTip": "Views\\Customer\\Order.cshtml",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-20T10:02:12.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FoodMenu.cs",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Models\\FoodMenu.cs",
+              "RelativeDocumentMoniker": "Models\\FoodMenu.cs",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Models\\FoodMenu.cs",
+              "RelativeToolTip": "Models\\FoodMenu.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAkwBYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-20T09:11:06.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "foodmenu.js",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\js\\admin\\foodmenu.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\admin\\foodmenu.js",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\js\\admin\\foodmenu.js",
+              "RelativeToolTip": "wwwroot\\js\\admin\\foodmenu.js",
+              "ViewState": "AgIAAEsAAAAAAAAAAADgv3YAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-07-20T09:04:20.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FoodMenuRepository.cs",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Repositories\\FoodMenuRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\FoodMenuRepository.cs",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Repositories\\FoodMenuRepository.cs",
+              "RelativeToolTip": "Repositories\\FoodMenuRepository.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-20T04:56:21.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Orders.cshtml",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Views\\Admin\\Orders.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\Orders.cshtml",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Views\\Admin\\Orders.cshtml",
+              "RelativeToolTip": "Views\\Admin\\Orders.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-20T08:09:23.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "dashboard.js",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\js\\admin\\dashboard.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\admin\\dashboard.js",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\js\\admin\\dashboard.js",
+              "RelativeToolTip": "wwwroot\\js\\admin\\dashboard.js",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-07-20T07:49:18.441Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dashboard.cshtml",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Views\\Admin\\Dashboard.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\Dashboard.cshtml",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Views\\Admin\\Dashboard.cshtml",
+              "RelativeToolTip": "Views\\Admin\\Dashboard.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-20T07:48:42.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "logistics.js",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\js\\admin\\logistics.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\admin\\logistics.js",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\js\\admin\\logistics.js",
+              "RelativeToolTip": "wwwroot\\js\\admin\\logistics.js",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAgwFcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-07-20T07:24:27.996Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IQuotationsRepository.cs",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Interfaces\\IQuotationsRepository.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IQuotationsRepository.cs",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Interfaces\\IQuotationsRepository.cs",
+              "RelativeToolTip": "Interfaces\\IQuotationsRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-20T04:38:04.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "QuotationsRepository.cs",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Repositories\\QuotationsRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\QuotationsRepository.cs",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Repositories\\QuotationsRepository.cs",
+              "RelativeToolTip": "Repositories\\QuotationsRepository.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAADgv04AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-20T04:36:37.548Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "quotations.js",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\js\\admin\\quotations.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\admin\\quotations.js",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\js\\admin\\quotations.js",
+              "RelativeToolTip": "wwwroot\\js\\admin\\quotations.js",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwCkAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-07-20T04:23:43.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Quotations.cshtml",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Views\\Admin\\Quotations.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\Quotations.cshtml",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Views\\Admin\\Quotations.cshtml",
+              "RelativeToolTip": "Views\\Admin\\Quotations.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB0AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-20T04:16:11.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "logistics.css",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\css\\admin\\logistics.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\admin\\logistics.css",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\wwwroot\\css\\admin\\logistics.css",
+              "RelativeToolTip": "wwwroot\\css\\admin\\logistics.css",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-07-20T07:38:17.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "QuotationsController.cs",
+              "DocumentMoniker": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Controllers\\Admin\\QuotationsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Admin\\QuotationsController.cs",
+              "ToolTip": "C:\\Rajesh\\GayatriCateringPortal\\GayatriCateringPortal\\Controllers\\Admin\\QuotationsController.cs",
+              "RelativeToolTip": "Controllers\\Admin\\QuotationsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-20T05:24:28.706Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

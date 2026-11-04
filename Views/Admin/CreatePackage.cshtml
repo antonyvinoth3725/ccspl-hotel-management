@@ -1,0 +1,119 @@
+@{
+    ViewData["Title"] = @ViewData["Title"];
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/select2/dist/css/select2.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/admin/packages.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">@ViewData["Title"]</div>
+        <div class="page-subtitle">Create a new package and map categories with quantities.</div>
+    </div>
+    <div class="page-header-actions">
+        <a class="btn btn-light" href="/Admin/Packages">← Back to Packages</a>
+    </div>
+</div>
+
+<div class="card package-form-card">
+    <div class="panel-header">
+        <div class="panel-title">Package Details</div>
+    </div>
+    <div class="form-grid">
+        <div class="form-group">
+            <label>Package Name <span class="field-required">*</span></label>
+            <input id="packageName" name="PackageName" class="form-control" placeholder="Enter package name" />
+            <div class="field-error hidden" id="packageNameError"></div>
+        </div>
+        <div class="form-group form-span-2 package-description-group">
+            <label>Description</label>
+            <textarea id="packageDescription" name="PackageDescription" class="form-control package-description-input" rows="1" placeholder="Enter package description (optional)"></textarea>
+        </div>
+        <div class="form-span-2 package-price-empty-menu-row">
+
+            <!-- Price -->
+            <div class="form-group">
+                <label>
+                    Price <span class="field-required">*</span>
+                </label>
+
+                <input id="packagePrice"
+                       name="Price"
+                       type="number"
+                       step="0.01"
+                       class="form-control"
+                       placeholder="0.00" />
+
+                <div class="field-error hidden"
+                     id="packagePriceError"></div>
+            </div>
+
+            <!-- Is Empty -->
+            <div class="form-group package-is-empty-group">
+
+                <div class="form-check">
+                    <input type="checkbox"
+                           id="packageIsEmpty"
+                           name="IsEmpty"
+                           class="form-check-input" />
+
+                    <label for="packageIsEmpty"
+                           class="form-check-label">
+                        Is Empty
+                    </label>
+                </div>
+            </div>
+
+            <!-- Package Menus - FULL REMAINING WIDTH -->
+            <div class="form-group package-menus-inline-group">
+                <label for="packageMenuIds">
+                    Add Fixed Package Menus
+                </label>
+
+                <select id="packageMenuIds"
+                        class="form-control package-menus-select"
+                        multiple>
+                </select>
+
+                <div class="menus-hint">
+                    Search and select one or more menus.
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group form-span-2 package-menu-choice-config-wrap hidden" id="packageMenuChoiceConfigWrap">
+            <label>Package Menu Behaviour</label>
+            <div class="menus-hint">Leave items as Full quantity, or give alternative items the same choice group name.</div>
+            <div id="packageMenuChoiceConfigs" class="package-menu-choice-configs"></div>
+        </div>
+    </div>
+
+    @* Package Categories section temporarily disabled.
+       Keep this markup for future use; do not remove it.
+    <div class="section-header">Package Categories</div>
+    <div class="category-list">
+        <div class="category-grid-header">
+            <div class="category-header-labels">
+                <div>Category</div>
+                <div>Quantity</div>
+            </div>
+        </div>
+        <div id="categoryRows" class="category-rows"></div>
+        <div class="category-footer">
+            <button class="btn btn-outline btn-sm add-category-btn btn-add" id="addCategoryRow" data-permission="create" type="button" onclick="handleAddCategoryRow()">+ Add Category</button>
+        </div>
+    </div>
+    *@
+
+    <div class="form-actions">
+        <button class="btn btn-light btn-sm" id="clearPackage" type="button" onclick="clearPackageForm()">Clear</button>
+        <button class="btn btn-primary btn-sm" id="savePackage" type="button" onclick="savePackage()">Save</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/select2/dist/js/select2.min.js" asp-append-version="true"></script>
+    <script src="~/js/admin/packages.js" asp-append-version="true"></script>
+}

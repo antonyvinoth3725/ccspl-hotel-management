@@ -1,0 +1,24 @@
+#addOnsListPanel {
+    position: relative;
+}
+
+#addOnModal .modal-box {
+    width: min(520px, 94vw);
+}
+
+#addOnsList .rate-cell {
+    text-align: right;
+    white-space: nowrap;
+}
+.addon-row-actions .actions-menu{min-width:220px;padding:10px 0;border-radius:16px}
+.addon-row-actions .action-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;font-weight:700}
+.addon-row-actions .action-icon-text{display:inline-flex;align-items:center;justify-content:center;width:16px;font-size:14px;line-height:1}
+.addon-row-actions .dots-btn{width:36px;height:36px;border-radius:12px}
+.addon-row-actions .addon-action-edit{color:#334155}
+.addon-row-actions .addon-action-edit:hover{background:#f8fafc;color:#0f172a}
+.addon-row-actions .addon-action-active{color:#166534}
+.addon-row-actions .addon-action-active:hover{background:#effdf5;color:#14532d}
+.addon-row-actions .addon-action-inactive{color:#92400e}
+.addon-row-actions .addon-action-inactive:hover{background:#fffbeb;color:#78350f}
+.addon-row-actions .addon-action-delete{color:#b91c1c}
+.addon-row-actions .addon-action-delete:hover{background:#fef2f2;color:#991b1b}

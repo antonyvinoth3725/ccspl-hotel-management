@@ -1,0 +1,19 @@
+/* Food Category Admin Page Styles */
+
+/* panel-specific positioning */
+#foodCategoryListPanel {
+    position: relative;
+}
+
+.foodcategory-row-actions .actions-menu{min-width:220px;padding:10px 0;border-radius:16px}
+.foodcategory-row-actions .action-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;font-weight:700}
+.foodcategory-row-actions .action-icon-text{display:inline-flex;align-items:center;justify-content:center;width:16px;font-size:14px;line-height:1}
+.foodcategory-row-actions .dots-btn{width:36px;height:36px;border-radius:12px}
+.foodcategory-row-actions .foodcategory-action-edit{color:#334155}
+.foodcategory-row-actions .foodcategory-action-edit:hover{background:#f8fafc;color:#0f172a}
+.foodcategory-row-actions .foodcategory-action-active{color:#166534}
+.foodcategory-row-actions .foodcategory-action-active:hover{background:#effdf5;color:#14532d}
+.foodcategory-row-actions .foodcategory-action-inactive{color:#92400e}
+.foodcategory-row-actions .foodcategory-action-inactive:hover{background:#fffbeb;color:#78350f}
+.foodcategory-row-actions .foodcategory-action-delete{color:#b91c1c}
+.foodcategory-row-actions .foodcategory-action-delete:hover{background:#fef2f2;color:#991b1b}

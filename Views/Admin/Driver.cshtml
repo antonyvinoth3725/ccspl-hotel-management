@@ -1,0 +1,163 @@
+﻿@{
+    ViewData["Title"] = "Communications";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/driver.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Driver Master</div>
+        <div class="page-subtitle">Manage driver information, contact details, and vehicle assignments.</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="panel-header">
+        <div class="panel-title">Driver</div>
+        <div class="panel-actions">
+            <div class="app-header-filter">
+                <input type="text" id="DriverSearch" class="tbl-search" data-table="driverList" placeholder="Search Driver...">
+            </div>
+            <button class="btn btn-orange btn-add" id="btnAddDriver" data-permission="create" onclick="opendriverModal()">+ Add Driver</button>
+        </div>
+    </div>
+    <div class="table-wrap">
+        <table class="tbl" id="driverList" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="sortable">#</th>
+                    <th class="sortable">Code</th>
+                    <th class="sortable">Name</th>
+                    <th class="sortable">MobileNo</th>
+                    <th class="sortable">Email</th>
+                    <th class="sortable">Employee Type</th>
+                    <th class="sortable">Status</th>
+                    <th class="sortable">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- rows rendered by ~/js/admin/comms.js -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Per-view Comms modal -->
+<!-- Driver Modal -->
+<div class="modal-overlay hidden" id="driverModal">
+    <div class="modal-box" style="max-width:800px;">
+        <div class="modal-header">
+            <span class="modal-title" id="driver-title">Create Driver</span>
+            <button type="button" class="modal-close" onclick="closeDriverModal()">✕</button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label>Driver Code <span class="field-required">*</span></label>
+                <input type="text" id="Code" class="form-control" maxlength="20" disabled>
+                <div class="field-error hidden" id="CodeError"></div>
+            </div>
+            <div class="col-md-6 form-group">
+                <label>Employment Type <span class="field-required">*</span></label>
+                <select id="EmploymentType" class="form-control">
+                    <option value="">Select</option>
+                    <option value="Full Time">Full Time</option>
+                    <option value="Part Time">Part Time</option>
+                </select>
+                <div class="field-error hidden" id="EmploymentTypeError"></div>
+            </div>
+            <div class="col-md-6 form-group">
+                <label>Driver Name <span class="field-required">*</span></label>
+                <input type="text" id="Name" class="form-control" maxlength="100" placeholder="Enter the DriverName">
+                <div class="field-error hidden" id="NameError"></div>
+            </div>
+            <div class="col-md-6 form-group">
+                <label>Mobile No <span class="field-required">*</span></label>
+                <input type="text" id="MobileNo" class="form-control" placeholder="Enter Mobile Number" maxlength="15" inputmode="numeric" autocomplete="off">
+                <div class="field-error hidden" id="MobileNoError"></div>
+            </div>
+            <div class="col-md-6 form-group">
+                <label>Email ID</label>
+                <input type="email" id="Email" class="form-control" placeholder="Enter the MailId" maxlength="100" autocomplete="off">
+                <div class="field-error hidden" id="EmailError"></div>
+            </div>
+            <div style="display:none;" class="col-md-6 form-group">
+                <label>License No</label>
+                <input type="text" id="LicenseNo" class="form-control" maxlength="30">
+            </div>
+            <div style="display:none;" class="col-md-6 form-group">
+                <label>License Expiry Date</label>
+                <input type="date" id="LicenseExpiryDate" class="form-control">
+            </div>
+            <div style="display:none;" class="col-md-6 form-group">
+                <label>Date of Birth</label>
+                <input type="date" id="DateofBirth" class="form-control">
+            </div>
+            <div class="col-md-6 form-group">
+                <label>Gender</label>
+                <select id="Gender" class="form-control">
+                    <option value="">Select</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="O">Other</option>
+                </select>
+            </div>            
+            <div style="display:none;" class="col-md-12 form-group">
+                <label>Address</label>
+                <textarea id="Address" class="form-control" rows="2"></textarea>
+            </div>
+
+            <div style="display:none;" class="col-md-4 form-group">
+                <label>City</label>
+                <input type="text" id="City" class="form-control">
+            </div>
+
+            <div style="display:none;" class="col-md-4 form-group">
+                <label>State</label>
+                <input type="text" id="State" class="form-control">
+            </div>
+
+            <div style="display:none;" class="col-md-4 form-group">
+                <label>Pincode</label>
+                <input type="text" id="Pincode" class="form-control" maxlength="6" inputmode="numeric" autocomplete="off">
+                <div class="field-error hidden" id="PincodeError"></div>
+            </div>
+
+            <div style="display:none;" class="col-md-6 form-group">
+                <label>Vehicle Type</label>
+                <input type="text" id="VehicleType" class="form-control">
+            </div>
+
+            <div style="display:none;" class="col-md-6 form-group">
+                <label>Vehicle No</label>
+                <input type="text" id="VehicleNo" class="form-control">
+            </div>
+
+            <div style="display:none;" class="col-md-6 form-group">
+                <label>Experience (Years)</label>
+                <input type="number" id="ExperienceYears" class="form-control" min="0">
+            </div>
+
+            <div style="display:none;" class="col-md-6 form-group">
+                <label>Joining Date</label>
+                <input type="date" id="JoiningDate" class="form-control">
+            </div>
+        </div>
+
+        <input type="hidden" id="driverId" />
+
+        <div class="actions">
+            <button type="button" class="btn btn-light" id="btnClearDriver" onclick="clearDriverForm()">Clear</button>
+            <button type="button" class="btn btn-primary" id="btnSaveDriver" onclick="saveDriver()">Save</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/driver.js" asp-append-version="true"></script>
+}
+
+

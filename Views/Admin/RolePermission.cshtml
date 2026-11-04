@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = @ViewData["Title"];
+    var selectedRoleDisplay = (ViewData["SelectedRoleDisplay"]?.ToString() ?? "None");
+    var roleId = Convert.ToString(ViewData["RoleId"] ?? "0");
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/roles.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">@ViewData["Title"]</div>
+        <div class="page-subtitle">Manage function-wise permissions for selected role.</div>
+    </div>
+    <div class="page-header-actions">
+        <button type="button" id="btnSaveRolePermission" class="btn btn-primary" onclick="saveRolePermissions()">Save</button>
+        <a id="btnBackToRoles" class="btn btn-light" href="/Admin/Roles">&larr; Back to Roles</a>
+    </div>
+</div>
+
+<div id="rolesPermissionPanel" class="card">
+    <input type="hidden" id="rolePermissionRoleId" value="@roleId" />
+    <div class="panel-header">
+        <div class="panel-title">Role Permission</div>
+        <div class="panel-actions">
+            <div class="app-header-filter">
+                <input type="text"
+                       id="rolePermissionSearch"
+                      class="form-control"
+                       data-table="rolesMatrix"
+                       placeholder="Search functions...">
+            </div>
+        </div>
+    </div>
+        <div class="table-wrap">
+        <table class="tbl" id="rolesMatrix" data-page-size="10">
+            <thead>
+                <tr>
+                    <th>Function</th>
+                    <th class="perm-all-head"><span class="perm-all-head-inner">All <input type="checkbox" id="permAllHeader" title="Select All" /></span></th>
+                    <th>View</th>
+                    <th>Create</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Active / InActive</th>
+                    <th>Download</th>
+                    <th>Print</th>
+                </tr>
+            </thead>
+            <tbody id="rolesMatrixBody"></tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/rolepermission.js" asp-append-version="true"></script>
+}
+
+

@@ -1,0 +1,155 @@
+﻿@model GayatriCateringPortal.Models.DriverDeliveryVM
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Delivery";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1" />
+
+    <title>Driver Delivery</title>
+
+    <link href="~/css/driver/Delivery.css"
+          rel="stylesheet"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+</head>
+
+<body> 
+    <div class="page">
+        <div class="delivery-wrapper">
+
+            <div class="delivery-header">
+                <i class="fa fa-truck fa-3x"></i>
+
+                <h2>Delivery Confirmation</h2>
+
+                <p>Gayatri Catering</p>
+            </div>
+
+            <div class="delivery-card">
+
+                <div class="info-box">
+
+                    <div class="info-row">
+                        <div class="info-title">Invoice</div>
+                        <div class="info-value">@Model.InvoiceNo</div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-title">Customer</div>
+                        <div class="info-value">@Model.CustomerName</div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-title">Contact</div>
+                        <div class="info-value">@Model.MobileNo</div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-title">Event Date</div>
+                        <div class="info-value">@Model.EventDate</div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-title">Address</div>
+                        <div class="info-value">@Model.DeliveryAddress</div>
+                    </div>
+
+                </div>
+
+                <div class="section-title">
+                    Parcel Photo
+                </div>
+
+                <div class="upload-box">
+
+                    <img id="parcelPreview" alt="Parcel preview" />
+
+                    <input type="file"
+                           id="parcelPhoto"
+                           accept="image/*"
+                           capture="environment"
+                           hidden />
+
+                    <button type="button" class="btn-camera" id="btnOpenCamera">
+                        <span id="btnOpenCameraLabel">Upload Image</span>
+                    </button>
+
+                </div>
+
+                <div class="section-title">
+                    Customer Signature
+                </div>
+
+                <canvas id="signaturePad" class="signature-box"></canvas>
+
+                <button class="btn-camera mt-2" id="btnClearSignature">
+                    Clear Signature
+                </button>
+
+                <div class="section-title">
+                    Remarks
+                </div>
+
+                <textarea id="Remarks" placeholder="Optional Remarks"></textarea>
+
+                <div id="gpsStatus" class="location-box">
+
+                    📍 Fetching current location...
+
+                </div>
+
+                <button class="btn-orange" id="btnCompleteDelivery" type="button" disabled>
+                    Add photo and signature to finish
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+    <input type="hidden"
+           id="InvoiceId"
+           value="@Model.InvoiceId" />
+
+    <input type="hidden"
+           id="DriverId"
+           value="@Model.DriverId" />
+
+    <input type="hidden"
+           id="Latitude" />
+
+    <input type="hidden"
+           id="Longitude" />
+
+    <input type="hidden"
+           id="LogisticsId"
+           value="@Model.LogisticsId" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@5.0.3/dist/signature_pad.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="~/js/driver/delivery.js"
+            asp-append-version="true">
+    </script>
+    <div class="loader hidden">
+        <div class="spinner"></div>
+        <div>Please wait...</div>
+    </div>
+</body>
+
+</html>

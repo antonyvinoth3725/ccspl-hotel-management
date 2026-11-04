@@ -1,0 +1,117 @@
+.reminder-pay-page {
+    max-width: 680px;
+    margin: 28px auto;
+}
+
+.reminder-pay-card {
+    background: #ffffff;
+    border: 1px solid #dbe9df;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+
+.reminder-pay-card h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+    color: #134e2f;
+}
+
+.reminder-pay-amount {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #bfe2cd;
+    background: linear-gradient(180deg, #edf8f1 0%, #f7fcf9 100%);
+    color: #1e5a39;
+    font-weight: 700;
+}
+
+.reminder-pay-amount strong {
+    font-size: 24px;
+    color: #166534;
+}
+
+.reminder-pay-actions {
+    margin-top: 18px;
+}
+
+.reminder-pay-note {
+    margin: 14px 0 0;
+    font-size: 13px;
+    color: #5f6f66;
+}
+
+.reminder-pay-note.is-warning {
+    color: #9a3412;
+}
+
+.reminder-pay-note.is-success {
+    color: #166534;
+}
+
+.reminder-pay-note.is-error {
+    color: #b91c1c;
+}
+
+.reminder-pay-card-invalid {
+    border-color: #f5c7c7;
+    background: linear-gradient(180deg, #fffdfd 0%, #fff5f5 100%);
+}
+
+.reminder-pay-card-invalid h1 {
+    color: #7f1d1d;
+}
+
+.reminder-pay-card-expired {
+    border-color: #f4caa5;
+    background: linear-gradient(180deg, #fffdf8 0%, #fff5ea 100%);
+}
+
+.reminder-pay-card-expired h1 {
+    color: #9a3412;
+}
+
+.reminder-pay-card-used,
+.reminder-pay-card-paid {
+    border-color: #bfe2cd;
+    background: linear-gradient(180deg, #f9fffb 0%, #eefbf3 100%);
+}
+
+.reminder-pay-card-used h1,
+.reminder-pay-card-paid h1 {
+    color: #14532d;
+}
+
+.reminder-pay-actions-invalid {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.reminder-pay-actions-invalid .btn {
+    min-width: 148px;
+}
+
+@media (max-width: 768px) {
+    .reminder-pay-page {
+        margin: 18px auto;
+    }
+
+    .reminder-pay-card {
+        padding: 16px;
+    }
+
+    .reminder-pay-card h1 {
+        font-size: 24px;
+    }
+
+    .reminder-pay-amount strong {
+        font-size: 21px;
+    }
+
+    .reminder-pay-actions-invalid .btn {
+        width: 100%;
+    }
+}

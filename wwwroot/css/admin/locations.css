@@ -1,0 +1,13 @@
+.location-map-link{color:var(--blue);text-decoration:underline;font-size:12px}
+.location-row-actions .actions-menu{min-width:220px;padding:10px 0;border-radius:16px}
+.location-row-actions .action-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;font-weight:700}
+.location-row-actions .action-icon-text{display:inline-flex;align-items:center;justify-content:center;width:16px;font-size:14px;line-height:1}
+.location-row-actions .dots-btn{width:36px;height:36px;border-radius:12px}
+.location-row-actions .location-action-edit{color:#334155}
+.location-row-actions .location-action-edit:hover{background:#f8fafc;color:#0f172a}
+.location-row-actions .location-action-active{color:#166534}
+.location-row-actions .location-action-active:hover{background:#effdf5;color:#14532d}
+.location-row-actions .location-action-inactive{color:#92400e}
+.location-row-actions .location-action-inactive:hover{background:#fffbeb;color:#78350f}
+.location-row-actions .location-action-delete{color:#b91c1c}
+.location-row-actions .location-action-delete:hover{background:#fef2f2;color:#991b1b}

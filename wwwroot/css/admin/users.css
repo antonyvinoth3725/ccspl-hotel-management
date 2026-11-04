@@ -1,0 +1,419 @@
+/* Users Admin Page Styles */
+
+/* panel-specific positioning */
+#usersListPanel {
+    position: relative;
+}
+
+/* users modal is wider because it contains more fields */
+#usersModal .modal-box {
+    width: min(980px, 94vw);
+    max-width: min(980px, 94vw);
+    max-height: 88vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#usersModal .form-row {
+    gap: 12px;
+}
+
+#usersModal .form-group {
+    margin-bottom: 10px;
+}
+
+#usersModal .form-group label {
+    margin-bottom: 4px;
+}
+
+#usersModal .actions {
+    margin-top: 4px;
+}
+
+#usersModal .users-is-admin-toggle {
+    min-height: 40px;
+    margin-top: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+#usersModal .users-span-2 {
+    grid-column: span 2;
+}
+
+#usersModal textarea.form-control {
+    min-height: 82px;
+    height: auto;
+    resize: vertical;
+}
+
+#usersModal .form-control {
+    min-height: 40px;
+}
+
+#usersModal .modal-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #fff;
+}
+
+#userImagePreview {
+    display: block;
+    margin-top: 0;
+    object-fit: cover;
+}
+
+.user-image-preview-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+    min-height: 82px;
+}
+
+.user-image-actions {
+    display: flex;
+    align-items: center;
+    min-height: 80px;
+}
+
+.user-image-actions .btn {
+    min-width: 110px;
+}
+
+.user-list-image-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.user-list-image-cell {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
+    height: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.user-list-image {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid #d8e2e8;
+    background: #fff;
+    display: block;
+    flex: 0 0 40px;
+}
+
+.user-list-image-placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--green-dark);
+    background: linear-gradient(180deg, #eaf7f0 0%, #def0e6 100%);
+    border-color: #cbe7d8;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+}
+
+.users-cards-wrap {
+    width: 100%;
+}
+
+.users-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+}
+
+#usersCards .user-card img {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    object-fit: cover !important;
+    border-radius: 12px;
+}
+
+.users-empty {
+    padding: 16px 6px;
+}
+
+.user-card {
+    background: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+    border: 1px solid #dfe6ea;
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 2px 10px rgba(17,24,39,.05);
+    transition: box-shadow .15s ease, border-color .15s ease;
+    overflow: hidden;
+}
+
+.user-card:hover {
+    box-shadow: 0 8px 18px rgba(17,24,39,.08);
+    border-color: #cfdbe1;
+}
+
+.user-card-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-card-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-card-title-wrap {
+    min-width: 0;
+    flex: 1;
+}
+
+.user-card-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f2438;
+    line-height: 1.2;
+}
+
+.user-card-code {
+    margin-top: 2px;
+    color: #5f7383;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .3px;
+}
+
+.user-card-actions {
+    margin-left: auto;
+}
+
+.user-card-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.user-card-tags .badge {
+    border-radius: 999px;
+    font-size: 12px;
+    padding: 4px 10px;
+}
+
+.user-card-meta-grid {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.user-card-detail {
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 8px 10px;
+    background: #fff;
+}
+
+.user-card-detail label {
+    display: block;
+    color: var(--gray-500);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    margin-bottom: 1px;
+}
+
+.user-card-detail > div {
+    font-size: 13px;
+    font-weight: 500;
+    color: #0f2438;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+.user-card-detail-inline > div {
+    font-size: 13px;
+}
+
+/* roles multiselect dropdown styling */
+#usersModal .select2-container {
+    width: 100% !important;
+}
+
+#usersModal .select2-container--default .select2-selection--multiple {
+    min-height: 42px;
+    border: 1px solid var(--gray-300);
+    border-radius: 10px;
+    padding: 4px 8px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+}
+
+#usersModal .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    min-height: 30px;
+    padding: 0 !important;
+}
+
+#usersModal .select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(26,110,60,.1);
+}
+
+#usersModal .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--green-light);
+    border: 1px solid #cbe7d8;
+    color: var(--green-dark);
+    border-radius: 999px;
+    padding: 1px 8px;
+    font-size: 13px;
+    line-height: 1.25;
+    margin: 0;
+    max-width: 180px;
+}
+
+#usersModal .select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#usersModal .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    position: static;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #5f8f76;
+    font-size: 16px;
+    line-height: 1;
+    order: 2;
+}
+
+#usersModal .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+    color: #2f6d4a;
+    background: transparent;
+}
+
+#usersModal .select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    order: 1;
+}
+
+#usersModal .select2-container--default .select2-search--inline .select2-search__field {
+    margin: 0 !important;
+    margin-left: 0 !important;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+#usersModal .select2-container--default .select2-selection--multiple.input-error,
+#usersModal .select2-container--default.select2-container--focus .select2-selection--multiple.input-error {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(239,68,68,.12);
+}
+
+#usersModal .select2-dropdown {
+    border: 1px solid var(--gray-300);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+@media (max-width: 900px) {
+    #usersModal .modal-box {
+        max-width: calc(100vw - 28px);
+        padding: 18px;
+    }
+
+    #usersModal .form-row.col3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #usersModal .users-is-admin-toggle {
+        margin-top: 30px;
+    }
+
+    .user-card-meta-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    #usersModal .modal-box {
+        max-width: calc(100vw - 18px);
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    #usersModal .form-row.col3 {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    #usersModal .form-group {
+        margin-bottom: 8px;
+    }
+
+    #usersModal .users-span-2 {
+        grid-column: auto;
+    }
+
+    #usersModal .users-is-admin-toggle {
+        margin-top: 4px;
+    }
+
+    #usersModal textarea.form-control {
+        min-height: 72px;
+        height: auto;
+    }
+
+    .user-image-preview-row {
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: 0;
+        gap: 8px;
+    }
+
+    .user-image-actions {
+        min-height: 0;
+    }
+}
+
+.user-card-actions .actions-menu{min-width:220px;padding:10px 0;border-radius:16px}
+.user-card-actions .action-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;font-weight:700}
+.user-card-actions .action-icon-text{display:inline-flex;align-items:center;justify-content:center;width:16px;font-size:14px;line-height:1}
+.user-card-actions .dots-btn{width:36px;height:36px;border-radius:12px}
+.user-card-actions .users-action-edit{color:#334155}
+.user-card-actions .users-action-edit:hover{background:#f8fafc;color:#0f172a}
+.user-card-actions .users-action-active{color:#166534}
+.user-card-actions .users-action-active:hover{background:#effdf5;color:#14532d}
+.user-card-actions .users-action-inactive{color:#92400e}
+.user-card-actions .users-action-inactive:hover{background:#fffbeb;color:#78350f}
+.user-card-actions .users-action-delete{color:#b91c1c}
+.user-card-actions .users-action-delete:hover{background:#fef2f2;color:#991b1b}

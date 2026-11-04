@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/customer/myorders.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">My Orders</div>
+        <div class="page-subtitle">Track and manage your catering orders</div>
+    </div>
+    <div class="page-header-actions">
+        <div class="app-header-filter">
+            <input type="tel" id="myOrdersPhone" class="tbl-search" placeholder="Enter phone number">
+        </div>
+        <button type="button" class="btn btn-primary" id="btnFindMyOrders">Find Orders</button>
+        <a href="/Customer/Order" class="btn btn-orange btn-add">+ New Order</a>
+    </div>
+</div>
+
+<div id="ordersList">
+    <div class="card"><div class="muted">Enter your phone number to view your orders.</div></div>
+</div>
+
+<div class="modal-overlay hidden" id="myOrderModal">
+    <div class="modal-box my-order-modal-box" id="myOrderModalBox"></div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="~/js/admin/order-share.js" asp-append-version="true"></script>
+    <script src="~/js/customer/myorders.js" asp-append-version="true"></script>
+}

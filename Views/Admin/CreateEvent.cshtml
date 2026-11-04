@@ -1,0 +1,57 @@
+@{ ViewData["Title"] = ViewData["Title"]; }
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/select2/dist/css/select2.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/admin/eventmaster.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">@ViewData["Title"]</div>
+        <div class="page-subtitle">Create an event and map the packages available for it.</div>
+    </div>
+    <a class="btn btn-light" href="/Admin/EventMaster">&larr; Back to Events</a>
+</div>
+
+<div class="card event-form-card">
+    <div class="panel-header"><div class="panel-title">Event Details</div></div>
+    <div class="form-grid">
+        <div class="form-group">
+            <label>Event Name <span class="field-required">*</span></label>
+            <input id="eventName" class="form-control" placeholder="Enter event name">
+            <div class="field-error hidden" id="eventNameError"></div>
+        </div>
+        <div class="form-group">
+            <label>Minimum Pax <span class="field-required">*</span></label>
+            <input id="minPax" type="number" min="1" class="form-control" placeholder="Enter minimum pax">
+            <div class="field-error hidden" id="minPaxError"></div>
+        </div>
+        <div class="form-group">
+            <label>Advance Booking Days <span class="field-required">*</span></label>
+            <input id="advanceBookingDays" type="number" min="0" class="form-control" placeholder="Enter advance booking days">
+            <div class="field-error hidden" id="advanceBookingDaysError"></div>
+        </div>
+        <div class="form-group">
+            <label>Service Charge</label>
+            <input id="serviceCharge" type="number" min="0" step="0.01" class="form-control" placeholder="Enter service charge">
+            <div class="field-error hidden" id="serviceChargeError"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Event Packages</div>
+    <div class="event-packages-box">
+        <label for="eventPackageIds" class="packages-label">Packages</label>
+        <select id="eventPackageIds" class="form-control event-packages-select" multiple></select>
+        <div class="packages-hint">Search and select one or more packages.</div>
+    </div>
+
+    <div class="form-actions">
+        <button class="btn btn-light btn-sm" id="clearEvent" type="button" onclick="clearEventForm()">Clear</button>
+        <button class="btn btn-primary btn-sm" id="saveEvent" type="button" onclick="saveEvent()">Save</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/select2/dist/js/select2.min.js" asp-append-version="true"></script>
+    <script src="~/js/admin/eventmaster.js" asp-append-version="true"></script>
+}

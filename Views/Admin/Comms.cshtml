@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Communications";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/comms.css" asp-append-version="true">
+    }
+
+    <div class="page-header">
+        <div>
+            <div class="page-title">Communications</div>
+            <div class="page-subtitle">Communication log &mdash; WhatsApp, email and SMS history</div>
+        </div>
+    </div>
+
+    <div class="card" id="commsListPanel">
+        <div class="panel-header">
+            <div class="panel-title">Communication Log</div>
+            <div class="panel-actions">
+                <button class="btn btn-orange btn-add" id="btnAddComms" data-permission="create" onclick="openCommsModal()">+ Log Communication</button>
+            </div>
+        </div>
+        <div class="pageloaderpanel hidden" aria-live="polite" aria-busy="true">
+            <div class="spinner"></div>
+            <div class="loader-text">Loading communications...</div>
+        </div>
+        <div class="table-wrap">
+            <table class="tbl" id="commsList" data-page-size="10">
+                <thead>
+                    <tr>
+                        <th class="sortable">#</th>
+                        <th class="sortable">Channel</th>
+                        <th class="sortable">ToAddress</th>
+                        <th class="sortable">Message</th>
+                        <th class="sortable">Status</th>
+                        <th class="sortable">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- rows rendered by ~/js/admin/comms.js -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Per-view Comms modal -->
+    <div class="modal-overlay hidden" id="commsModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <span class="modal-title">Log Communication</span>
+                <button class="modal-close" onclick="closeCommsModal()">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>Channel <span class="field-required">*</span></label>
+                <select id="cmChannel" class="form-control">
+                    <option value="">Select channel</option>
+                    <option>WhatsApp</option>
+                    <option>Email</option>
+                    <option>SMS</option>
+                </select>
+                <div class="field-error hidden" id="cmChannelError"></div>
+            </div>
+            <div class="form-group">
+                <label>To Address <span class="field-required">*</span></label>
+                <input type="text" id="cmAddress" maxlength="100" class="form-control" autocomplete="off">
+                <div class="field-error hidden" id="cmAddressError"></div>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea id="cmMsgField" class="form-control" placeholder="Enter message details"></textarea>
+                <div class="field-error hidden" id="cmMsgFieldError"></div>
+            </div>
+            <input type="hidden" id="CommsId" />
+            <div class="comms-modal-actions">
+                <button type="button" class="btn btn-light" id="btnClearComms" onclick="clearCommsForm()">Clear</button>
+                <button type="button" class="btn btn-primary comms-save-button" id="btnSaveComms" data-permission="create" onclick="saveComms()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+        <script src="~/js/admin/comms.js" asp-append-version="true"></script>
+    }
+
+

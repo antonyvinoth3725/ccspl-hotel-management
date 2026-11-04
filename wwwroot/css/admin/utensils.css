@@ -1,0 +1,13 @@
+.utensil-ratio{font-size:13px;color:var(--gray-500);margin-top:4px}.utensil-icon{font-size:20px;margin-right:8px}
+.utensil-row-actions .actions-menu{min-width:220px;padding:10px 0;border-radius:16px}
+.utensil-row-actions .action-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;font-weight:700}
+.utensil-row-actions .action-icon-text{display:inline-flex;align-items:center;justify-content:center;width:16px;font-size:14px;line-height:1}
+.utensil-row-actions .dots-btn{width:36px;height:36px;border-radius:12px}
+.utensil-row-actions .utensil-action-edit{color:#334155}
+.utensil-row-actions .utensil-action-edit:hover{background:#f8fafc;color:#0f172a}
+.utensil-row-actions .utensil-action-active{color:#166534}
+.utensil-row-actions .utensil-action-active:hover{background:#effdf5;color:#14532d}
+.utensil-row-actions .utensil-action-inactive{color:#92400e}
+.utensil-row-actions .utensil-action-inactive:hover{background:#fffbeb;color:#78350f}
+.utensil-row-actions .utensil-action-delete{color:#b91c1c}
+.utensil-row-actions .utensil-action-delete:hover{background:#fef2f2;color:#991b1b}

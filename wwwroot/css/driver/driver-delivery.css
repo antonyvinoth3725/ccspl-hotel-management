@@ -1,0 +1,705 @@
+﻿/* ==========================================
+   Driver Delivery - Shared CSS (Part 1)
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    background: #f4f6fb;
+    color: #2c3e50;
+    min-height: 100vh;
+}
+
+/* Mobile Container */
+
+.mobile-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: #f7f8fc;
+    padding-bottom: 100px;
+}
+
+/* Verify Page */
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.logo {
+    width: 75px;
+    height: 75px;
+    margin: auto;
+    border-radius: 50%;
+    background: #ff7b00;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+}
+
+.login-card h2 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+    color: #222;
+}
+
+.login-card p {
+    text-align: center;
+    color: #777;
+    margin-top: 8px;
+    margin-bottom: 25px;
+}
+
+.driver-box {
+    background: #fff7ef;
+    border: 1px solid #ffe2c4;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 25px;
+}
+
+.driver-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+    .driver-row:last-child {
+        margin-bottom: 0;
+    }
+
+    .driver-row span {
+        color: #666;
+    }
+
+    .driver-row strong {
+        color: #222;
+    }
+
+.form-control {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+}
+
+    .form-control:focus {
+        border-color: #ff7b00;
+        box-shadow: 0 0 0 3px rgba(255,123,0,.15);
+    }
+
+.btn-primary {
+    width: 100%;
+    border: none;
+    background: #ff7b00;
+    color: #fff;
+    padding: 14px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+    .btn-primary:hover {
+        background: #ef6d00;
+    }
+
+.message {
+    margin-top: 15px;
+    text-align: center;
+    color: #d9534f;
+    font-size: 14px;
+}
+
+/* Header */
+
+.top-bar,
+.top-header {
+    background: #ff7b00;
+    color: #fff;
+    padding: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+    .top-bar h2,
+    .header-title {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .top-bar span,
+    .header-subtitle {
+        font-size: 14px;
+        opacity: .9;
+    }
+
+.logo-circle {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #fff;
+    color: #ff7b00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+/* Cards */
+
+.card {
+    background: #fff;
+    border-radius: 16px;
+    margin: 18px;
+    padding: 18px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+}
+
+/* Delivery List */
+
+.delivery-card {
+    background: #fff;
+    border-radius: 16px;
+    margin: 16px;
+    padding: 18px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.07);
+    transition: .25s;
+}
+
+    .delivery-card:hover {
+        transform: translateY(-2px);
+    }
+
+.delivery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.invoice-no {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.customer-name {
+    color: #666;
+    margin-top: 4px;
+}
+
+.delivery-body {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+    .info:last-child {
+        margin-bottom: 0;
+    }
+
+.delivery-footer {
+    margin-top: 18px;
+}
+
+.btn-start {
+    width: 100%;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 13px;
+    background: #ff7b00;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.btn-start:hover {
+        background: #ef6d00;
+    }
+
+.btn-start.disabled,
+.btn-orange:disabled {
+    background: #d9dde5;
+    color: #6b7280;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-start.disabled:hover,
+.btn-orange:disabled:hover {
+    background: #d9dde5;
+}
+
+.empty-card {
+    margin: 25px;
+    padding: 40px 20px;
+    text-align: center;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+
+    .empty-card i {
+        font-size: 50px;
+        color: #ff7b00;
+        margin-bottom: 18px;
+    }
+
+    .empty-card h3 {
+        margin-bottom: 10px;
+    }
+
+/* Status Badge */
+
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.pending {
+    background: #fff2d8;
+    color: #d68910;
+}
+
+.delivered {
+    background: #d4f8dc;
+    color: #1d8348;
+}
+
+.ontheway {
+    background: #dbeeff;
+    color: #21618c;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    gap: 20px;
+}
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+    .info-row span {
+        color: #777;
+        font-size: 14px;
+        min-width: 120px;
+    }
+
+    .info-row strong {
+        color: #222;
+        text-align: right;
+        flex: 1;
+        word-break: break-word;
+    }
+
+.address strong {
+    line-height: 22px;
+}
+
+/* Parcel Photo */
+
+.photo-preview {
+    width: 100%;
+    height: 220px;
+    border: 2px dashed #d9d9d9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+    .photo-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 13px 18px;
+    font-size: 15px;
+    transition: .25s;
+}
+
+.btn-orange {
+    width: 100%;
+    background: #ff7b00;
+    color: #fff;
+}
+
+    .btn-orange:hover {
+        background: #ef6d00;
+    }
+
+.btn-light {
+    background: #f3f4f7;
+    color: #444;
+}
+
+    .btn-light:hover {
+        background: #e6e8ec;
+    }
+
+/* Signature */
+
+#signaturePad {
+    width: 100%;
+    height: 230px;
+    border: 2px dashed #d9d9d9;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.signature-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Remarks */
+
+textarea {
+    width: 100%;
+    resize: none;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 15px;
+    outline: none;
+    font-family: inherit;
+}
+
+    textarea:focus {
+        border-color: #ff7b00;
+        box-shadow: 0 0 0 3px rgba(255,123,0,.15);
+    }
+
+/* GPS */
+
+#gpsStatus {
+    background: #fff8ef;
+    border: 1px solid #ffe0b3;
+    color: #d97706;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+/* Sticky Footer */
+
+.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 500px;
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0 -5px 15px rgba(0,0,0,.08);
+    z-index: 1000;
+}
+
+.btn-submit {
+    width: 100%;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+}
+
+    .btn-submit:hover {
+        background: #218838;
+    }
+
+    .btn-submit i {
+        margin-right: 8px;
+    }
+
+/* Success Screen */
+
+.success-card {
+    margin: 25px;
+    padding: 35px 25px;
+    text-align: center;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.success-icon {
+    width: 90px;
+    height: 90px;
+    margin: auto;
+    border-radius: 50%;
+    background: #28a745;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+}
+
+.success-card h2 {
+    margin-top: 25px;
+    color: #28a745;
+}
+
+.success-card p {
+    margin-top: 12px;
+    color: #666;
+    line-height: 24px;
+}
+
+/* Loader */
+
+.loader {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+    .loader.hidden {
+        display: none;
+    }
+
+.spinner {
+    width: 55px;
+    height: 55px;
+    border: 6px solid #eee;
+    border-top: 6px solid #ff7b00;
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+}
+
+.loader-text {
+    margin-top: 15px;
+    color: #555;
+    font-size: 15px;
+}
+
+@keyframes spin {
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mobile */
+
+@media(max-width:480px) {
+
+    .card {
+        margin: 12px;
+        padding: 15px;
+    }
+
+    .delivery-card {
+        margin: 12px;
+    }
+
+    .top-bar,
+    .top-header {
+        padding: 18px;
+    }
+
+        .header-title,
+        .top-bar h2 {
+            font-size: 20px;
+        }
+
+    .btn-submit {
+        font-size: 16px;
+    }
+
+    #signaturePad {
+        height: 180px;
+    }
+
+    .photo-preview {
+        height: 190px;
+    }
+}
+
+@media(min-width:768px) {
+
+    .mobile-container {
+        margin: 25px auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 35px rgba(0,0,0,.12);
+    }
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+input,
+textarea {
+    font-size: 16px;
+}
+
+@media(max-width:768px) {
+
+    .mobile-container {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+    }
+
+    .delivery-card {
+        margin: 12px;
+        padding: 16px;
+    }
+
+    .invoice-no {
+        font-size: 17px;
+    }
+
+    .customer-name {
+        font-size: 15px;
+    }
+
+    .delivery-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .status {
+        align-self: flex-start;
+    }
+
+    .top-bar h2 {
+        font-size: 22px;
+    }
+
+    .top-bar span {
+        font-size: 14px;
+    }
+
+    .btn-start {
+        font-size: 16px;
+    }
+
+    .sticky-footer {
+        max-width: 100%;
+        left: 0;
+        transform: none;
+    }
+}
+
+@media(max-width:480px) {
+
+    .mobile-container {
+        padding-bottom: 90px;
+    }
+
+    .card,
+    .delivery-card {
+        margin: 10px;
+        border-radius: 14px;
+    }
+
+    .driver-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .info-row {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+        .info-row strong {
+            text-align: left;
+        }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+        font-size: 26px;
+    }
+
+    .login-card {
+        padding: 22px;
+    }
+}
+
+.btn-start.disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}

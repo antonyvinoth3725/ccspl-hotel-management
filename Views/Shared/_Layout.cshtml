@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Gayatri Catering</title>
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="~/favicon.ico?v=gayatri-20260721">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico?v=gayatri-20260721">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    @if (ViewData["Mode"]?.ToString() == "customer" || ViewData["UseOrderPayment"] as bool? == true)
+    {
+        <link rel="stylesheet" href="~/css/common/orderpayment.css" asp-append-version="true">
+    }
+    @if (ViewData["Mode"]?.ToString() == "admin" && Context.Request.Path.StartsWithSegments("/Admin/Reports"))
+    {
+        <link rel="stylesheet" href="~/lib/select2/dist/css/select2.min.css" asp-append-version="true">
+        <link rel="stylesheet" href="~/css/admin/reports.css" asp-append-version="true">
+    }
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body class="@(ViewData["Mode"]?.ToString() == "customer" ? "customer-mode" : "admin-mode")" data-page="@(ViewData["Page"]?.ToString() ?? "")">
+
+    <nav class="top-nav">
+        <a class="brand" href="/Customer/Home">
+            <img class="brand-logo" src="~/images/logo.jpg" alt="Gayatri">
+            <div>
+                <div class="brand-name">Gayatri Catering</div>
+                <small>COMPLETE ORDER SYSTEM</small>
+            </div>
+        </a>
+        @if (ViewData["Mode"]?.ToString() == "customer")
+        {
+            @* <div class="nav-links">
+                <a class="nav-link" href="/Customer/Packages">Menu Packages</a>
+                <a class="nav-link" href="/Customer/MyOrders">My Orders</a>
+                <a class="nav-link" href="/Customer/Track">Track Order</a>
+            </div> *@
+        }
+        @if (ViewData["Mode"]?.ToString() == "admin")
+        {
+            <button class="btn btn-outline btn-sm sidebar-toggle" id="sidebarToggle" type="button" aria-label="Toggle sidebar">&#9776;</button>
+        }
+        <div class="nav-user">
+            <button class="btn btn-outline btn-sm" id="loginBtn" style="color:#fff;border-color:rgba(255,255,255,.45)">Login</button>
+
+            <div class="nav-profile hidden" id="navProfile">
+                <div class="nav-avatar" id="navAvatarInitials">G</div>
+                <img class="nav-avatar-img hidden" id="navAvatarImage" alt="User" />
+                <div class="nav-profile-meta">
+                    <div class="nav-profile-name" id="navProfileName">Guest User</div>
+                    <div class="nav-profile-role" id="navProfileRole">Guest</div>
+                    <div class="nav-profile-email" id="navProfileEmail"></div>
+                </div>
+                <button class="btn btn-outline btn-sm nav-logout-btn" id="logoutBtn" style="color:#fff;border-color:rgba(255,255,255,.45)">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="portal-wrap">
+        @if (ViewData["Mode"]?.ToString() == "admin")
+        {
+            <aside class="sidebar">
+                <div id="sidebarDynamic">Loading menu...</div>
+            </aside>
+        }
+
+        <main class="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="app-footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">Gayatri Catering</div>
+                <div class="footer-copy">Copyright © 2026 Gayatri Restaurant. All rights reserved.</div>
+            </div>
+            @if (ViewData["Mode"]?.ToString() == "admin")
+            {
+                <div class="footer-links">
+                    <a href="/Admin/Dashboard">Dashboard</a>
+                    <a href="/Admin/Orders">Orders</a>
+                    @* <a href="/Admin/Finance">Finance</a> *@
+                    <a href="/Admin/Reports">Reports</a>
+                </div>
+            }
+            else
+            {
+                @* <div class="footer-links">
+                    <a href="/Customer/Packages">Menu Packages</a>
+                    <a href="/Customer/MyOrders">My Orders</a>
+                    <a href="/Customer/Track">Track Order</a>
+                    <a href="/Customer/Venue">Venue</a>
+                </div> *@
+            }
+            <div class="footer-contact">
+                <div>Tel: 6291 1011 | Office: 6292 4544 | WhatsApp: +65 6294 6294</div>
+                <div>122 Race Course Road #01-01, Singapore 218583 | info@gayatrirestaurant.com</div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <div class="confirm-overlay hidden" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmModalTitle">
+        <div class="confirm-box modal-box">
+            <div class="confirm-header">
+                <div>
+                    <div class="confirm-title" id="confirmModalTitle">Confirm Action</div>
+                    <div class="confirm-subtitle" id="confirmModalMessage">Are you sure you want to continue?</div>
+                </div>
+                <button type="button" class="confirm-close" id="confirmModalClose" aria-label="Close confirm dialog">&times;</button>
+            </div>
+            <div class="confirm-body" id="confirmModalBody"></div>
+            <div class="confirm-footer">
+                <button type="button" class="btn btn-light" id="confirmModalCancel">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmModalOk">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="login-overlay" id="loginModal">
+        <div class="login-box">
+            <div class="login-header">
+                <button class="login-close" id="loginCloseBtn">&times;</button>
+                <img class="login-brand-img" src="~/images/logo.jpg" alt="Gayatri Restaurant Logo">
+                <div class="login-title">Gayatri Backend Login</div>
+                <div class="login-sub">Enter your registered email and verify OTP to continue.</div>
+            </div>
+            <div class="login-body">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input id="loginEmail" placeholder="email@gayatrirestaurant.com">
+                </div>
+                <div class="form-group">
+                    <label>OTP / Access Code</label>
+                    <div style="display:grid;grid-template-columns:1fr 120px;gap:8px">
+                        <input id="loginCode" placeholder="Enter OTP code">
+                        <button class="btn btn-light" id="sendCodeBtn">Send Code</button>
+                    </div>
+                    <div id="otpExpiryText" class="hint hidden"></div>
+                    <div class="hint">OTP is valid for 60 seconds from the time you click Send Code.</div>
+                </div>
+                <div class="form-group hidden" id="loginRoleWrap">
+                    <label>Role</label>
+                    <select id="loginRole" disabled>
+                        <option value="">--Select role--</option>
+                    </select>
+                </div>
+                <button class="btn btn-orange" id="signInBtn" style="width:100%;padding:12px">Sign In</button>
+                <button class="btn btn-light" id="cancelLoginBtn" style="width:100%;margin-top:8px">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    @if (ViewData["Mode"]?.ToString() == "customer" || ViewData["UseOrderPayment"] as bool? == true)
+    {
+        @await Html.PartialAsync("~/Views/Shared/_OrderPayment.cshtml")
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/permissions.js" asp-append-version="true"></script>
+    <script src="~/js/export.js" asp-append-version="true"></script>
+    <script src="~/js/login.js" asp-append-version="true"></script>
+    @if (ViewData["Mode"]?.ToString() == "customer" || ViewData["UseOrderPayment"] as bool? == true)
+    {
+        <script src="https://cdn.omise.co/omise.js"></script>
+        <script src="~/js/common/orderpayment.js" asp-append-version="true"></script>
+    }
+    @if (ViewData["Mode"]?.ToString() == "admin")
+    {
+        <script src="~/js/common/menus.js" asp-append-version="true"></script>
+        <script src="~/js/admin/modal.js" asp-append-version="true"></script>
+        <script src="~/js/admin/form-validation.js" asp-append-version="true"></script>
+
+    }
+
+    @if (ViewData["Mode"]?.ToString() == "admin" && Context.Request.Path.StartsWithSegments("/Admin/Reports"))
+    {
+        <script src="~/lib/select2/dist/js/select2.min.js" asp-append-version="true"></script>
+        <script src="~/js/admin/reports.js" asp-append-version="true"></script>
+    }
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+ 

@@ -1,0 +1,1017 @@
+USE [GayatriCateringPortal]
+GO
+/****** Object:  Table [dbo].[AddOnMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AddOnMaster](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [varchar](20) NOT NULL,
+	[AddOnName] [nvarchar](500) NOT NULL,
+	[UnitType] [varchar](20) NOT NULL,
+	[Rate] [decimal](18, 2) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Code] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CityMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CityMaster](
+	[id] [int] NULL,
+	[name] [nvarchar](100) NULL,
+	[state_id] [smallint] NULL,
+	[country_id] [tinyint] NULL,
+	[latitude] [float] NULL,
+	[longitude] [float] NULL,
+	[timezone] [nvarchar](50) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CodeTemplate]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CodeTemplate](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[EntityNo] [int] NULL,
+	[Name] [varchar](50) NULL,
+	[StartValue] [int] NULL,
+	[Prefix] [varchar](50) NULL,
+	[CurrentValue] [int] NULL,
+	[Suffix] [varchar](50) NULL,
+	[OrgId] [int] NULL,
+	[BranchId] [int] NULL,
+	[IsMaster] [bit] NULL,
+	[IsDeleted] [bit] NULL,
+	[IsActive] [bit] NULL,
+	[CreatedBy] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[NoOfDigit] [int] NULL,
+	[IsDateMonthYearWise] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CommunicationLog]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CommunicationLog](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](50) NULL,
+	[Channel] [nvarchar](50) NULL,
+	[ToEmail] [nvarchar](50) NULL,
+	[Message] [nvarchar](50) NULL,
+	[IsActive] [bit] NULL,
+	[IsDeleted] [bit] NULL,
+	[CreatedDate] [datetime] NULL,
+	[CreatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CountryMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CountryMaster](
+	[id] [tinyint] NULL,
+	[name] [nvarchar](50) NULL,
+	[iso3] [nvarchar](50) NULL,
+	[iso2] [nvarchar](50) NULL,
+	[numeric_code] [smallint] NULL,
+	[phonecode] [smallint] NULL,
+	[capital] [nvarchar](50) NULL,
+	[currency] [nvarchar](50) NULL,
+	[currency_name] [nvarchar](50) NULL,
+	[currency_symbol] [nvarchar](50) NULL,
+	[tld] [nvarchar](50) NULL,
+	[native] [nvarchar](100) NULL,
+	[population] [int] NULL,
+	[gdp] [int] NULL,
+	[region] [nvarchar](50) NULL,
+	[region_id] [tinyint] NULL,
+	[subregion] [nvarchar](50) NULL,
+	[subregion_id] [tinyint] NULL,
+	[nationality] [nvarchar](50) NULL,
+	[area_sq_km] [int] NULL,
+	[latitude] [float] NULL,
+	[longitude] [float] NULL,
+	[emoji] [nvarchar](50) NULL,
+	[wikiDataId] [money] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CustomerMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CustomerMaster](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](50) NOT NULL,
+	[Name] [nvarchar](100) NOT NULL,
+	[MobileNo] [nvarchar](20) NOT NULL,
+	[EmailId] [nvarchar](50) NOT NULL,
+	[CompanyName] [nvarchar](50) NOT NULL,
+	[AddressLine1] [nvarchar](200) NOT NULL,
+	[AddressLine2] [nvarchar](200) NOT NULL,
+	[CityId] [int] NOT NULL,
+	[StateId] [int] NOT NULL,
+	[CountryId] [int] NOT NULL,
+	[Pincode] [nvarchar](50) NOT NULL,
+	[DateOfBirth] [datetime] NULL,
+	[Gender] [int] NULL,
+	[Remarks] [nvarchar](500) NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreatedBy] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[IsDeleted] [bit] NOT NULL,
+ CONSTRAINT [UQ_Code] UNIQUE NONCLUSTERED 
+(
+	[Code] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[EntityMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EntityMaster](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NULL,
+	[EntityNo] [int] NULL,
+	[IsMaster] [bit] NULL,
+	[IsDeleted] [bit] NULL,
+	[IsActive] [bit] NULL,
+	[CreatedBy] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FoodMenu]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FoodMenu](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [varchar](50) NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+	[CategoryId] [int] NOT NULL,
+	[Price] [decimal](18, 3) NULL,
+	[PreparationTime] [int] NULL,
+	[FoodType] [int] NULL,
+	[Servicecharge] [int] NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedBy] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ__FoodMenu__A25C5AA7211832A4] UNIQUE NONCLUSTERED 
+(
+	[Code] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FoodMenuCategory]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FoodMenuCategory](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [varchar](50) NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ__FoodMenu__A25C5AA7FFAE299B] UNIQUE NONCLUSTERED 
+(
+	[Code] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[LanguageMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[LanguageMaster](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](20) NOT NULL,
+	[Name] [nvarchar](100) NOT NULL,
+	[NativeName] [nvarchar](100) NULL,
+	[IsDefault] [bit] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Code] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[LocationMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[LocationMaster](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [varchar](20) NOT NULL,
+	[LocationName] [nvarchar](100) NOT NULL,
+	[DeliveryFee] [decimal](18, 2) NOT NULL,
+	[MinimumPax] [int] NOT NULL,
+	[LeadTimeDays] [int] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[Remarks] [nvarchar](500) NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Code] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[LogisticsDetails]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[LogisticsDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderDate] [datetime] NULL,
+	[OrderNumber] [nvarchar](50) NULL,
+	[Location] [nvarchar](50) NULL,
+	[DriverName] [nvarchar](50) NULL,
+	[Status] [int] NULL,
+	[IsActive] [bit] NULL,
+	[IsDeleted] [bit] NULL,
+	[CreatedDate] [datetime] NULL,
+	[CreatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MealPeriodMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MealPeriodMaster](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [varchar](20) NOT NULL,
+	[MealPeriodName] [nvarchar](100) NOT NULL,
+	[StartTime] [time](7) NULL,
+	[EndTime] [time](7) NULL,
+	[DisplayOrder] [int] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[IsDeleted] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Code] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Menu]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Menu](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NULL,
+	[IsActive] [bit] NULL,
+	[IsDeleted] [bit] NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[DisplayOrder] [int] NULL,
+	[MenuIcon] [nvarchar](50) NULL,
+ CONSTRAINT [PK__Menu__3214EC071FFE2ADD] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderAddOnsDetails]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderAddOnsDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderId] [int] NOT NULL,
+	[AddOnsId] [int] NOT NULL,
+	[Qty] [int] NULL,
+	[UnitPrice] [decimal](18, 2) NULL,
+	[TotalAmount] [decimal](18, 2) NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderEventDetails]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderEventDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CustomerId] [int] NOT NULL,
+	[OrderId] [int] NOT NULL,
+	[EventStartDate] [datetime] NULL,
+	[EventEndDate] [datetime] NULL,
+	[AddressLine1] [nvarchar](100) NULL,
+	[AddressLine2] [nvarchar](100) NULL,
+	[City] [int] NULL,
+	[State] [int] NULL,
+	[Country] [int] NULL,
+	[Notes] [nchar](500) NULL,
+	[MealPeriodId] [int] NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedBy] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderExtraItems]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderExtraItems](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderId] [int] NOT NULL,
+	[CategoryId] [int] NULL,
+	[MenuId] [int] NULL,
+	[Qty] [int] NULL,
+	[UnitPrice] [decimal](18, 2) NULL,
+	[TotalAmount] [decimal](18, 2) NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderPackageDetails]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderPackageDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderId] [int] NOT NULL,
+	[CategoryId] [int] NULL,
+	[MenuId] [int] NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Orders]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Orders](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderNumber] [nvarchar](100) NULL,
+	[CustomerId] [int] NOT NULL,
+	[PackageId] [int] NULL,
+	[MealPeriodId] [int] NULL,
+	[LocationId] [int] NULL,
+	[EventStartDateTime] [datetime] NULL,
+	[EventEndDateTime] [datetime] NULL,
+	[DeliveryAddress] [nvarchar](500) NULL,
+	[Notes] [nvarchar](max) NULL,
+	[Pax] [int] NOT NULL,
+	[PackageBaseAmount] [decimal](18, 2) NULL,
+	[AdditionalMenuAmount] [decimal](18, 2) NULL,
+	[AddOnsAmount] [decimal](18, 2) NULL,
+	[UtensilsAmount] [decimal](18, 2) NULL,
+	[SubTotal] [decimal](18, 2) NOT NULL,
+	[Discount] [decimal](18, 2) NOT NULL,
+	[DeliveryFee] [decimal](18, 2) NOT NULL,
+	[TaxAmount] [decimal](18, 2) NOT NULL,
+	[TotalAmount] [decimal](18, 2) NOT NULL,
+	[TaxPercentage] [decimal](18, 2) NULL,
+	[PaidAmount] [decimal](18, 2) NOT NULL,
+	[OrderStatus] [int] NOT NULL,
+	[CreatedDate] [datetime2](7) NOT NULL,
+	[CreatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+ CONSTRAINT [PK__Orders__C3905BCFEBDA6DFE] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderUtensilsDetails]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderUtensilsDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderId] [int] NOT NULL,
+	[UtensilsId] [int] NOT NULL,
+	[Qty] [int] NOT NULL,
+	[UnitPrice] [decimal](18, 2) NOT NULL,
+	[TotalAmount] [decimal](18, 2) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Organization]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Organization](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [int] NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+	[GSTNO] [nvarchar](25) NOT NULL,
+	[Phone] [nvarchar](20) NOT NULL,
+	[Email] [nvarchar](100) NOT NULL,
+	[Website] [nvarchar](100) NOT NULL,
+	[ContactPerson] [varchar](100) NOT NULL,
+	[ContactPhone] [nvarchar](100) NOT NULL,
+	[ContactEmail] [nvarchar](100) NOT NULL,
+	[AddressLine1] [nvarchar](100) NOT NULL,
+	[AdressLine2] [nvarchar](100) NOT NULL,
+	[City] [int] NOT NULL,
+	[State] [int] NOT NULL,
+	[Country] [int] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PackageItems]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PackageItems](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CategoryId] [int] NOT NULL,
+	[Quantity] [int] NOT NULL,
+	[CreatedBy] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[IsActive] [bit] NULL,
+	[IsDeleted] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Packages]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Packages](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[PackageName] [nvarchar](100) NOT NULL,
+	[PackageDescription] [nvarchar](max) NULL,
+	[PackageType] [nvarchar](50) NULL,
+	[Price] [decimal](18, 2) NOT NULL,
+	[MinPersons] [int] NOT NULL,
+	[MaxPersons] [int] NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreatedBy] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[IsDeleted] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PopularFreebieMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PopularFreebieMaster](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ConfigType] [varchar](20) NOT NULL,
+	[ConfigName] [nvarchar](200) NOT NULL,
+	[PackageId] [int] NULL,
+	[MinPax] [int] NULL,
+	[MaxPax] [int] NULL,
+	[MinOrderAmount] [decimal](18, 2) NULL,
+	[FreeQty] [decimal](18, 2) NULL,
+	[LocationId] [int] NULL,
+	[DisplayOrder] [int] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[ValidFrom] [date] NULL,
+	[ValidTo] [date] NULL,
+	[Remarks] [nvarchar](500) NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RoleMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RoleMaster](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](50) NOT NULL,
+	[Name] [nvarchar](150) NOT NULL,
+	[Remarks] [nvarchar](500) NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RolePermission]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RolePermission](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[RoleId] [int] NOT NULL,
+	[EntityNo] [int] NOT NULL,
+	[View] [bit] NOT NULL,
+	[Create] [bit] NOT NULL,
+	[Edit] [bit] NOT NULL,
+	[Delete] [bit] NOT NULL,
+	[ActiveInActive] [bit] NULL,
+	[Print] [bit] NULL,
+	[Download] [bit] NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[CreatedBy] [int] NOT NULL,
+	[UpdatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+ CONSTRAINT [PK__RolePerm__3214EC0706FCAEA4] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_RolePermission] UNIQUE NONCLUSTERED 
+(
+	[RoleId] ASC,
+	[EntityNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[StateMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[StateMaster](
+	[id] [smallint] NULL,
+	[name] [nvarchar](50) NULL,
+	[country_id] [tinyint] NULL,
+	[country_code] [nvarchar](50) NULL,
+	[country_name] [nvarchar](50) NULL,
+	[iso2] [nvarchar](50) NULL,
+	[iso3166_2] [nvarchar](50) NULL,
+	[fips_code] [nvarchar](50) NULL,
+	[type] [nvarchar](50) NULL,
+	[level] [int] NULL,
+	[parent_id] [nvarchar](10) NULL,
+	[native] [nvarchar](50) NULL,
+	[latitude] [float] NULL,
+	[longitude] [float] NULL,
+	[timezone] [nvarchar](50) NULL,
+	[wikiDataId] [money] NULL,
+	[population] [int] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SubMenu]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SubMenu](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MenuId] [int] NULL,
+	[Name] [varchar](50) NULL,
+	[EntityNo] [int] NULL,
+	[IsActive] [bit] NULL,
+	[IsDeleted] [bit] NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[DisplayOrder] [int] NULL,
+	[Route] [varchar](100) NULL,
+	[Remarks] [varchar](500) NULL,
+	[Menuscope] [int] NULL,
+	[MenuIcon] [nvarchar](50) NULL,
+ CONSTRAINT [PK__SubMenu__3214EC079AC4A415] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserMaster](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](50) NOT NULL,
+	[Name] [nvarchar](150) NOT NULL,
+	[Remarks] [nvarchar](500) NULL,
+	[IsAdmin] [bit] NOT NULL,
+	[Email] [nvarchar](150) NOT NULL,
+	[Password] [nvarchar](255) NOT NULL,
+	[ContactNo] [varchar](20) NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[Image] [varchar](500) NULL,
+	[Gender] [int] NULL,
+	[DOB] [datetime] NULL,
+	[Age] [int] NULL,
+	[Address1] [nvarchar](500) NULL,
+	[Address2] [nvarchar](500) NULL,
+	[Country] [int] NULL,
+	[State] [int] NULL,
+	[City] [int] NULL,
+	[PostalCode] [int] NULL,
+	[PinNo] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[PinNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserRoleMapping]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserRoleMapping](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[RoleId] [int] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+ CONSTRAINT [PK__UserRole__3214EC07619489C5] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UtensilMaster]    Script Date: 06-07-2026 12:00:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UtensilMaster](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UtensilName] [nvarchar](100) NOT NULL,
+	[UnitType] [varchar](20) NOT NULL,
+	[Price] [decimal](18, 2) NOT NULL,
+	[DepositAmount] [decimal](18, 2) NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[CreatedBy] [int] NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[IsActive] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[AddOnMaster] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[CodeTemplate] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[CodeTemplate] ADD  DEFAULT ((0)) FOR [NoOfDigit]
+GO
+ALTER TABLE [dbo].[CodeTemplate] ADD  DEFAULT ((0)) FOR [IsDateMonthYearWise]
+GO
+ALTER TABLE [dbo].[EntityMaster] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[LanguageMaster] ADD  DEFAULT ((0)) FOR [IsDefault]
+GO
+ALTER TABLE [dbo].[LanguageMaster] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[LanguageMaster] ADD  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[LanguageMaster] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[LocationMaster] ADD  DEFAULT ((0)) FOR [DeliveryFee]
+GO
+ALTER TABLE [dbo].[LocationMaster] ADD  DEFAULT ((0)) FOR [MinimumPax]
+GO
+ALTER TABLE [dbo].[LocationMaster] ADD  DEFAULT ((1)) FOR [LeadTimeDays]
+GO
+ALTER TABLE [dbo].[LocationMaster] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[MealPeriodMaster] ADD  DEFAULT ((1)) FOR [DisplayOrder]
+GO
+ALTER TABLE [dbo].[MealPeriodMaster] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[MealPeriodMaster] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[Menu] ADD  CONSTRAINT [DF__Menu__CreatedDat__7F2BE32F]  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[Menu] ADD  CONSTRAINT [DF__Menu__DisplayOrd__00200768]  DEFAULT ((0)) FOR [DisplayOrder]
+GO
+ALTER TABLE [dbo].[OrderAddOnsDetails] ADD  DEFAULT ((0)) FOR [Qty]
+GO
+ALTER TABLE [dbo].[OrderAddOnsDetails] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[OrderAddOnsDetails] ADD  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[OrderAddOnsDetails] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[OrderExtraItems] ADD  DEFAULT ((0)) FOR [Qty]
+GO
+ALTER TABLE [dbo].[OrderExtraItems] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[OrderExtraItems] ADD  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[OrderExtraItems] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[OrderPackageDetails] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[OrderPackageDetails] ADD  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[OrderPackageDetails] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[Orders] ADD  CONSTRAINT [DF_Ord_Pax]  DEFAULT ((30)) FOR [Pax]
+GO
+ALTER TABLE [dbo].[Orders] ADD  CONSTRAINT [DF_Ord_Sub]  DEFAULT ((0)) FOR [SubTotal]
+GO
+ALTER TABLE [dbo].[Orders] ADD  CONSTRAINT [DF_Ord_Disc]  DEFAULT ((0)) FOR [Discount]
+GO
+ALTER TABLE [dbo].[Orders] ADD  CONSTRAINT [DF_Ord_Del]  DEFAULT ((0)) FOR [DeliveryFee]
+GO
+ALTER TABLE [dbo].[Orders] ADD  CONSTRAINT [DF_Ord_Tax]  DEFAULT ((0)) FOR [TaxAmount]
+GO
+ALTER TABLE [dbo].[Orders] ADD  CONSTRAINT [DF_Ord_Tot]  DEFAULT ((0)) FOR [TotalAmount]
+GO
+ALTER TABLE [dbo].[Orders] ADD  CONSTRAINT [DF_Ord_Paid]  DEFAULT ((0)) FOR [PaidAmount]
+GO
+ALTER TABLE [dbo].[Orders] ADD  CONSTRAINT [DF_Ord_Stat]  DEFAULT ('Draft') FOR [OrderStatus]
+GO
+ALTER TABLE [dbo].[Orders] ADD  CONSTRAINT [DF_Ord_Cre]  DEFAULT (sysutcdatetime()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[OrderUtensilsDetails] ADD  DEFAULT ((1)) FOR [Qty]
+GO
+ALTER TABLE [dbo].[OrderUtensilsDetails] ADD  DEFAULT ((0)) FOR [UnitPrice]
+GO
+ALTER TABLE [dbo].[OrderUtensilsDetails] ADD  DEFAULT ((0)) FOR [TotalAmount]
+GO
+ALTER TABLE [dbo].[OrderUtensilsDetails] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[OrderUtensilsDetails] ADD  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[OrderUtensilsDetails] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[Organization] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[Organization] ADD  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[Organization] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[PackageItems] ADD  DEFAULT ((1)) FOR [Quantity]
+GO
+ALTER TABLE [dbo].[PackageItems] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[Packages] ADD  DEFAULT ((1)) FOR [MinPersons]
+GO
+ALTER TABLE [dbo].[Packages] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[Packages] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[PopularFreebieMaster] ADD  DEFAULT ((1)) FOR [DisplayOrder]
+GO
+ALTER TABLE [dbo].[PopularFreebieMaster] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[RolePermission] ADD  CONSTRAINT [DF__RolePermis__View__2DB1C7EE]  DEFAULT ((0)) FOR [View]
+GO
+ALTER TABLE [dbo].[RolePermission] ADD  CONSTRAINT [DF__RolePermi__Creat__2AD55B43]  DEFAULT ((0)) FOR [Create]
+GO
+ALTER TABLE [dbo].[RolePermission] ADD  CONSTRAINT [DF__RolePermis__Edit__2BC97F7C]  DEFAULT ((0)) FOR [Edit]
+GO
+ALTER TABLE [dbo].[RolePermission] ADD  CONSTRAINT [DF__RolePermi__Delet__2CBDA3B5]  DEFAULT ((0)) FOR [Delete]
+GO
+ALTER TABLE [dbo].[RolePermission] ADD  CONSTRAINT [DF__RolePermi__Activ__7ADC2F5E]  DEFAULT ((0)) FOR [ActiveInActive]
+GO
+ALTER TABLE [dbo].[RolePermission] ADD  CONSTRAINT [DF__RolePermi__Downl__79E80B25]  DEFAULT ((0)) FOR [Download]
+GO
+ALTER TABLE [dbo].[SubMenu] ADD  CONSTRAINT [DF__SubMenu__Created__01142BA1]  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[SubMenu] ADD  CONSTRAINT [DF__SubMenu__Display__02084FDA]  DEFAULT ((0)) FOR [DisplayOrder]
+GO
+ALTER TABLE [dbo].[SubMenu] ADD  CONSTRAINT [DF__SubMenu__route__7814D14C]  DEFAULT ('') FOR [Route]
+GO
+ALTER TABLE [dbo].[SubMenu] ADD  CONSTRAINT [DF__SubMenu__Remarks__7908F585]  DEFAULT ('') FOR [Remarks]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT ((0)) FOR [IsAdmin]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT ((1)) FOR [IsActive]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT (getdate()) FOR [CreatedDate]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT (NULL) FOR [Image]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT ((0)) FOR [Gender]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT (NULL) FOR [DOB]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT (NULL) FOR [Age]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT (NULL) FOR [Address1]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT (NULL) FOR [Address2]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT (NULL) FOR [Country]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT (NULL) FOR [State]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT (NULL) FOR [City]
+GO
+ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT ((0)) FOR [PostalCode]
+GO
+ALTER TABLE [dbo].[UtensilMaster] ADD  DEFAULT ((0)) FOR [DepositAmount]
+GO
+ALTER TABLE [dbo].[OrderAddOnsDetails]  WITH CHECK ADD  CONSTRAINT [FK_OrderAddOnsDetails_Orders] FOREIGN KEY([OrderId])
+REFERENCES [dbo].[Orders] ([Id])
+GO
+ALTER TABLE [dbo].[OrderAddOnsDetails] CHECK CONSTRAINT [FK_OrderAddOnsDetails_Orders]
+GO
+ALTER TABLE [dbo].[OrderEventDetails]  WITH CHECK ADD  CONSTRAINT [FK_OrderEventDetails_Orders] FOREIGN KEY([OrderId])
+REFERENCES [dbo].[Orders] ([Id])
+GO
+ALTER TABLE [dbo].[OrderEventDetails] CHECK CONSTRAINT [FK_OrderEventDetails_Orders]
+GO
+ALTER TABLE [dbo].[OrderExtraItems]  WITH CHECK ADD  CONSTRAINT [FK_OrderExtraItems_Orders] FOREIGN KEY([OrderId])
+REFERENCES [dbo].[Orders] ([Id])
+GO
+ALTER TABLE [dbo].[OrderExtraItems] CHECK CONSTRAINT [FK_OrderExtraItems_Orders]
+GO
+ALTER TABLE [dbo].[OrderPackageDetails]  WITH CHECK ADD  CONSTRAINT [FK_OrderPackageDetails_Orders] FOREIGN KEY([OrderId])
+REFERENCES [dbo].[Orders] ([Id])
+GO
+ALTER TABLE [dbo].[OrderPackageDetails] CHECK CONSTRAINT [FK_OrderPackageDetails_Orders]
+GO
+ALTER TABLE [dbo].[OrderUtensilsDetails]  WITH CHECK ADD  CONSTRAINT [FK_OrderUtensilsDetails_Orders] FOREIGN KEY([OrderId])
+REFERENCES [dbo].[Orders] ([Id])
+GO
+ALTER TABLE [dbo].[OrderUtensilsDetails] CHECK CONSTRAINT [FK_OrderUtensilsDetails_Orders]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1 - Male, 2 - Female, 3 - others
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CustomerMaster', @level2type=N'COLUMN',@level2name=N'Gender'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 = Both, 
+1 = Front Office, 
+2 = Backoffice' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'SubMenu', @level2type=N'COLUMN',@level2name=N'Menuscope'
+GO

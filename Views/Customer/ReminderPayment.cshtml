@@ -1,0 +1,53 @@
+@model GayatriCateringPortal.Controllers.Customer.ReminderPaymentController.ReminderPaymentViewModel
+@{
+    ViewData["Title"] = "Complete Payment";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/customer/reminder-payment.css" asp-append-version="true">
+}
+
+<div class="reminder-pay-page"
+     data-valid="@(Model.IsValid ? "1" : "0")"
+     data-token="@Model.Token"
+     data-order-id="@Model.OrderId"
+     data-order-number="@Model.OrderNumber"
+     data-customer-name="@Model.CustomerName"
+    data-email="@Model.EmailId"
+     data-total-amount="@Model.TotalAmount"
+     data-paid-amount="@Model.PaidAmount"
+     data-balance-amount="@Model.BalanceAmount">
+
+    @if (Model.IsValid)
+    {
+        <section class="reminder-pay-card">
+            <h1>Payment Reminder</h1>
+            <p class="muted">Order <strong>@Model.OrderNumber</strong> for @Model.CustomerName</p>
+            <div class="reminder-pay-amount">Outstanding Amount: <strong>S$@Model.BalanceAmount.ToString("N2")</strong></div>
+            <div class="reminder-pay-actions">
+                <button type="button" class="btn btn-primary" id="btnOpenReminderPay">Pay Now</button>
+            </div>
+            <p class="reminder-pay-note" id="reminderPayNote">Secure payment window will open automatically.</p>
+        </section>
+    }
+    else
+    {
+        <section class="reminder-pay-card reminder-pay-card-invalid reminder-pay-card-@Model.Status">
+            <h1>
+                @(Model.Status == "expired" ? "Payment Link Expired" :
+                    Model.Status == "used" ? "Payment Link Already Used" :
+                    Model.Status == "paid" ? "Payment Already Completed" :
+                    "Payment Link Unavailable")
+            </h1>
+            <p>@(string.IsNullOrWhiteSpace(Model.Message) ? "This payment link is invalid or expired." : Model.Message)</p>
+            <div class="reminder-pay-actions reminder-pay-actions-invalid">
+                <a href="/Customer/Home" class="btn btn-light">Go To Home</a>
+                <a href="mailto:noreply@cspl.sg?subject=Request%20New%20Payment%20Reminder%20Link" class="btn btn-primary">Request New Link</a>
+            </div>
+        </section>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/customer/reminder-payment.js" asp-append-version="true"></script>
+}

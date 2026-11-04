@@ -1,0 +1,237 @@
+﻿@{
+    ViewData["Title"] = "Freebies";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/freebies.css" asp-append-version="true">
+}
+
+
+
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Popular & Freebies</div>
+        <div class="page-subtitle">
+            Configure complimentary items included in packages
+        </div>
+    </div>
+
+</div>
+
+<div class="pageloaderfull hidden">
+    <div class="spinner"></div>
+    <div class="loader-text">Loading freebies...</div>
+</div>
+
+<div id="freebiesListPanel" class="card">
+    <div class="panel-header">
+        <div class="panel-title">Manage Freebies</div>
+        <div class="panel-actions">
+            <div class="app-header-filter">
+                <input type="text"
+                       id="popularFreebiesSearch"
+                       class="tbl-search"
+                       data-table="popularFreebieList"
+                       placeholder="Search freebies...">
+            </div>
+
+            <button type="button"
+                    class="btn btn-orange btn-add"
+                    data-permission="create"
+                    id="btnAddPopularFreebie"
+                    onclick="openPopularFreebieModal()">
+                + Add Freebie
+            </button>
+        </div>
+    </div>
+
+    
+    <div class="pageloaderpanel hidden">
+        <div class="spinner"></div>
+        <div class="loader-text">Loading freebies...</div>
+    </div>
+
+    <div class="table-wrap">
+        <table class="tbl" id="popularFreebieList" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="sortable">#</th>
+                    <th class="sortable">Item</th>
+                    <th class="sortable">Package  Name</th>
+                    <th class="sortable">Free quantity</th>
+                    <th class="sortable">Display Order</th>
+                    <th class="sortable">Valid From</th>
+                    <th class="sortable">Valid To</th>
+                    <th class="sortable">Remarks</th>
+                    <th class="sortable">Active</th>
+                    <th class="no-sort">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- Rows rendered by ~/js/admin/popular-freebies.js -->
+            </tbody>
+        </table>
+    </div>
+
+    
+</div>
+
+
+<!-- Add / Edit Popular Freebie Modal -->
+<div class="modal-overlay hidden"
+     id="popularFreebieModal">
+
+    <div class="modal-box modal-box-lg freebies-modal-box">
+
+        <div class="modal-header">
+            <span class="modal-title" id="popularFreebie-title">
+                Create Popular Freebie
+            </span>
+
+            <button class="modal-close"
+                    type="button"
+                    onclick="closePopularFreebieModal()">
+                &times;
+            </button>
+        </div>
+
+        <input type="hidden"
+               id="popularFreebieId" />
+
+        <div class="form-row freebies-name-row">
+
+            <div class="form-group">
+                <label>
+                    Name
+                    <span class="field-required">*</span>
+                </label>
+
+                <input type="text"
+                       id="freebieName"
+                       class="form-control"
+                       placeholder="Example: Papad" />
+            </div>
+
+        </div>
+
+
+        <div class="form-row col2 freebies-reference-row">
+
+            <div class="form-group">
+                <label>Package</label>
+
+                <select id="freebiePackageId"
+                        class="form-control">
+                    <option value="">Select package (or all)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Location</label>
+
+                <select id="freebieLocationId"
+                        class="form-control">
+                    <option value="">Select location (or all)</option>
+                </select>
+            </div>
+
+        </div>
+
+
+        <div class="form-row col3 freebies-rule-row">
+
+            <div class="form-group">
+                <label>Minimum Pax</label>
+
+                <input type="number"
+                       id="freebieMinPax"
+                       class="form-control"
+                       min="0"
+                       placeholder="Enter minimum pax" />
+            </div>
+
+            <div class="form-group">
+                <label>Free Quantity</label>
+
+                <input type="number"
+                       id="freebieFreeQty"
+                       class="form-control"
+                       min="0"
+                       placeholder="Enter free quantity" />
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Display Order
+                    <span class="field-required">*</span>
+                </label>
+
+                <input type="number"
+                       id="freebieDisplayOrder"
+                       class="form-control"
+                       min="1"
+                       placeholder="Enter display order" />
+            </div>
+
+        </div>
+
+
+        <div class="form-row col2">
+
+            <div class="form-group">
+                <label>Valid From</label>
+
+                <input type="date"
+                       id="freebieValidFrom"
+                       class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Valid To</label>
+
+                <input type="date"
+                       id="freebieValidTo"
+                       class="form-control" />
+            </div>
+
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Remarks</label>
+
+                <textarea id="freebieRemarks"
+                          class="form-control"
+                          rows="3"
+                          placeholder="Enter remarks (optional)"></textarea>
+            </div>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button type="button" class="btn btn-light"  onclick="clearPopularFreebieForm()">
+                Clear
+            </button>
+
+            <button type="button"  class="btn btn-primary" onclick="savePopularFreebie()">
+                Save
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/freebies.js" asp-append-version="true"></script>
+}
+
+

@@ -1,0 +1,134 @@
+.code-template-wrap {
+    overflow: auto;
+}
+
+.code-template-table {
+    min-width: 980px;
+    font-size: 13px;
+}
+
+.code-template-table th,
+.code-template-table td {
+    vertical-align: middle;
+}
+
+.code-template-table th {
+    white-space: nowrap;
+    padding: 11px 14px;
+    color: var(--green-dark);
+    font-size: 13px;
+    font-weight: 800;
+    background: #f4fbf7;
+    border-bottom: 1px solid #d7e9de;
+}
+
+.code-template-table td {
+    padding: 7px 14px;
+    border-bottom: 1px solid #e6edf1;
+}
+
+.code-template-table tbody tr:nth-child(even) {
+    background: #fbfdfc;
+}
+
+.code-template-table tbody tr:hover {
+    background: #f1faf5;
+}
+
+.code-input,
+.code-number {
+    width: 100%;
+    min-width: 90px;
+    border: 1px solid #d7e1e8;
+    border-radius: 12px;
+    background: var(--white);
+    color: var(--gray-900);
+    padding: 6px 12px;
+    min-height: 34px;
+    outline: none;
+    transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+.code-input:focus,
+.code-number:focus {
+    border-color: var(--green-mid);
+    box-shadow: 0 0 0 3px rgba(45,138,82,.10);
+}
+
+.code-number {
+    text-align: left;
+}
+
+.code-cell-name {
+    min-width: 250px;
+}
+
+.code-name-text {
+    display: inline-block;
+    color: var(--gray-900);
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.code-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 48px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.code-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.code-switch-slider {
+    position: absolute;
+    inset: 0;
+    background: #cfdae8;
+    border-radius: 999px;
+    transition: all .2s ease;
+}
+
+.code-switch-slider::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 4px;
+    top: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .14);
+    transition: transform .2s ease;
+}
+
+.code-switch input:checked + .code-switch-slider {
+    background: #2e8b57;
+}
+
+.code-switch input:checked + .code-switch-slider::before {
+    transform: translateX(20px);
+}
+
+.code-template-empty {
+    padding: 20px;
+    border: 1px dashed var(--gray-300);
+    border-radius: 12px;
+    background: var(--gray-50);
+    color: var(--gray-500);
+    text-align: center;
+    margin-top: 8px;
+}
+
+#btnSaveCodeTemplates {
+    min-width: 118px;
+}

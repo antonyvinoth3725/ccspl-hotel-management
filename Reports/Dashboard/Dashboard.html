@@ -1,0 +1,106 @@
+<style>
+  .db-report {
+    --navy: #124d2b;
+    --blue: #1a6e3c;
+    --cyan: #2d8a52;
+    --amber: #e89132;
+    --rose: #d65b65;
+    --ink: #173126;
+    --muted: #68786e;
+    --line: #d8e6dd;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--ink);
+    background: #f4f9f6;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 15px 38px rgba(18,77,43,.09);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  .db-report * { box-sizing: border-box; }
+  .db-head { display: flex; justify-content: space-between; gap: 24px; align-items: center; padding: 27px 31px; color: #fff; background: linear-gradient(120deg, var(--navy), #2d8a52); }
+  .db-kicker { margin-bottom: 6px; color: #b9ebcb; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+  .db-title { margin: 0; font-size: 30px; }
+  .db-subtitle { margin: 7px 0 0; color: #d9eee1; font-size: 12px; }
+  .db-date { padding: 11px 14px; border: 1px solid rgba(255,255,255,.22); border-radius: 10px; font-size: 10px; text-transform: uppercase; }
+  .db-date strong { display: block; margin-top: 4px; font-size: 12px; text-transform: none; }
+  .db-content { padding: 22px; }
+
+  .db-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(205px, 1fr)); gap: 13px; margin-bottom: 16px; }
+  .db-kpi { position: relative; padding: 18px; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 13px; }
+  .db-kpi::after { position: absolute; right: -18px; bottom: -23px; width: 78px; height: 78px; content: ""; background: var(--tone); border-radius: 50%; opacity: .1; }
+  .db-kpi-label { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .9px; text-transform: uppercase; }
+  .db-kpi-value { margin-top: 9px; color: var(--tone); font-size: 24px; font-weight: 800; }
+
+  .db-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; }
+  .db-panel { min-width: 0; padding: 21px; background: #fff; border: 1px solid var(--line); border-radius: 14px; }
+  .db-panel-title { margin: 0; font-size: 16px; }
+  .db-panel-note { margin: 4px 0 20px; color: var(--muted); font-size: 10px; }
+  .db-chart-row { margin-bottom: 16px; }
+  .db-chart-head { display: flex; justify-content: space-between; gap: 14px; margin-bottom: 6px; font-size: 11px; }
+  .db-chart-label { font-weight: 700; }
+  .db-chart-value { color: var(--muted); white-space: nowrap; }
+  .db-track { height: 10px; overflow: hidden; background: #eaf0f4; border-radius: 999px; }
+  .db-fill { width: 0; max-width: 100%; height: 100%; background: linear-gradient(90deg, var(--blue), #43a66b); border-radius: inherit; }
+  .db-fill.sales { background: linear-gradient(90deg, #e4772d, #f0a060); }
+  .db-empty { padding: 50px 15px; color: var(--muted); border: 1px dashed var(--line); border-radius: 10px; text-align: center; font-size: 11px; }
+  .db-footer { display: flex; justify-content: space-between; gap: 20px; padding: 13px 26px; color: var(--muted); background: #fff; border-top: 1px solid var(--line); font-size: 10px; }
+
+  @media (max-width: 600px) {
+    .db-head, .db-footer { align-items: flex-start; flex-direction: column; }
+    .db-head { padding: 23px 20px; }
+    .db-content { padding: 14px; }
+    .db-charts { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    .db-report { border: 0; box-shadow: none; }
+    .db-kpis { grid-template-columns: repeat(4, 1fr); }
+    .db-charts { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<article class="db-report">
+  <header class="db-head">
+    <div><div class="db-kicker">Management Overview</div><h1 class="db-title">{{report.displayName}}</h1><p class="db-subtitle">Orders, revenue and operational performance for the selected reporting period.</p></div>
+    <div class="db-date">Generated <strong>{{meta.executedAt|date}}</strong></div>
+  </header>
+
+  <main class="db-content">
+    <section class="db-kpis">
+      <div class="db-kpi" data-report-column="TotalOrders" style="--tone:var(--blue)"><div class="db-kpi-label">Total Orders</div><div class="db-kpi-value">{{sumTotalOrders|number}}</div></div>
+      <div class="db-kpi" data-report-column="ActiveOrders" style="--tone:var(--amber)"><div class="db-kpi-label">Active Orders</div><div class="db-kpi-value">{{sumActiveOrders|number}}</div></div>
+      <div class="db-kpi" data-report-column="TotalSales" style="--tone:var(--cyan)"><div class="db-kpi-label">Total Sales</div><div class="db-kpi-value">S${{sumTotalAmount|currency}}</div></div>
+      <div class="db-kpi" data-report-column="Outstanding" style="--tone:var(--rose)"><div class="db-kpi-label">Outstanding</div><div class="db-kpi-value">S${{sumBalanceAmount|currency}}</div></div>
+    </section>
+
+    <section class="db-charts">
+      <div class="db-panel" data-report-column="PeriodLabel,TotalOrders,OrderPercentage">
+        <h2 class="db-panel-title">Order Activity</h2><p class="db-panel-note">Relative order volume by reporting period</p>
+        {{#rows}}
+        <div class="db-chart-row">
+          <div class="db-chart-head"><span class="db-chart-label" data-report-column="PeriodLabel">{{PeriodLabel}}</span><span class="db-chart-value" data-report-column="TotalOrders">{{TotalOrders|number}} orders</span></div>
+          <div class="db-track"><div class="db-fill" data-report-column="OrderPercentage" style="width: {{OrderPercentage}}%;"></div></div>
+        </div>
+        {{/rows}}
+        {{#emptyRows}}<div class="db-empty">Run the report to display order activity.</div>{{/emptyRows}}
+      </div>
+
+      <div class="db-panel" data-report-column="PeriodLabel,TotalSales,SalesPercentage">
+        <h2 class="db-panel-title">Revenue Performance</h2><p class="db-panel-note">Relative sales contribution by reporting period</p>
+        {{#rows}}
+        <div class="db-chart-row">
+          <div class="db-chart-head"><span class="db-chart-label" data-report-column="PeriodLabel">{{PeriodLabel}}</span><span class="db-chart-value" data-report-column="TotalSales">S${{TotalSales|currency}}</span></div>
+          <div class="db-track"><div class="db-fill sales" data-report-column="SalesPercentage" style="width: {{SalesPercentage}}%;"></div></div>
+        </div>
+        {{/rows}}
+        {{#emptyRows}}<div class="db-empty">Run the report to display revenue performance.</div>{{/emptyRows}}
+      </div>
+    </section>
+  </main>
+
+  <footer class="db-footer"><span>Gayatri Catering &middot; Management dashboard report</span><span>{{meta.rowCount|number}} period(s)</span></footer>
+</article>

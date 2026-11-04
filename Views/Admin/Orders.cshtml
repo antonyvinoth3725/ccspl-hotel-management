@@ -1,0 +1,199 @@
+﻿@{
+    ViewData["Title"] = "Orders";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/orders.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">All Orders</div>
+        <div class="page-subtitle">Order management with quotation, kitchen and delivery actions</div>
+    </div>
+    <div class="page-header-actions">
+        <div class="app-header-filter orders-date-filter">
+            <label for="ordersFromDate">From</label>
+            <input type="date" id="ordersFromDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+        </div>
+        <div class="app-header-filter orders-date-filter">
+            <label for="ordersToDate">To</label>
+            <input type="date" id="ordersToDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+        </div>
+        <div class="app-header-filter orders-status-filter">
+            <label for="ordersStatusFilter">Status</label>
+            <select id="ordersStatusFilter" class="form-control">
+                <option value="">All</option>
+                <option value="0">Pending (New)</option>
+                <option value="1">In Kitchen</option>
+                <option value="2">Ready</option>
+                <option value="3">Out for delivery</option>
+                <option value="4">Delivered</option>
+                <option value="7">Cancelled</option>
+                <option value="8">Amended</option>
+            </select>
+        </div>
+        <div class="app-header-filter orders-status-filter">
+            <label for="ordersEventFilter">Event</label>
+            <select id="ordersEventFilter" class="form-control">
+                <option value="">All</option>
+                <option value="next14days">Next 14 days</option>
+                <option value="today">Today</option>
+                <option value="thisweek">This week</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="ordersListPanel" class="card">
+    <div class="orders-tab-strip" role="tablist" aria-label="Order views">
+        <button type="button" class="orders-tab-btn active" id="ordersTabOrders" data-indicator="orders" role="tab" aria-selected="true">
+            <span class="orders-tab-icon" aria-hidden="true">&#128203;</span>
+            <span class="orders-tab-text">Orders</span>
+        </button>
+        <button type="button" class="orders-tab-btn" id="ordersTabAmendments" data-indicator="amendment" role="tab" aria-selected="false">
+            <span class="orders-tab-icon" aria-hidden="true">&#9998;</span>
+            <span class="orders-tab-text">Amendment History</span>
+        </button>
+    </div>
+    <div class="panel-header">
+        <div class="panel-title" id="ordersTabTitle">Manage Orders</div>
+        <div class="panel-actions">
+            <div class="orders-view-strip" role="tablist" aria-label="Order display modes">
+                <button type="button" class="orders-view-btn active" id="ordersViewBoard" data-view="board" role="tab" aria-selected="true">
+                    <span class="orders-view-icon" aria-hidden="true">▦</span>
+                    <span class="orders-view-text">Board</span>
+                </button>
+                <button type="button" class="orders-view-btn" id="ordersViewList" data-view="list" role="tab" aria-selected="false">
+                    <span class="orders-view-icon" aria-hidden="true">☰</span>
+                    <span class="orders-view-text">List</span>
+                </button>
+            </div>
+            <div class="app-header-filter">
+                <input type="text"
+                       id="ordersSearch"
+                       class="tbl-search"
+                       data-table="ordersTable"
+                       placeholder="Search orders...">
+            </div>
+            <button type="button" class="btn btn-light btn-toolbar-after-export btn-orders-print-labels" id="btnOrdersPrintLabels">
+                <span aria-hidden="true">🏷</span>
+                <span>Print Labels</span>
+            </button>
+        </div>
+    </div>
+    <div class="pageloaderpanel hidden">
+        <div class="admin-skeleton-table" aria-label="Loading orders" role="status">
+            <div class="admin-skeleton-toolbar shimmer"></div>
+            <div class="admin-skeleton-row shimmer"></div>
+            <div class="admin-skeleton-row shimmer"></div>
+            <div class="admin-skeleton-row shimmer"></div>
+            <div class="admin-skeleton-row shimmer"></div>
+        </div>
+    </div>
+    <div class="table-wrap hidden" id="ordersContainer">
+        <table class="tbl" id="ordersTable" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="no-sort orders-select-col" id="ordersSelectAllHeader" style="width:44px;text-align:center;">
+                        <label class="orders-select-all" title="Select all orders">
+                            <input type="checkbox" id="ordersSelectAll" aria-label="Select all orders">
+                        </label>
+                    </th>
+                    <th class="sortable">#</th>
+                    <th class="sortable">Order No / Date</th>
+                    <th class="sortable hidden" id="ordersRefNoHeader">Ref no</th>
+                    <th class="sortable">Customer</th>
+                    <th class="sortable">Event Schedule</th>
+                    <th class="sortable">Package / Pax</th>
+                    <th class="sortable">Status</th>
+                    <th class="sortable">Payment</th>
+                    <th class="sortable num">Amount</th>
+                    <th class="no-sort">Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="orders-board-view" id="ordersBoardView" aria-live="polite">
+        <div class="admin-skeleton-board" aria-label="Loading order board" role="status">
+            <div class="admin-skeleton-board-head shimmer"></div>
+            <div class="admin-skeleton-board-grid">
+                <div class="admin-skeleton-board-card shimmer"></div>
+                <div class="admin-skeleton-board-card shimmer"></div>
+                <div class="admin-skeleton-board-card shimmer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="orders-board-drawer-overlay hidden" id="ordersBoardDrawerOverlay" onclick="closeBoardOrderDrawer()">
+    <aside class="orders-board-drawer" id="ordersBoardDrawer" onclick="event.stopPropagation()" aria-hidden="true">
+        <div class="orders-board-drawer-header">
+            <div class="orders-board-drawer-headings">
+                <div class="orders-board-drawer-order" id="ordersBoardDrawerOrderNo">Order</div>
+                <div class="orders-board-drawer-subtitle" id="ordersBoardDrawerSubtitle">Customer • Event</div>
+            </div>
+            <button type="button" class="orders-board-drawer-close" onclick="closeBoardOrderDrawer()" aria-label="Close">
+                &times;
+            </button>
+        </div>
+
+        <div class="orders-board-drawer-badge-row">
+            <span class="badge badge-pending" id="ordersBoardDrawerStatus">Pending</span>
+        </div>
+
+        <div class="orders-board-drawer-tabs" role="tablist" aria-label="Order detail sections">
+            <button type="button" class="orders-board-drawer-tab active" id="ordersBoardDrawerTabSummary" onclick="setBoardOrderDrawerTab('summary')">Summary</button>
+            <button type="button" class="orders-board-drawer-tab" id="ordersBoardDrawerTabMenu" onclick="setBoardOrderDrawerTab('menu')">Menu</button>
+            <button type="button" class="orders-board-drawer-tab" id="ordersBoardDrawerTabPayment" onclick="setBoardOrderDrawerTab('payment')">Payment</button>
+        </div>
+
+        <div class="orders-board-drawer-body">
+            <section class="orders-board-drawer-panel" id="ordersBoardDrawerPanelSummary"></section>
+            <section class="orders-board-drawer-panel hidden" id="ordersBoardDrawerPanelMenu"></section>
+            <section class="orders-board-drawer-panel hidden" id="ordersBoardDrawerPanelPayment"></section>
+        </div>
+
+        <div class="orders-board-drawer-primary-action hidden" id="ordersBoardDrawerPrimaryAction"></div>
+
+        <div class="orders-board-drawer-footer">
+            <button type="button" class="orders-board-drawer-action orders-board-drawer-action-wa" id="ordersBoardDrawerWhatsappBtn" onclick="sendBoardOrderWhatsapp(this)">
+                <span class="orders-board-drawer-action-icon" aria-hidden="true">&#128172;</span>
+                <span>WhatsApp</span>
+            </button>
+            <button type="button" class="orders-board-drawer-action orders-board-drawer-action-email" id="ordersBoardDrawerEmailBtn" onclick="sendBoardOrderEmail(this)">
+                <span class="orders-board-drawer-action-icon" aria-hidden="true">&#9993;</span>
+                <span>Email</span>
+            </button>
+            <button type="button" class="orders-board-drawer-action orders-board-drawer-action-pdf" id="ordersBoardDrawerDownloadBtn" onclick="downloadBoardOrderPdf(this)">
+                <span class="orders-board-drawer-action-icon" aria-hidden="true">&#11015;</span>
+                <span>Download</span>
+            </button>
+        </div>
+    </aside>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/order-share.js" asp-append-version="true"></script>
+    <script src="~/js/admin/order-refund.js" asp-append-version="true"></script>
+    <script src="~/js/admin/orders.js" asp-append-version="true"></script>
+}
+
+<!-- Order Details Modal -->
+<div class="modal-overlay hidden" id="orderModal">
+    <div class="modal-box" id="orderModalBox">
+        <!-- content injected by JS -->
+    </div>
+</div>
+
+<!-- Order Refund Modal -->
+<div class="modal-overlay hidden" id="orderRefundModal">
+    <div class="modal-box" id="orderRefundModalBox"></div>
+</div>
+
+

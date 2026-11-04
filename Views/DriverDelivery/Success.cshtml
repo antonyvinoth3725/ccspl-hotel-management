@@ -1,0 +1,116 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Delivery Completed";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1" />
+
+    <title>Delivery Completed</title>
+
+    <link href="~/css/driver/driver-delivery.css"
+          rel="stylesheet"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+</head>
+
+<body>
+
+    <div class="mobile-container">
+
+        <div class="top-header">
+
+            <div class="logo-circle">
+
+                <i class="fa-solid fa-truck-fast"></i>
+
+            </div>
+
+            <div>
+
+                <div class="header-title">
+
+                    Delivery Completed
+
+                </div>
+
+                <div class="header-subtitle">
+
+                    Thank you for completing the delivery
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="success-card">
+
+            <div class="success-icon">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <h2>
+
+                Delivery Successful
+
+            </h2>
+
+            <p>
+
+                The parcel photo and customer signature have been
+                submitted successfully.
+
+            </p>
+
+            <br />
+
+            <p>
+
+                Your logistics record has been updated.
+
+            </p>
+
+            <br />
+
+            <a href="/DriverDelivery/Deliveries"
+                   class="btn-start">
+
+                <i class="fa-solid fa-list-check"></i>
+
+                Back to My Deliveries
+
+            </a>
+
+            <br />
+
+            <button class="btn-light"
+                    style="width:100%;margin-top:15px;"
+                    onclick="window.close();">
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

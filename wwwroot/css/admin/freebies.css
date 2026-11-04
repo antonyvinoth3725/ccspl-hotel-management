@@ -1,0 +1,65 @@
+.freebie-tag{background:var(--gold-light);border:1px solid var(--gold);border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700;color:var(--gold);display:inline-block;margin:2px}
+
+.freebies-modal-box {
+    width: 760px;
+    max-width: calc(100vw - 32px);
+    max-height: 88vh;
+    padding: 28px 30px 24px;
+}
+
+.freebies-modal-box .modal-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.freebies-modal-box .modal-title {
+    font-size: 21px;
+}
+
+.freebies-modal-box .form-row {
+    margin-bottom: 18px;
+}
+
+.freebies-modal-box .form-group {
+    margin-bottom: 0;
+}
+
+.freebies-modal-box .form-control {
+    min-height: 46px;
+}
+
+.freebies-modal-box textarea.form-control {
+    min-height: 92px;
+    resize: vertical;
+}
+
+.freebies-modal-box .actions {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--gray-200);
+}
+
+@media (max-width: 700px) {
+    .freebies-modal-box {
+        padding: 22px 20px 20px;
+    }
+
+    .freebies-modal-box .col2,
+    .freebies-modal-box .col3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.freebies-row-actions .actions-menu{min-width:220px;padding:10px 0;border-radius:16px}
+.freebies-row-actions .action-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;font-weight:700}
+.freebies-row-actions .action-icon-text{display:inline-flex;align-items:center;justify-content:center;width:16px;font-size:14px;line-height:1}
+.freebies-row-actions .dots-btn{width:36px;height:36px;border-radius:12px}
+.freebies-row-actions .freebies-action-edit{color:#334155}
+.freebies-row-actions .freebies-action-edit:hover{background:#f8fafc;color:#0f172a}
+.freebies-row-actions .freebies-action-active{color:#166534}
+.freebies-row-actions .freebies-action-active:hover{background:#effdf5;color:#14532d}
+.freebies-row-actions .freebies-action-inactive{color:#92400e}
+.freebies-row-actions .freebies-action-inactive:hover{background:#fffbeb;color:#78350f}
+.freebies-row-actions .freebies-action-delete{color:#b91c1c}
+.freebies-row-actions .freebies-action-delete:hover{background:#fef2f2;color:#991b1b}

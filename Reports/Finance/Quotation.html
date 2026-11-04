@@ -1,0 +1,186 @@
+<style>
+  .quotation-report {
+    background: #ffffff;
+    color: #173126;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 4px;
+  }
+
+  .quotation-report * {
+    box-sizing: border-box;
+  }
+
+  .quotation-card {
+    border: 1px solid #d8e5df;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 10px 26px rgba(18, 77, 43, .07);
+  }
+
+  .quotation-table-wrap {
+    overflow-x: auto;
+  }
+
+  .quotation-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    min-width: 860px;
+  }
+
+  .quotation-table thead th {
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #185239;
+    background: #e8f5ee;
+    border-right: 1px solid #d3e8df;
+    border-bottom: 2px solid #2d8a52;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .quotation-table thead th:last-child {
+    border-right: 0;
+  }
+
+  .quotation-table tbody td {
+    padding: 8px 12px;
+    border-right: 1px solid #e4ece8;
+    border-bottom: 1px solid #e9efec;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #1b2b43;
+  }
+
+  .quotation-table tbody td:last-child {
+    border-right: 0;
+  }
+
+  .cell-order {
+    color: #1a6e3c;
+    font-weight: 800;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .status-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    background: #e7f8ee;
+    color: #0f6a3f;
+    border: 1px solid #c9eed9;
+  }
+
+  .status-pill-quotation {
+    font-size: 0;
+  }
+
+  .status-pill-quotation::after {
+    font-size: 12px;
+    content: "Unknown";
+  }
+
+  .status-pill-quotation[data-status=""],
+  .status-pill-quotation[data-status]:not([data-status="0"]):not([data-status="5"]):not([data-status="6"]):not([data-status="8"]) {
+    background: #f3f4f6;
+    color: #374151;
+    border-color: #e5e7eb;
+  }
+
+  .status-pill-quotation[data-status="0"] {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-color: #f8c0c0;
+  }
+
+  .status-pill-quotation[data-status="0"]::after {
+    content: "Expired";
+  }
+
+  .status-pill-quotation[data-status="5"] {
+    background: #fff1c9;
+    color: #9d5a00;
+    border-color: #ffe29b;
+  }
+
+  .status-pill-quotation[data-status="5"]::after {
+    content: "Pending";
+  }
+
+  .status-pill-quotation[data-status="6"] {
+    background: #e7f8ee;
+    color: #0f6a3f;
+    border-color: #c9eed9;
+  }
+
+  .status-pill-quotation[data-status="6"]::after {
+    content: "Converted to Order";
+  }
+
+  .status-pill-quotation[data-status="8"] {
+    background: #ecfeff;
+    color: #115e59;
+    border-color: #bdeff4;
+  }
+
+  .status-pill-quotation[data-status="8"]::after {
+    content: "Amended";
+  }
+
+  .amount-value {
+    font-weight: 800;
+    color: #124d2b;
+    white-space: nowrap;
+  }
+
+  .text-nowrap {
+    white-space: nowrap;
+  }
+</style>
+
+<div class="quotation-report">
+  <div class="quotation-card">
+    <div class="quotation-table-wrap table-wrap">
+      <table class="quotation-table" id="reportResultTable">
+        <thead>
+          <tr>
+            <th data-report-column="SerialNo"></th>
+            <th data-report-column="OrderNumber"></th>
+            <th data-report-column="CustomerName"></th>
+            <th data-report-column="PackageName"></th>
+            <th data-report-column="Pax"></th>
+            <th data-report-column="CreatedDate"></th>
+            <th data-report-column="OrderStatus"></th>
+            <th data-report-column="TotalAmount"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#rows}}
+          <tr>
+            <td data-report-column="SerialNo" class="text-nowrap">{{SerialNo}}</td>
+            <td data-report-column="OrderNumber"><span class="cell-order">{{OrderNumber}}</span></td>
+            <td data-report-column="CustomerName">{{CustomerName}}</td>
+            <td data-report-column="PackageName">{{PackageName}}</td>
+            <td data-report-column="Pax" class="text-nowrap">{{Pax|number}}</td>
+            <td data-report-column="CreatedDate" class="text-nowrap">{{CreatedDate|date}}</td>
+            <td data-report-column="OrderStatus">
+              <span class="status-pill status-pill-quotation" data-status="{{OrderStatus}}">{{OrderStatus}}</span>
+            </td>
+            <td data-report-column="TotalAmount"><span class="amount-value">S${{TotalAmount|currency}}</span></td>
+          </tr>
+          {{/rows}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

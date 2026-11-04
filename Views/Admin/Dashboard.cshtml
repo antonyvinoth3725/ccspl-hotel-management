@@ -1,0 +1,265 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/dashboard.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Admin Dashboard</div>
+        <div class="page-subtitle">Operations overview for orders, finance, kitchen and delivery</div>
+        <div id="dashboardRangeLabel" class="dashboard-range-label">Range: -</div>
+        <div id="dashboardLastUpdated" class="dashboard-last-updated">Last updated: -</div>
+    </div>
+    <div class="page-header-actions">
+        <div class="dashboard-date-presets" role="group" aria-label="Dashboard date presets">
+            <button type="button" class="btn btn-light btn-sm dashboard-preset-btn" data-preset="today">Today</button>
+            <button type="button" class="btn btn-light btn-sm dashboard-preset-btn" data-preset="last7">Last 7 days</button>
+            <button type="button" class="btn btn-light btn-sm dashboard-preset-btn" data-preset="thisMonth">This month</button>
+            <button type="button" class="btn btn-light btn-sm dashboard-preset-btn" data-preset="lastMonth">Last month</button>
+        </div>
+        <div class="app-header-filter orders-date-filter">
+            <label for="ordersFromDate">From</label>
+            <input type="date" id="ordersFromDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+        </div>
+        <div class="app-header-filter orders-date-filter">
+            <label for="ordersToDate">To</label>
+            <input type="date" id="ordersToDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+        </div>
+    </div>
+    <a href="/Admin/Orders" class="btn btn-orange">View Orders</a>
+</div>
+
+<div id="dashboardContentPanel" style="margin-bottom:18px;">
+    <div id="dashboardSkeleton" class="dashboard-skeleton hidden" aria-hidden="true">
+        <div class="dashboard-skeleton-kpis">
+            <div class="dashboard-skeleton-card"></div>
+            <div class="dashboard-skeleton-card"></div>
+            <div class="dashboard-skeleton-card"></div>
+            <div class="dashboard-skeleton-card"></div>
+        </div>
+
+        <div class="dashboard-skeleton-chart card">
+            <div class="dashboard-skeleton-header-line lg"></div>
+            <div class="dashboard-skeleton-header-line sm"></div>
+            <div class="dashboard-skeleton-chart-box"></div>
+        </div>
+
+        <div class="dashboard-skeleton-table card">
+            <div class="dashboard-skeleton-header-line md"></div>
+            <div class="dashboard-skeleton-row"></div>
+            <div class="dashboard-skeleton-row"></div>
+            <div class="dashboard-skeleton-row"></div>
+            <div class="dashboard-skeleton-row"></div>
+        </div>
+    </div>
+
+    <div id="dashboardContentWrap">
+        <div class="stats-grid" style="margin-bottom:18px">
+            <a href="/Admin/Orders" class="stat-link">
+                <div class="stat-card stat-orders">
+                    <div class="stat-value" id="kpiOrders">0</div>
+                    <div class="stat-label">Total Orders</div>
+                    <div class="stat-sub">Orders created in selected date range</div>
+                </div>
+            </a>
+
+            <a href="/Admin/Finance" class="stat-link">
+                <div class="stat-card stat-sales">
+                    <div class="stat-value" id="kpiRevenue">S$0.00</div>
+                    <div class="stat-label">Total Sales</div>
+                    <div class="stat-sub">Gross order value for selected date range</div>
+                </div>
+            </a>
+
+            <a href="/Admin/Finance" class="stat-link">
+                <div class="stat-card stat-without-gst">
+                    <div class="stat-value" id="kpiWithoutGST">S$0.00</div>
+                    <div class="stat-label">Without GST</div>
+                    <div class="stat-sub">Subtotal before GST in selected date range</div>
+                </div>
+            </a>
+
+            <a href="/Admin/Logistics" class="stat-link">
+                <div class="stat-card stat-logistics">
+                    <div class="stat-value" id="kpiLogistics">S$0.00</div>
+                    <div class="stat-label">Utensils Cost</div>
+                    <div class="stat-sub">Utensils/logistics charges in selected date range</div>
+                </div>
+            </a>
+
+            <a href="/Admin/Logistics" class="stat-link">
+                <div class="stat-card stat-not-delivered">
+                    <div class="stat-value" id="kpiDelivered">0</div>
+                    <div class="stat-label">Delivered</div>
+                    <div class="stat-sub">Orders successfully delivered</div>
+                </div>
+            </a>
+
+            <a href="/Admin/Logistics" class="stat-link">
+                <div class="stat-card stat-not-delivered">
+                    <div class="stat-value" id="kpiNotDelivered">0</div>
+                    <div class="stat-label">Not Delivered</div>
+                    <div class="stat-sub">Orders placed but not yet delivered</div>
+                </div>
+            </a>
+
+            <a href="/Admin/Orders" class="stat-link">
+                <div class="stat-card stat-active">
+                    <div class="stat-value" id="kpiActive">0</div>
+                    <div class="stat-label">Deposit</div>
+                    <div class="stat-sub">Total received payments in selected date range</div>
+                </div>
+            </a>
+
+            <a href="/Admin/Invoices" class="stat-link">
+                <div class="stat-card stat-outstanding">
+                    <div class="stat-value" id="kpiOutstanding">S$0.00</div>
+                    <div class="stat-label">Outstanding</div>
+                    <div class="stat-sub">Total pending receivable in selected date range</div>
+                </div>
+            </a>
+        </div>
+        <div class="dashboard-source-note" id="dashboardKpiSource">Source: Orders table filtered by CreatedDate range.</div>
+
+        <div class="card dashboard-alerts-card" id="dashboardAlertsCard">
+            <div class="panel-header">
+                <div class="panel-title">Alerts & Exceptions</div>
+            </div>
+            <div class="dashboard-alerts-grid">
+                <div class="dashboard-alert-item is-danger">
+                    <div class="dashboard-alert-label">Overdue Outstanding</div>
+                    <div class="dashboard-alert-value" id="dashboardAlertOverdue">0</div>
+                </div>
+                <div class="dashboard-alert-item is-warning">
+                    <div class="dashboard-alert-label">Upcoming Pending Payment (7 days)</div>
+                    <div class="dashboard-alert-value" id="dashboardAlertUpcoming">0</div>
+                </div>
+                <div class="dashboard-alert-item is-info">
+                    <div class="dashboard-alert-label">Orders Stuck In Workflow</div>
+                    <div class="dashboard-alert-value" id="dashboardAlertStuck">0</div>
+                </div>
+            </div>
+            <div class="dashboard-source-note" id="dashboardAlertSource">Source: Orders table filtered by CreatedDate range.</div>
+        </div>
+
+        <div class="quick-actions" style="grid-template-columns:repeat(4,1fr);margin-bottom:24px; display:none;">
+            <a href="/Admin/Quotations" class="qa-card" style="text-decoration:none;background:#eef8f2;border-color:var(--green)">
+                <div class="qa-icon">&#128196;</div>
+                <div class="qa-title">Create Quotation</div>
+                <div class="qa-sub">PDF-ready quotation view.</div>
+            </a>
+            <a href="/Admin/Invoices" class="qa-card" style="text-decoration:none">
+                <div class="qa-icon">&#129534;</div>
+                <div class="qa-title">Invoices</div>
+                <div class="qa-sub">Invoice and balance tracking.</div>
+            </a>
+            <a href="/Admin/Kitchen" class="qa-card" style="text-decoration:none">
+                <div class="qa-icon">&#127859;</div>
+                <div class="qa-title">Kitchen Queue</div>
+                <div class="qa-sub">Confirmed orders by event date.</div>
+            </a>
+            <a href="/Admin/Utensils" class="qa-card" style="text-decoration:none">
+                <div class="qa-icon">&#127869;</div>
+                <div class="qa-title">Utensils Config</div>
+                <div class="qa-sub">Chafing dish, fork, spoon qty rules.</div>
+            </a>
+        </div>
+
+        <div class="card dashboard-chart-card">
+
+            <div class="chart-header">
+
+                <div>
+                    <div class="panel-title">Sales Overview</div>
+                    <div class="chart-subtitle">
+                        Monthly orders & payment collection
+                    </div>
+                </div>
+
+                <div class="dashboard-chart-controls">
+                    <select id="chartMetricMode" class="chart-year-select">
+                        <option value="revenue">Revenue</option>
+                        <option value="collections">Collections</option>
+                        <option value="outstanding">Outstanding</option>
+                    </select>
+
+                    <label class="dashboard-compare-toggle">
+                        <input type="checkbox" id="chartCompareMode">
+                        <span>Compare previous period</span>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="dashboard-chart-summary" aria-label="Sales chart summary">
+                <div class="dashboard-chart-summary-item">
+                    <span class="dashboard-chart-summary-label" id="chartSummaryCurrentLabel">Revenue</span>
+                    <strong id="chartSummaryCurrent">S$0.00</strong>
+                </div>
+                <div class="dashboard-chart-summary-item is-previous">
+                    <span class="dashboard-chart-summary-label">Previous Period</span>
+                    <strong id="chartSummaryPrevious">S$0.00</strong>
+                </div>
+                <div class="dashboard-chart-summary-item is-change">
+                    <span class="dashboard-chart-summary-label">Change</span>
+                    <strong id="chartSummaryChange">0.0%</strong>
+                </div>
+            </div>
+
+            <div class="chart-body">
+                <canvas id="salesChart"></canvas>
+                <div id="dashboardChartEmpty" class="dashboard-chart-empty hidden">No chart data found for selected range.</div>
+            </div>
+
+            <div class="dashboard-source-note" id="dashboardChartSource">Source: Monthly aggregation from Orders (CreatedDate).</div>
+
+        </div>
+
+        <div class="card">
+            <div class="panel-header">
+                <div class="panel-title">Recent Orders</div>
+                <div class="panel-actions">
+                    <div class="dashboard-order-quick-filters" role="group" aria-label="Quick order filters">
+                        <button type="button" class="dashboard-filter-chip active" data-filter="all">All</button>
+                        <button type="button" class="dashboard-filter-chip" data-filter="pending">Pending</button>
+                        <button type="button" class="dashboard-filter-chip" data-filter="amended">Amended</button>
+                        <button type="button" class="dashboard-filter-chip" data-filter="paid">Paid</button>
+                        <button type="button" class="dashboard-filter-chip" data-filter="partially-paid">Partially Paid</button>
+                    </div>
+                    <div class="app-header-filter">
+                        <input type="text"
+                               id="recentOrdersSearch"
+                               class="tbl-search"
+                               data-table="recentOrdersTable"
+                               placeholder="Search recent orders...">
+                    </div>
+                </div>
+            </div>
+            <div class="table-wrap" id="recentOrders"></div>
+            <div class="dashboard-source-note" id="dashboardTableSource">Source: Latest orders by CreatedDate for selected range.</div>
+        </div>
+    </div>
+</div>
+
+<!-- Order Reminder Modal -->
+<div class="modal-overlay hidden" id="orderModal">
+    <div class="modal-box" id="orderModalBox"></div>
+</div>
+
+<!-- Order Refund Modal -->
+<div class="modal-overlay hidden" id="orderRefundModal">
+    <div class="modal-box" id="orderRefundModalBox"></div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/order-share.js" asp-append-version="true"></script>
+    <script src="~/js/admin/order-refund.js" asp-append-version="true"></script>
+    <script src="~/js/admin/dashboard.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+}

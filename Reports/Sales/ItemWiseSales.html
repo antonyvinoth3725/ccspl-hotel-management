@@ -1,0 +1,257 @@
+<style>
+  .iws-report {
+    --ink: #124d2b;
+    --muted: #68786e;
+    --line: #d9e6de;
+    --paper: #ffffff;
+    --soft: #f3f8f5;
+    --accent: #e4772d;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(23, 36, 58, .08);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  .iws-report * { box-sizing: border-box; }
+
+  .iws-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 28px 20px;
+    border-top: 7px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .iws-eyebrow {
+    margin: 0 0 6px;
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .iws-title {
+    margin: 0;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    line-height: 1.1;
+  }
+
+  .iws-description {
+    max-width: 620px;
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .iws-stamp {
+    flex: 0 0 auto;
+    min-width: 165px;
+    padding: 10px 12px;
+    border-left: 4px solid var(--accent);
+    color: var(--muted);
+    background: var(--soft);
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  .iws-stamp strong {
+    display: block;
+    margin-top: 5px;
+    color: var(--ink);
+    font-size: 12px;
+    text-transform: none;
+  }
+
+  .iws-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    background: var(--soft);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .iws-stat {
+    padding: 15px 20px;
+    border-right: 1px solid var(--line);
+  }
+
+  .iws-stat:last-child { border-right: 0; }
+
+  .iws-stat-label {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+  }
+
+  .iws-stat-value {
+    margin-top: 5px;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 21px;
+    font-weight: 700;
+  }
+
+  .iws-stat:first-child .iws-stat-value { color: var(--accent); }
+
+  .iws-body { padding: 22px 28px 28px; }
+
+  .iws-body-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 11px;
+  }
+
+  .iws-body-title {
+    margin: 0;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+  }
+
+  .iws-body-note {
+    color: var(--muted);
+    font-size: 10px;
+  }
+
+  .iws-report .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--line);
+  }
+
+  .iws-report .table {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .iws-report .table th {
+    padding: 11px 13px;
+    color: #fff;
+    background: var(--ink);
+    border-right: 1px solid rgba(255, 255, 255, .13);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .6px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .iws-report .table td {
+    padding: 11px 13px;
+    color: #2b3c44;
+    background: #fff;
+    border-right: 1px solid #edf0f2;
+    border-bottom: 1px solid #e7eaed;
+  }
+
+  .iws-report .table tbody tr:nth-child(even) td { background: #fafafa; }
+  .iws-report .table tbody tr:hover td { background: #edf8f1; }
+  .iws-report .table tbody tr:last-child td { border-bottom: 0; }
+
+  .iws-report .iws-table th:nth-child(1),
+  .iws-report .iws-table td:nth-child(1) { text-align: center; }
+
+  .iws-report .iws-table th:nth-child(n+5),
+  .iws-report .iws-table td:nth-child(n+5) { text-align: right; }
+
+  @media (max-width: 650px) {
+    .iws-header,
+    .iws-body-head { flex-direction: column; align-items: flex-start; }
+    .iws-summary { grid-template-columns: 1fr; }
+    .iws-stat { border-right: 0; border-bottom: 1px solid var(--line); }
+    .iws-stat:last-child { border-bottom: 0; }
+    .iws-header, .iws-body { padding-left: 18px; padding-right: 18px; }
+  }
+
+  @media print {
+    .iws-report { border: 0; border-radius: 0; box-shadow: none; }
+    .iws-report .table-wrap { overflow: visible; }
+    .iws-report .table { font-size: 9px; white-space: normal; }
+    .iws-report .table th, .iws-report .table td { padding: 7px; }
+  }
+</style>
+
+<article class="iws-report">
+  <header class="iws-header">
+    <div>
+      <div class="iws-eyebrow">Sales Analysis</div>
+      <h1 class="iws-title">{{report.displayName}}</h1>
+      <p class="iws-description">Date-wise menu sales showing quantity, order count, unit price, and amount for the selected period.</p>
+    </div>
+    <div class="iws-stamp">
+      Report generated
+      <strong>{{meta.executedAt|date}}</strong>
+    </div>
+  </header>
+
+  <section class="iws-summary">
+    <div class="iws-stat">
+      <div class="iws-stat-label">Item Rows</div>
+      <div class="iws-stat-value">{{meta.rowCount|number}}</div>
+    </div>
+    <div class="iws-stat">
+      <div class="iws-stat-label">Total Quantity</div>
+      <div class="iws-stat-value">{{sumTotalQty|number}}</div>
+    </div>
+    <div class="iws-stat">
+      <div class="iws-stat-label">Sales Amount</div>
+      <div class="iws-stat-value">S${{sumItemAmount|currency}}</div>
+    </div>
+  </section>
+
+  <section class="iws-body">
+    <div class="iws-body-head">
+      <h2 class="iws-body-title">Date-wise Item Sales</h2>
+      <span class="iws-body-note">Package and additional menu quantities are combined by date and menu name.</span>
+    </div>
+    <div class="table-wrap">
+      <table id="reportResultTable" class="table iws-table">
+        <thead>
+          <tr>
+            <th>{{columnLabels.SerialNo}}</th>
+            <th data-report-column="SaleDate">Date</th>
+            <th data-report-column="CategoryName">Category</th>
+            <th data-report-column="ItemName">Menu Name</th>
+            <th data-report-column="Quantity">Qty</th>
+            <th data-report-column="OrderCount">Orders</th>
+            <th data-report-column="AverageUnitPrice">Unit Price</th>
+            <th data-report-column="ItemAmount">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#rows}}
+          <tr>
+            <td>{{rowNumber|number}}</td>
+            <td data-report-column="SaleDate">{{SaleDate|date}}</td>
+            <td data-report-column="CategoryName">{{CategoryName}}</td>
+            <td data-report-column="ItemName">{{ItemName}}</td>
+            <td data-report-column="Quantity">{{Quantity|number}}</td>
+            <td data-report-column="OrderCount">{{OrderCount|number}}</td>
+            <td data-report-column="AverageUnitPrice">S${{AverageUnitPrice|currency}}</td>
+            <td data-report-column="ItemAmount">S${{ItemAmount|currency}}</td>
+          </tr>
+          {{/rows}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</article>

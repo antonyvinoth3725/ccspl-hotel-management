@@ -1,0 +1,1027 @@
+<style>
+  .invoice-sheet {
+    background: #fff;
+    color: #173126;
+    font-family: 'Segoe UI', Calibri, Tahoma, sans-serif;
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 16px 20px 32px;
+    line-height: 1.5;
+    border: 1px solid #d8e6dd;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(18, 77, 43, .07);
+  }
+
+  .invoice-sheet *,
+  .invoice-sheet *::before,
+  .invoice-sheet *::after {
+    box-sizing: border-box;
+  }
+
+  /* ===== HEADER SECTION ===== */
+  .invoice-header-section {
+    border-bottom: 4px solid #124d2b;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+  }
+
+  .invoice-header {
+    align-items: center;
+    display: flex;
+    gap: 32px;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+
+  .invoice-brand-title {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    text-align: right;
+    line-height: 1.2;
+  }
+
+  .invoice-logo {
+    display: block;
+    height: auto;
+    margin-bottom: 4px;
+    max-width: 180px;
+    width: 180px;
+  }
+
+  .invoice-brand-sub {
+    font-size: 13px;
+    margin-top: 4px;
+    color: #333;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .invoice-company {
+    font-size: 13px;
+    line-height: 1.6;
+    padding-top: 0;
+    color: #1a1a1a;
+    flex-shrink: 0;
+  }
+
+  .invoice-company-note {
+    font-size: 13px;
+    margin: 4px 0;
+    font-weight: 800;
+    color: #1f7a4a;
+  }
+
+  .invoice-qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .invoice-qr {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+    padding: 8px;
+  }
+
+  .invoice-qr-label {
+    font-size: 10px;
+    color: #888;
+    font-weight: 600;
+  }
+
+  /* ===== BODY SECTION ===== */
+  .invoice-body-section {
+    margin-bottom: 24px;
+  }
+
+  .invoice-party-grid {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    margin-bottom: 20px;
+    background: #fafafa;
+    padding: 16px;
+    border-radius: 4px;
+    border: 1.5px solid #1a1a1a;
+  }
+
+  .invoice-block {
+    min-height: auto;
+  }
+
+  .invoice-block-title {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    letter-spacing: 0.08em;
+    border-bottom: 2px solid #1f7a4a;
+    padding-bottom: 4px;
+  }
+
+  .invoice-meta-row {
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    margin-bottom: 5px;
+    min-width: 0;
+    column-gap: 8px;
+  }
+
+  .invoice-meta-row strong {
+    font-size: 12px;
+    color: #1f4733;
+    font-weight: 700;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .invoice-meta-row span {
+    font-size: 12px;
+    color: #555;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .invoice-block:nth-child(2) {
+    justify-self: end;
+    width: 100%;
+    max-width: 420px;
+    margin-right: 0;
+  }
+
+  .invoice-block:nth-child(2) .invoice-meta-row {
+    grid-template-columns: 140px minmax(0, 1fr);
+  }
+
+  /* ===== ITEMS & SUMMARY SECTION ===== */
+  .invoice-items-summary-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 0;
+    margin-bottom: 20px;
+    align-items: start;
+  }
+
+  .invoice-items-wrapper {
+    grid-column: 1;
+  }
+
+  .invoice-items {
+    border-collapse: collapse;
+    margin-bottom: 0;
+    table-layout: fixed;
+    width: 100%;
+    background: #fff;
+  }
+
+  .invoice-items tfoot {
+    display: none;
+  }
+
+  .invoice-items th,
+  .invoice-items td {
+    border: 1.5px solid #888;
+    font-size: 12px;
+    padding: 10px 12px;
+    vertical-align: top;
+  }
+
+  .invoice-items tfoot td {
+    vertical-align: middle;
+    font-weight: 400;
+    background: #f5f5f5;
+  }
+
+  .invoice-items tfoot .totals-label {
+    text-align: left;
+    color: #555;
+    font-weight: 800;
+  }
+
+  .invoice-items tfoot .totals-amount {
+    text-align: right;
+    white-space: nowrap;
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+
+  .invoice-items tfoot .totals-emphasis td {
+    font-weight: 400;
+    background: #e8f4ed;
+    color: #1f4733;
+  }
+
+  .invoice-items tfoot .totals-emphasis .totals-label {
+    font-weight: 800;
+  }
+
+  .invoice-items td:nth-child(2) {
+    white-space: pre-line;
+    word-break: break-word;
+  }
+
+  .invoice-items th {
+    font-weight: 900 !important;
+    text-transform: uppercase;
+    background-color: #3da970 !important;
+    color: #ffffff !important;
+    letter-spacing: 0.05em;
+    font-size: 13px;
+    padding: 14px 12px;
+    border: 1.5px solid #1a1a1a;
+    text-shadow: none !important;
+  }
+
+  .invoice-items th.col-no,
+  .invoice-items th.col-desc,
+  .invoice-items th.col-qty,
+  .invoice-items th.col-unit,
+  .invoice-items th.col-total {
+    color: #ffffff !important;
+    background-color: #3da970 !important;
+    text-shadow: none !important;
+  }
+
+  .invoice-items th.text-center {
+    color: #ffffff !important;
+  }
+
+  .invoice-items th.text-right {
+    color: #ffffff !important;
+  }
+
+  .invoice-items .col-no { width: 45px; }
+  .invoice-items .col-desc { width: auto; }
+  .invoice-items .col-qty { width: 90px; }
+  .invoice-items .col-unit { width: 110px; }
+  .invoice-items .col-total { width: 120px; }
+
+  .text-center { text-align: center; }
+  .text-right { text-align: right; }
+
+  .invoice-summary {
+    grid-column: 2;
+    margin-top: 0;
+    width: 100%;
+    margin-left: 12px;
+  }
+
+  .invoice-summary table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    background: #fff;
+    border: 1.5px solid #888;
+  }
+
+  .invoice-summary td {
+    border: 1.5px solid #888;
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  .invoice-summary tr:first-child td {
+    border-top-width: 1.5px;
+  }
+
+  .invoice-summary tr:last-child td {
+    border-bottom-width: 1.5px;
+  }
+
+  .invoice-summary .label {
+    font-weight: 800;
+    text-align: left;
+    background-color: #f5f5f5;
+    color: #555;
+    width: 50%;
+  }
+
+  .invoice-summary .amount {
+    text-align: right;
+    white-space: nowrap;
+    background-color: #f5f5f5;
+    color: #1a1a1a;
+    font-weight: 400;
+  }
+
+  .invoice-summary .grand td,
+  .invoice-summary .balance td {
+    font-weight: 400;
+    background-color: #e8f4ed;
+    color: #1f4733;
+  }
+
+  .invoice-summary .label,
+  .invoice-summary .grand .label,
+  .invoice-summary .balance .label {
+    font-weight: 800;
+  }
+
+  .invoice-payment-breakup {
+    margin-bottom: 22px;
+    border: 1.5px solid #888;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .invoice-payment-breakup h3 {
+    margin: 0;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #1f4733;
+    background: #eef8f1;
+    border-bottom: 1px solid #c7ddcf;
+  }
+
+  .invoice-payment-breakup table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .invoice-payment-breakup td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .invoice-payment-breakup td:first-child {
+    font-weight: 700;
+    color: #1f4733;
+    width: 60%;
+    background: #fafafa;
+  }
+
+  .invoice-payment-breakup td:last-child {
+    text-align: right;
+    font-weight: 600;
+    color: #1a1a1a;
+    white-space: nowrap;
+  }
+
+  .invoice-payment-breakup tr.total td {
+    font-weight: 800;
+    background: #e8f4ed;
+    color: #1f4733;
+  }
+
+  .invoice-sheet[data-order-status="5"] .invoice-only,
+  .invoice-sheet[data-order-status="6"] .invoice-only,
+  .invoice-sheet[data-order-status="5"] .balance-row,
+  .invoice-sheet[data-order-status="6"] .balance-row {
+    display: none;
+  }
+
+  /* ===== TERMS SECTION ===== */
+  .invoice-terms {
+    margin-bottom: 24px;
+    padding: 14px;
+    background-color: #f0f8f4;
+    border: 2px solid #1f7a4a;
+    border-radius: 4px;
+  }
+
+  .invoice-terms h3 {
+    font-size: 13px;
+    font-weight: 800;
+    margin: 0 0 8px;
+    color: #1f4733;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .invoice-terms p {
+    font-size: 12px;
+    margin: 0 0 6px;
+    line-height: 1.5;
+    color: #555;
+  }
+
+  .invoice-terms p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ===== SIGNATURES SECTION ===== */
+  .invoice-signatures {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 28px;
+    margin-top: 40px;
+    align-items: end;
+  }
+
+  .invoice-signature {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 84px;
+    gap: 4px;
+  }
+
+  .invoice-signature:first-child {
+    text-align: left;
+  }
+
+  .invoice-signature:last-child {
+    text-align: right;
+  }
+
+  .invoice-signature .line {
+    border-top: 2px solid #333;
+    display: block;
+    margin-bottom: 4px;
+    width: 160px;
+  }
+
+  .invoice-signature-image {
+    display: block;
+    max-width: 132px;
+    max-height: 40px;
+    width: auto;
+    height: auto;
+    margin-bottom: 4px;
+    object-fit: contain;
+    opacity: 1;
+    image-rendering: auto;
+    filter: none;
+    transform: none;
+  }
+
+  .invoice-signature-image[src=""],
+  .invoice-signature-image:not([src]) {
+    display: none;
+  }
+
+  .invoice-signature:first-child .invoice-signature-image {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .invoice-signature:last-child .invoice-signature-image {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .invoice-signature:first-child .line {
+    margin-left: 0;
+  }
+
+  .invoice-signature:last-child .line {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .invoice-signature div {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  /* ===== FOOTER SECTION ===== */
+  .invoice-footer-section {
+    border-top: 4px solid #1a1a1a;
+    padding-top: 16px;
+    margin-top: 24px;
+    text-align: center;
+    background: #fafafa;
+    padding-bottom: 16px;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: -32px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .invoice-footer {
+    text-align: center;
+  }
+
+  .invoice-footer strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 4px;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: 0.03em;
+  }
+
+  .invoice-footer div {
+    font-size: 12px;
+    margin: 2px 0;
+    line-height: 1.5;
+    color: #333;
+  }
+
+  .invoice-footer-line {
+    font-size: 12px;
+    color: #333;
+    line-height: 1.4;
+    margin: 2px 0;
+  }
+
+  .invoice-footer-legal {
+    font-size: 10px;
+    color: #999;
+    margin-top: 6px;
+  }
+
+  /* ===== MODE SWITCH: TAX INVOICE vs QUOTATION ===== */
+  .doc-title-text,
+  .doc-number-label,
+  .doc-date-label {
+    font-size: 0;
+  }
+
+  .doc-title-text::after {
+    font-size: 32px;
+    content: "TAX INVOICE";
+  }
+
+  .doc-number-label::after {
+    font-size: 13px;
+    content: "INV NO:";
+  }
+
+  .doc-date-label::after {
+    font-size: 13px;
+    content: "Invoice Date:";
+  }
+
+  .invoice-sheet[data-order-status="5"] .doc-title-text::after,
+  .invoice-sheet[data-order-status="6"] .doc-title-text::after {
+    content: "QUOTATION";
+  }
+
+  .invoice-sheet[data-order-status="5"] .doc-number-label::after,
+  .invoice-sheet[data-order-status="6"] .doc-number-label::after {
+    content: "QT NO:";
+  }
+
+  .invoice-sheet[data-order-status="5"] .doc-date-label::after,
+  .invoice-sheet[data-order-status="6"] .doc-date-label::after {
+    content: "Quotation Date:";
+  }
+
+  .invoice-sheet[data-order-status="5"] .invoice-signatures,
+  .invoice-sheet[data-order-status="6"] .invoice-signatures {
+    display: none;
+  }
+
+  .invoice-block:nth-child(2) .invoice-meta-row strong {
+    text-align: right;
+  }
+
+  .invoice-items tfoot .totals-label {
+    font-weight: 800;
+  }
+
+  @media (max-width: 920px) {
+    .invoice-header,
+    .invoice-items-summary-wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    .invoice-signatures {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .invoice-party-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .invoice-summary {
+      grid-column: 1;
+      width: 100%;
+      margin-top: 12px;
+      margin-left: 0;
+    }
+
+    .invoice-qr-section {
+      margin-bottom: 16px;
+    }
+
+    .invoice-header-section,
+    .invoice-footer-section {
+      border-width: 2px;
+    }
+  }
+
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 10mm;
+    }
+
+    .invoice-sheet {
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      max-width: none;
+      padding: 0;
+      margin: 0;
+      break-inside: auto;
+      page-break-inside: auto;
+    }
+
+    .invoice-items-summary-wrapper {
+      display: block;
+    }
+
+    .invoice-items tfoot {
+      display: table-row-group;
+    }
+
+    .invoice-signature .line {
+      border-top-width: 2px;
+    }
+
+    .invoice-signature-image {
+      opacity: 1;
+      filter: none;
+      image-rendering: optimizeQuality;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .invoice-items-wrapper,
+    .invoice-summary {
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+
+    .invoice-summary {
+      display: none;
+    }
+
+    .invoice-summary {
+      margin-top: 0;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .invoice-summary table {
+      border-width: 1px;
+      margin-top: -1px;
+    }
+
+    .invoice-items th,
+    .invoice-items td,
+    .invoice-summary td {
+      border-width: 1px;
+    }
+
+    .invoice-signatures,
+    .invoice-footer-section,
+    .invoice-terms {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .invoice-items tr,
+    .invoice-items td,
+    .invoice-items th {
+      page-break-inside: auto;
+      break-inside: auto;
+    }
+
+    .invoice-items tfoot tr,
+    .invoice-items tfoot td {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .invoice-header-section,
+    .invoice-footer-section {
+      border-width: 2px;
+    }
+  }
+</style>
+
+<!-- ===== INVOICE HEADER SECTION ===== -->
+<section class="invoice-sheet" data-order-status="{{header.OrderStatus}}">
+  <div class="invoice-header-section">
+    <div class="invoice-header">
+      <div class="invoice-company">
+        <img class="invoice-logo" src="/images/logo.jpg" alt="Gayatri Restaurant">
+        <div class="invoice-company-note">Catering Hotline : +65 6294 6294</div>
+      </div>
+      <div class="invoice-qr-section">
+        <h1 class="invoice-brand-title"><span class="doc-title-text">TAX INVOICE</span></h1>
+        <div>
+          <div class="invoice-brand-sub"><strong>GST Reg No.</strong> 19-9503681-K</div>
+          <div class="invoice-brand-sub"><strong class="doc-number-label">INVOICE NO:</strong> {{header.OrderNumber}}</div>
+          <div class="invoice-brand-sub"><span class="doc-date-label">Invoice Date:</span> {{header.OrderDate|date}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== INVOICE BODY SECTION ===== -->
+  <div class="invoice-body-section">
+    <!-- Bill To & Event Details -->
+    <div class="invoice-party-grid">
+      <div class="invoice-block">
+        <div class="invoice-block-title">Bill To:</div>
+        <div class="invoice-meta-row">
+          <strong>Customer Name:</strong>
+          <span>{{header.CustomerName}}</span>
+        </div>
+        <div class="invoice-meta-row">
+          <strong>Address:</strong>
+          <span>{{header.CustomerAddress}} {{header.Pincode}}</span>
+        </div>
+        <div class="invoice-meta-row">
+          <strong>Tel:</strong>
+          <span>{{header.MobileNo}}</span>
+        </div>
+      </div>
+      <div class="invoice-block">
+        <div class="invoice-block-title">Event Details</div>
+        <div class="invoice-meta-row">
+          <strong>Event Name:</strong>
+          <span>{{header.EventName}}</span>
+        </div>
+        <div class="invoice-meta-row">
+          <strong>Event Date:</strong>
+          <span>{{header.EventDate|date}}</span>
+        </div>
+        <div class="invoice-meta-row">
+          <strong>Consuming Time:</strong>
+          <span>{{header.ConsumingTime}} {{header.MealPeriodName}}</span>
+        </div>
+        <div class="invoice-meta-row">
+          <strong>Delivery Address:</strong>
+          <span>{{header.Location}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Items & Summary -->
+    <div class="invoice-items-summary-wrapper">
+      <div class="invoice-items-wrapper">
+        <table class="invoice-items">
+          <thead>
+            <tr>
+              <th data-report-column="No" class="col-no text-center"></th>
+              <th data-report-column="Description" class="col-desc"></th>
+              <th data-report-column="NoOfItems" class="col-qty text-center"></th>
+              <th data-report-column="UnitPrice" class="col-unit text-right"></th>
+              <th data-report-column="Total" class="col-total text-right"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#rows}}
+            <tr>
+              <td data-report-column="No" class="text-center">{{No}}</td>
+              <td data-report-column="Description">{{Description}}</td>
+              <td data-report-column="NoOfItems" class="text-center">{{NoOfItems|number}}</td>
+              <td data-report-column="UnitPrice" class="text-right">S${{UnitPrice|currency}}</td>
+              <td data-report-column="Total" class="text-right">S${{Total|currency}}</td>
+            </tr>
+            {{/rows}}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="totals-label">Sub total</td>
+              <td class="totals-amount">S${{rows.0.SubTotal|currency}}</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="totals-label">{{rows.0.TaxPercentage|number}}% GST</td>
+              <td class="totals-amount">S${{rows.0.TaxAmount|currency}}</td>
+            </tr>
+            <tr class="invoice-only">
+              <td colspan="4" class="totals-label">Delivery Fee</td>
+              <td class="totals-amount">S${{rows.0.DeliveryFee|currency}}</td>
+            </tr>
+            <tr class="totals-emphasis">
+              <td colspan="4" class="totals-label">Grand Total</td>
+              <td class="totals-amount">S${{rows.0.TotalAmount|currency}}</td>
+            </tr>
+            <tr class="totals-emphasis invoice-only">
+              <td colspan="4" class="totals-label">Paid Amount</td>
+              <td class="totals-amount">S${{rows.0.PaidAmount|currency}}</td>
+            </tr>
+            <tr class="totals-emphasis balance-row">
+              <td colspan="4" class="totals-label">Balance Remaining</td>
+              <td class="totals-amount js-balance-remaining"
+                  data-total="{{rows.0.TotalAmount|number}}"
+                  data-delivery="{{rows.0.DeliveryFee|number}}"
+                  data-paid="{{rows.0.PaidAmount|number}}">S${{rows.0.BalanceRemaining|currency}}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="invoice-summary">
+        <table>
+          <tr>
+            <td class="label">Sub total</td>
+            <td class="amount">S${{rows.0.SubTotal|currency}}</td>
+          </tr>
+          <tr>
+            <td class="label">{{rows.0.TaxPercentage|number}}% GST</td>
+            <td class="amount">S${{rows.0.TaxAmount|currency}}</td>
+          </tr>
+          <tr class="invoice-only">
+            <td class="label">Delivery Fee</td>
+            <td class="amount">S${{rows.0.DeliveryFee|currency}}</td>
+          </tr>
+          <tr class="grand">
+            <td class="label">Grand Total</td>
+            <td class="amount">S${{rows.0.TotalAmount|currency}}</td>
+          </tr>
+          <tr class="invoice-only">
+            <td class="label">Paid Amount</td>
+            <td class="amount">S${{rows.0.PaidAmount|currency}}</td>
+          </tr>
+          <tr class="balance balance-row">
+            <td class="label">Balance Remaining</td>
+            <td class="amount js-balance-remaining"
+                data-total="{{rows.0.TotalAmount|number}}"
+                data-paid="{{rows.0.PaidAmount|number}}">S${{rows.0.BalanceRemaining|currency}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="invoice-payment-breakup invoice-only js-payment-breakup" data-breakup-total="{{rows.0.PaidByBreakupTotal|number}}">
+      <h3>Payment Breakup</h3>
+      <table>
+        <tr class="js-payment-row" data-amount="{{rows.0.PaidByCard|number}}">
+          <td>Card</td>
+          <td>S${{rows.0.PaidByCard|currency}}</td>
+        </tr>
+        <tr class="js-payment-row" data-amount="{{rows.0.PaidByUpi|number}}">
+          <td>UPI</td>
+          <td>S${{rows.0.PaidByUpi|currency}}</td>
+        </tr>
+        <tr class="js-payment-row" data-amount="{{rows.0.PaidByBankTransfer|number}}">
+          <td>Bank Transfer</td>
+          <td>S${{rows.0.PaidByBankTransfer|currency}}</td>
+        </tr>
+        <tr class="js-payment-row" data-amount="{{rows.0.PaidByCash|number}}">
+          <td>Cash</td>
+          <td>S${{rows.0.PaidByCash|currency}}</td>
+        </tr>
+        <tr class="js-payment-row" data-amount="{{rows.0.PaidByWallet|number}}">
+          <td>Wallet</td>
+          <td>S${{rows.0.PaidByWallet|currency}}</td>
+        </tr>
+        <tr class="js-payment-row" data-amount="{{rows.0.PaidByOther|number}}">
+          <td>Other</td>
+          <td>S${{rows.0.PaidByOther|currency}}</td>
+        </tr>
+        <tr class="total">
+          <td>Total Paid (Breakup)</td>
+          <td>S${{rows.0.PaidByBreakupTotal|currency}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Terms & Conditions -->
+    <div class="invoice-terms">
+      <h3>Terms &amp; Conditions:</h3>
+      <p>Deposit paid is not refundable.</p>
+      <p>Cheque should be made payable to GAYATRI RESTAURANT</p>
+      <p>For online payment details: Bank Name: DBS | Account No: 0721067358 / Paynow: 52817812ADBS</p>
+      <p>Food best consumed within 3 hours from consuming time.</p>
+    </div>
+
+    <!-- Signatures -->
+    <div class="invoice-signatures">
+      <div class="invoice-signature">
+        <img class="invoice-signature-image" src="{{header.AuthoriseSignature|signature}}" alt="Authorise Signature" onerror="this.style.display='none'">
+        <span class="line"></span>
+        <div>Authorise Signature</div>
+      </div>
+      <div class="invoice-signature">
+        <img class="invoice-signature-image" src="{{header.OrderDigitalSignature|signature}}" alt="Customer Signature" onerror="this.style.display='none'">
+        <span class="line"></span>
+        <div>Customer Signature</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== INVOICE FOOTER SECTION ===== -->
+  <div class="invoice-footer-section">
+    <div class="invoice-footer">
+      <strong>Main Restaurant: 122 Race Course Road #01-01, Singapore 218583</strong>
+      <div class="invoice-footer-line">Tel: 6291 1011 &nbsp;&nbsp; Office: 6292 4544 &nbsp;&nbsp; Fax: 62974850</div>
+      <div class="invoice-footer-line">Email: info@gayatrirestaurant.com &nbsp;&nbsp; Catering Hotline: +65 6294 6294</div>
+      <div class="invoice-footer-line">Co. Regn. No. 52817812A &nbsp;&nbsp; GST Reg No. 19-9503681-K</div>
+      <div class="invoice-footer-legal">Website: www.gayatrirestaurant.com</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Set document title with date for PDF export
+  (function() {
+    try {
+      var today = new Date();
+      var day = String(today.getDate()).padStart(2, '0');
+      var month = String(today.getMonth() + 1).padStart(2, '0');
+      var year = today.getFullYear();
+      var root = document.querySelector('.invoice-sheet');
+      var status = root ? String(root.getAttribute('data-order-status') || '').trim() : '';
+      var isQuotation = status === '5' || status === '6';
+      var docName = isQuotation ? 'Quotation' : 'Invoice';
+      var dateStr = day + '-' + month + '-' + year;
+
+      var balanceNodes = document.querySelectorAll('.js-balance-remaining');
+      balanceNodes.forEach(function(node) {
+        var base = Number(String(node.getAttribute('data-total') || '').replace(/,/g, '')) || 0;
+        var paid = Number(String(node.getAttribute('data-paid') || '').replace(/,/g, '')) || 0;
+        var value = (base - paid).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        node.textContent = 'S$' + value;
+      });
+
+      var breakupBlocks = document.querySelectorAll('.js-payment-breakup');
+      breakupBlocks.forEach(function(block) {
+        var breakupTotal = Number(String(block.getAttribute('data-breakup-total') || '').replace(/,/g, '')) || 0;
+        var visibleRows = 0;
+        var paymentRows = block.querySelectorAll('.js-payment-row');
+        paymentRows.forEach(function(row) {
+          var amount = Number(String(row.getAttribute('data-amount') || '').replace(/,/g, '')) || 0;
+          if (amount > 0) {
+            visibleRows += 1;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        if (breakupTotal <= 0) {
+          block.style.display = 'none';
+          return;
+        }
+
+        if (visibleRows === 0) {
+          block.style.display = 'none';
+        }
+      });
+
+      var firstDescription = document.querySelector('.invoice-items tbody tr:first-child td[data-report-column="Description"]');
+      if (firstDescription) {
+        var descriptionParts = (firstDescription.textContent || '')
+          .split(/\r?\n|\s+-\s+/)
+          .map(function(part) { return part.trim().replace(/^\s*-\s*/, ''); })
+          .filter(function(part) { return part.length > 0; });
+
+        if (descriptionParts.length) {
+          firstDescription.textContent = '';
+          descriptionParts.forEach(function(part, index) {
+            if (index > 0) {
+              firstDescription.appendChild(document.createElement('br'));
+            }
+
+            var text = document.createTextNode(part);
+            if (index === 0) {
+              if (index === 0) {
+                var packageName = document.createElement('strong');
+                packageName.appendChild(text);
+                firstDescription.appendChild(packageName);
+              } else {
+                firstDescription.appendChild(text);
+              }
+            } else {
+              firstDescription.appendChild(text);
+            }
+          });
+        }
+      }
+
+      document.title = docName + '-' + dateStr;
+      
+      // Also set on window beforeprint event for better PDF naming
+      window.addEventListener('beforeprint', function() {
+        document.title = docName + '-' + dateStr;
+      });
+    } catch(e) {
+      console.log('Title setting skipped');
+    }
+  })();
+</script>

@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Function Hall";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/customer/venue.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Function Hall &amp; Event Setup</div>
+        <div class="page-subtitle">Explore catering locations and event setup options for your next function.</div>
+    </div>
+    <a href="/Customer/Order" class="btn btn-orange venue-book-top"><i class="fa-solid fa-calendar-plus" aria-hidden="true"></i> Book Function</a>
+</div>
+
+<div class="venue-notice">
+    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+    <div><strong>Event-ready setup.</strong> Function hall, buffet setup, cutleries, table setting, LED wall and sound system can be included or added to your booking.</div>
+</div>
+
+<section class="venue-feature-section" aria-labelledby="venue-feature-heading">
+    <div class="venue-section-heading">
+        <div>
+            <div class="venue-eyebrow">Event Essentials</div>
+            <h2 id="venue-feature-heading">Setup options for your function</h2>
+        </div>
+        <span class="venue-section-note">Subject to package selection</span>
+    </div>
+    <div class="package-includes-row">
+        <div class="included-feature">
+            <span class="venue-feature-icon"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+            <div>Function Hall</div>
+            <small>Event space</small>
+        </div>
+        <div class="included-feature">
+            <span class="venue-feature-icon"><i class="fa-solid fa-utensils" aria-hidden="true"></i></span>
+            <div>Buffet Set-up</div>
+            <small>Serving stations</small>
+        </div>
+        <div class="included-feature">
+            <span class="venue-feature-icon"><i class="fa-solid fa-spoon" aria-hidden="true"></i></span>
+            <div>Cutleries</div>
+            <small>Dining essentials</small>
+        </div>
+        <div class="included-feature">
+            <span class="venue-feature-icon"><i class="fa-solid fa-chair" aria-hidden="true"></i></span>
+            <div>Table Setting</div>
+            <small>Guest seating</small>
+        </div>
+        <div class="included-feature">
+            <span class="venue-feature-icon"><i class="fa-solid fa-display" aria-hidden="true"></i></span>
+            <div>LED Wall &amp; Sound System</div>
+            <small>Audio visual setup</small>
+        </div>
+    </div>
+</section>
+
+<section class="venue-locations-section" aria-labelledby="venue-locations-heading">
+    <div class="venue-section-heading">
+        <div>
+            <div class="venue-eyebrow">Service Locations</div>
+            <h2 id="venue-locations-heading">Choose a delivery area</h2>
+        </div>
+        <span class="venue-section-note">Delivery fee shown before booking</span>
+    </div>
+    <div class="venue-grid" id="venueCards"></div>
+</section>
+
+@section Scripts {
+    <script src="~/js/customer/venue.js" asp-append-version="true"></script>
+}
+

@@ -1,0 +1,36 @@
+﻿@{ ViewData["Title"] = "Events"; }
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/eventmaster.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Event Configuration</div>
+        <div class="page-subtitle">Configure event types, minimum pax, advance booking days and available packages</div>
+    </div>
+</div>
+
+<div id="eventsListPanel" class="card">
+    <div class="panel-header">
+        <div class="panel-title">Manage Events</div>
+        <div class="panel-actions event-header-actions">
+            <input type="text" id="eventsSearch" class="tbl-search" data-table="eventsTable" placeholder="Search events...">
+            <a class="btn btn-orange btn-add" data-permission="create" href="/Admin/EventMaster/create">+ Add Event</a>
+        </div>
+    </div>
+        <div class="pageloaderpanel hidden"><div class="spinner"></div><div class="loader-text">Loading events...</div></div>
+    <div class="table-wrap">
+        <table class="tbl" id="eventsTable" data-page-size="10" data-no-print="true">
+            <thead><tr><th class="sortable">#</th><th class="sortable">Event Name</th><th class="sortable">Min Pax</th><th class="sortable">Service Charge</th><th class="sortable">Advance Booking Days</th><th class="sortable">Active</th><th class="no-sort">Actions</th></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/eventmaster.js" asp-append-version="true"></script>
+}
+
+

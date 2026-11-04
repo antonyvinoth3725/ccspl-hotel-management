@@ -1,0 +1,159 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/customer/home.css" asp-append-version="true">
+}
+
+<div class="home-pdf">
+    <div class="pdf-hero">
+        <div>
+            <div class="hero-logo-panel">
+                <img src="~/images/logo.jpg" alt="Gayatri Logo">
+                <span>Gayatri Restaurant</span>
+            </div>
+            <h1>Authentic Indian Catering in Singapore</h1>
+            <p>Weddings, corporate events and private celebrations for up to 5,000 guests a day. Choose Indian buffet, breakfast, hi-tea, banana leaf, wedding feasts, corporate lunch boxes or function hall setup—then build your menu online and get an instant quotation. Package dish choices are included; extra items are priced separately.</p>
+            <div class="home-cta">
+                <a class="btn home-cta-btn home-cta-order" href="/Customer/Order">
+                    <span class="home-cta-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M12 5a1 1 0 0 1 1 1v5.59l3.7 3.7a1 1 0 1 1-1.4 1.42l-4-4A1 1 0 0 1 11 12V6a1 1 0 0 1 1-1Zm0-3a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Z"/></svg>
+                    </span>
+                    <span>Start New Order</span>
+                </a>
+                <a class="btn home-cta-btn home-cta-packages" href="/Customer/Packages">
+                    <span class="home-cta-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M4 7.5 12 3l8 4.5-8 4.5L4 7.5Zm0 3.27 7 3.94v6.29l-7-3.94v-6.29Zm9 9.23v-6.29l7-3.94v6.29L13 20Z"/></svg>
+                    </span>
+                    <span>Menu Packages</span>
+                </a>
+                <a class="btn home-cta-btn home-cta-menus" href="/Customer/Menu">
+                    <span class="home-cta-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M5 4h14a2 2 0 0 1 2 2v12.5A1.5 1.5 0 0 1 19.5 20H6a3 3 0 0 1-3-3V6a2 2 0 0 1 2-2Zm0 2v11a1 1 0 0 0 1 1h13V6H5Zm3 3h8v2H8V9Zm0 4h8v2H8v-2Z"/></svg>
+                    </span>
+                    <span>View Menus</span>
+                </a>
+                <a class="btn home-cta-btn home-cta-venue" href="/Customer/Venue">
+                    <span class="home-cta-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M3 20v-7a2 2 0 0 1 2-2h2V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4h2a2 2 0 0 1 2 2v7h-2v-2H5v2H3Zm4-9h2V7H7v4Zm4 0h2V7h-2v4Zm6 0V7h-2v4h2Zm2 2H5v3h14v-3Z"/></svg>
+                    </span>
+                    <span>Function Hall</span>
+                </a>
+            </div>
+            <p class="hero-trust-line"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Customised menus, transparent extras and an instant online quotation.</p>
+        </div>
+    </div>
+
+    <div class="pdf-section peach" id="menu">
+        <h2>Our Signature Canapes</h2>
+        <div class="pdf-grid">
+            <a class="pdf-item" href="/Customer/Menu"><img src="~/images/sigPani.jpg" alt="Pani Puri Shots"><b>Pani Puri Shots</b></a>
+            <a class="pdf-item" href="/Customer/Menu"><img src="~/images/sigPapdi.jpg" alt="Papdi Chaat"><b>Papdi Chaat</b></a>
+            <a class="pdf-item" href="/Customer/Menu"><img src="~/images/sigChanna.jpg" alt="Channa Masala"><b>Channa Masala</b></a>
+            <a class="pdf-item" href="/Customer/Menu"><img src="~/images/sigPaneer.jpg" alt="Zafrani Paneer Skewers"><b>Zafrani Paneer Skewers</b></a>
+        </div>
+    </div>
+
+    <div class="pdf-section" id="catering">
+        <div class="pdf-kicker">Who We Serve</div>
+        <h2 style="text-align:center">We're More Than Just A Restaurant</h2>
+        <div class="pdf-grid">
+            <a class="pdf-item" href="/Customer/Order"><img src="~/images/serveWedding.jpg" alt="Weddings &amp; Celebrations"><b>Weddings &amp; Celebrations</b></a>
+            <a class="pdf-item" href="/Customer/Order"><img src="~/images/serveCorporate.jpg" alt="Corporate Events"><b>Corporate Events</b></a>
+            <a class="pdf-item" href="/Customer/Order"><img src="~/images/serveMedia.jpg" alt="Large Media Events"><b>Large Media Events</b></a>
+        </div>
+        <p class="pdf-copy"><b><i>We provide full-service</i></b> catering for weddings, private celebrations, corporate events, and community functions, capable of serving up to 5,000 guests per day during weekends and public holidays.</p>
+    </div>
+
+    <section class="home-hall-section" id="function-hall" aria-labelledby="hall-heading">
+        <div class="home-hall-copy">
+            <div class="pdf-kicker">Venue &amp; Setup</div>
+            <h2 id="hall-heading">Celebrations Hall at Singapore Khalsa Association</h2>
+            <p>Plan your celebration with a complete function hall, buffet service and table arrangement in one place.</p>
+            <ul class="hall-details-list">
+                <li><i class="fa-solid fa-chair" aria-hidden="true"></i> Flexible guest seating and table setup</li>
+                <li><i class="fa-solid fa-utensils" aria-hidden="true"></i> Buffet stations and dining essentials</li>
+                <li><i class="fa-solid fa-display" aria-hidden="true"></i> LED wall and sound system options</li>
+            </ul>
+            <div class="hall-actions">
+                <a class="btn btn-primary" href="/Customer/Venue"><i class="fa-solid fa-building-columns" aria-hidden="true"></i> View Function Hall</a>
+                <a class="btn btn-outline" href="/Customer/Order"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Request a Quotation</a>
+            </div>
+        </div>
+        <div class="hall-gallery">
+            <img src="~/images/hall1.jpg" alt="Celebrations Hall dining area">
+            <img src="~/images/hall2.jpg" alt="Celebrations Hall table setup">
+            <img src="~/images/hall3.jpg" alt="Celebrations Hall buffet line">
+        </div>
+    </section>
+
+    <div class="pdf-section peach" id="packages">
+        <h2>Packages / Set Up Options</h2>
+        <div class="pdf-grid">
+            <a class="pdf-item" href="/Customer/Venue"><img src="~/images/setupLed.jpg" alt="LED Wall Panel"><b>LED Wall Panel</b></a>
+            <a class="pdf-item" href="/Customer/Venue"><img src="~/images/setupSound.jpg" alt="Sound System"><b>Sound System</b></a>
+            <a class="pdf-item" href="/Customer/Packages"><img src="~/images/setupBuffet.jpg" alt="Buffet Setting"><b>Buffet Setting</b></a>
+            <a class="pdf-item" href="/Customer/Venue"><img src="~/images/setupTable.jpg" alt="Table Setting"><b>Table Setting</b></a>
+        </div>
+        <h2 style="margin-top:34px">What Our Clients Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <div class="name">Priyamani</div>
+                <p>Wonderful and excellent service. On-time schedule, fantastic setup and display, and excellent food from all the guests.</p>
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            </div>
+            <div class="testimonial">
+                <div class="name">Ravimohan</div>
+                <p>All the guests said the food was very nice and service was fast and polite. Thank you very much once again.</p>
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            </div>
+            <div class="testimonial">
+                <div class="name">John Raj</div>
+                <p>Feedback from our guests is that food was nice and the team was helpful. Thank you.</p>
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pdf-section" id="contact">
+        <div class="contact-top">
+            <div class="home-logo">
+                <img src="~/images/logo.jpg" alt="Gayatri Restaurant">GAYATRI<br>
+                <small style="font-size:12px;letter-spacing:8px">RESTAURANT</small>
+            </div>
+            <p class="contact-tagline">At Gayatri, we don't just serve food, we share stories, aromas, and memories steeped in the soul of our rich Indian culture.</p>
+        </div>
+        <div class="contact-cards">
+            <div class="contact-card">
+                <div class="contact-card-icon">&#128336;</div>
+                <div class="contact-card-title">Restaurant Hours</div>
+                <div class="contact-card-line">Mon - Sat: 11:00am - 10:30pm</div>
+                <div class="contact-card-line">Sunday: 10:30am - 10:30pm</div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-card-icon">&#128205;</div>
+                <div class="contact-card-title">Address</div>
+                <div class="contact-card-line">122 Race Course Road</div>
+                <div class="contact-card-line">#01-01, Singapore 218583</div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-card-icon">&#128222;</div>
+                <div class="contact-card-title">Catering Hotline</div>
+                <div class="contact-card-line">+65 6294 6294</div>
+                <div class="contact-card-line">+65 6292 4544 (Office)</div>
+                <div class="contact-card-line">info@gayatrirestaurant.com</div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-card-icon">&#128172;</div>
+                <div class="contact-card-title">WhatsApp Us</div>
+                <div class="contact-card-line">+65 6294 6294</div>
+                <div class="contact-card-line"><a href="https://wa.me/6562946294" target="_blank" rel="noopener" class="btn btn-orange btn-sm contact-whatsapp-button"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chat Now</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/customer/home.js" asp-append-version="true"></script>
+}

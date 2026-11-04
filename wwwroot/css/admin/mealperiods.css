@@ -1,0 +1,13 @@
+.period-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:14px}.period-time{font-size:18px;font-weight:800;color:var(--green-dark);min-width:120px}
+.mealperiod-row-actions .actions-menu{min-width:220px;padding:10px 0;border-radius:16px}
+.mealperiod-row-actions .action-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;font-weight:700}
+.mealperiod-row-actions .action-icon-text{display:inline-flex;align-items:center;justify-content:center;width:16px;font-size:14px;line-height:1}
+.mealperiod-row-actions .dots-btn{width:36px;height:36px;border-radius:12px}
+.mealperiod-row-actions .mealperiod-action-edit{color:#334155}
+.mealperiod-row-actions .mealperiod-action-edit:hover{background:#f8fafc;color:#0f172a}
+.mealperiod-row-actions .mealperiod-action-active{color:#166534}
+.mealperiod-row-actions .mealperiod-action-active:hover{background:#effdf5;color:#14532d}
+.mealperiod-row-actions .mealperiod-action-inactive{color:#92400e}
+.mealperiod-row-actions .mealperiod-action-inactive:hover{background:#fffbeb;color:#78350f}
+.mealperiod-row-actions .mealperiod-action-delete{color:#b91c1c}
+.mealperiod-row-actions .mealperiod-action-delete:hover{background:#fef2f2;color:#991b1b}

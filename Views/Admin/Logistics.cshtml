@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Logistics";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/logistics.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Logistics</div>
+        <div class="page-subtitle">Dispatch and delivery tracking for all active orders</div>
+    </div>
+</div>
+
+<div class="logistics-toolbar">
+
+    <div class="left-toolbar">
+        <button type="button" id="btnPending" class="delivery-tab active">
+            &#128666; Pending Delivery
+        </button>
+
+        <button type="button" id="btnDelivered" class="delivery-tab">
+            &#9989; Delivered
+        </button>
+    </div>
+</div>
+
+<div id="LogiListPanel" class="card">
+    <div class="panel-header">
+        <div class="panel-title">Dispatch Board</div>
+        <div class="panel-actions">
+            <div class="app-header-filter">
+                <div id="pendingsearch">
+                    <input type="text"
+                           id="pendingSearch"
+                           class="tbl-search"
+                           data-table="PendingTable"
+                           placeholder="Search Orders...">
+                </div>
+
+                <div id="deliverysearch" style="display:none;">
+                    <input type="text"
+                           id="DeliSearch"
+                           class="tbl-search"
+                           data-table="DeliveredTable"
+                           placeholder="Search Orders...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pageloaderpanel hidden">
+        <div class="logistics-skeleton" aria-label="Loading logistics orders" role="status">
+            <div class="logistics-skeleton-head shimmer"></div>
+            <div class="logistics-skeleton-row shimmer"></div>
+            <div class="logistics-skeleton-row shimmer"></div>
+            <div class="logistics-skeleton-row shimmer"></div>
+            <div class="logistics-skeleton-row shimmer"></div>
+            <div class="logistics-skeleton-row shimmer"></div>
+        </div>
+    </div>
+
+    <div class="table-wrap" id="pendingSection">
+
+        <table class="tbl" id="PendingTable" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="sortable">#</th>
+                    <th class="sortable">Order No</th>
+                    <th class="sortable">Customer</th>
+                    <th class="sortable">Order Date</th>
+                    <th class="sortable">Event Date</th>
+                    <th class="sortable">Location</th>
+                    <th class="sortable">Driver</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div id="deliveredSection" style="display:none;" class="table-wrap">
+
+        <table class="tbl" id="DeliveredTable" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="sortable">#</th>
+                    <th class="sortable">Order No</th>
+                    <th class="sortable">Customer</th>
+                    <th class="sortable">Order Date</th>
+                    <th class="sortable">Location</th>
+                    <th class="sortable">Driver</th>
+                    <th class="sortable">Delivered On</th>
+                    <th class="sortable">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- Ajax -->
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+   
+   
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/logistics.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+}
+
+

@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Track Order";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/customer/track.css" asp-append-version="true">
+}
+
+<div class="track-page">
+    <section class="track-hero">
+        <div class="track-hero-copy">
+            <div class="track-kicker"><span></span> Live order tracking</div>
+            <h1>Track Your Catering Order</h1>
+            <p>Follow your order from confirmation through kitchen preparation and final delivery.</p>
+            <div class="track-hero-points">
+                <span><b>&#10003;</b> Current preparation status</span>
+                <span><b>&#10003;</b> Event and payment details</span>
+            </div>
+        </div>
+
+        <div class="track-lookup-card">
+            <div class="track-lookup-icon" aria-hidden="true">&#128205;</div>
+            <div>
+                <div class="section-label">Find Your Order</div>
+                <p class="track-lookup-help">Enter the order or invoice number shared with you.</p>
+            </div>
+            <div class="form-group track-reference-field">
+                <label for="trackRef">Order / Invoice Reference</label>
+                <input type="text" id="trackRef" placeholder="e.g. GC000068 or INV-GC000068" autocomplete="off">
+            </div>
+            <button class="btn btn-primary track-button" id="btnTrack" type="button">
+                <span>Track Order</span><span aria-hidden="true">&#8594;</span>
+            </button>
+            <small class="track-privacy-note">Your order details are securely retrieved.</small>
+        </div>
+    </section>
+
+    <div id="trackResult" class="hidden track-result-wrap">
+        <div class="card track-status-card">
+            <div class="track-card-heading">
+                <div>
+                    <div class="section-label">Order Journey</div>
+                    <p>Latest progress and booking information</p>
+                </div>
+                <span class="track-live"><i></i> Live status</span>
+            </div>
+            <div id="trackContent"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/customer/track.js" asp-append-version="true"></script>
+}

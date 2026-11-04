@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Locations";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/locations.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Location Configuration</div>
+        <div class="page-subtitle">Configure delivery locations, zones and fees</div>
+    </div>
+</div>
+
+<div class="pageloaderfull hidden">
+    <div class="spinner"></div>
+    <div class="loader-text">Loading locations...</div>
+</div>
+
+<div id="locationsListPanel" class="card">
+    <div class="panel-header">
+        <div class="panel-title">Manage Locations</div>
+        <div class="panel-actions">
+            <div class="app-header-filter">
+                <input type="text" id="locationsSearch" class="tbl-search" data-table="locationList" placeholder="Search locations...">
+            </div>
+            <button class="btn btn-orange btn-add" id="btnAddLocation" data-permission="create" onclick="openLocationModal()">+ Add Location</button>
+        </div>
+    </div>
+        <div class="pageloaderpanel hidden">
+        <div class="spinner"></div>
+        <div class="loader-text">Loading locations...</div>
+    </div>
+    <div class="table-wrap">
+        <table class="tbl" id="locationList" data-page-size="10" data-no-print="true">
+            <thead>
+                <tr>
+                    <th class="sortable">#</th>
+                    <th class="sortable">Code</th>
+                    <th class="sortable">Location</th>
+                    <th class="sortable">Delivery Zone</th>
+                    <th class="sortable">Delivery Fee</th>
+                    <th class="sortable">Remarks</th>
+                    <th class="sortable">Active</th>
+                    <th class="no-sort">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- rows rendered by ~/js/admin/locations.js -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Add Location Modal -->
+<div class="modal-overlay hidden" id="locationsModal">
+    <div class="modal-box">
+
+        <div class="modal-header">
+            <span class="modal-title" id="locations-title">Create Location</span>
+
+            <button class="modal-close" type="button" onclick="closeLocationModal()">
+                &times;
+            </button>
+        </div>
+
+        <input type="hidden" id="locationId" />
+
+        <div class="form-row col2">
+            <div class="form-group">
+                <label>Code <span class="field-required">*</span></label>
+                <input type="text" id="locationCode" class="form-control" placeholder="e.g. LOC001" disabled />
+                <div class="field-error hidden" id="locationCodeError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Location Name<span class="field-required">*</span></label>
+                <input type="text" id="locationName" class="form-control" placeholder="Enter location name" />
+                <div class="field-error hidden" id="locationNameError"></div>
+            </div>
+        </div>
+
+        <div class="form-row col2">
+            <div class="form-group">
+                <label>Delivery Fee<span class="field-required">*</span></label>
+                <input type="number" id="locationDeliveryFee" class="form-control" min="0" step="0.01" placeholder="0.00" />
+                <div class="field-error hidden" id="locationDeliveryFeeError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Delivery Zone</label>
+                <input type="text" id="locationDeliveryZone" class="form-control" maxlength="10" placeholder="e.g. Central" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Remarks</label>
+                <input type="text" id="locationRemarks" class="form-control" placeholder="Enter remarks (optional)" />
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn btn-light" id="btnClearLocation" onclick="clearLocationForm(true)">Clear</button>
+            <button type="button" class="btn btn-primary" id="btnSaveLocation" onclick="saveLocation()">Save</button>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/locations.js" asp-append-version="true"></script>
+}
+
+

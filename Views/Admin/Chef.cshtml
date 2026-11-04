@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Chef Master";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/Chef.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Chef Master</div>
+        <div class="page-subtitle">Manage all Chef</div>
+    </div>
+</div>
+
+<div class="pageloaderfull hidden">
+    <div class="spinner"></div>
+    <div class="loader-text">Loading chef...</div>
+</div>
+
+<div id="chefListPanel" class="card">
+    <div class="panel-header">
+        <div class="panel-title">Manage Chef</div>
+        <div class="panel-actions">
+            <div class="app-header-filter">
+                <input type="text" id="chefSearch" class="tbl-search" data-table="chefList" placeholder="Search chef...">
+            </div>
+            <button class="btn btn-orange btn-add" id="btnAddChef" data-permission="create" onclick="openChefModal()">+ Add Chef</button>
+        </div>
+    </div>
+    <div class="pageloaderpanel hidden">
+        <div class="spinner"></div>
+        <div class="loader-text">Loading chef...</div>
+    </div>
+    <div class="table-wrap">
+        <table class="tbl" id="chefList" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="sortable">#</th>
+                    <th class="sortable">Code</th>
+                    <th class="sortable">Name</th>
+                    <th class="sortable">MobileNo</th>
+                    <th class="sortable">EmailID</th>
+                    <th class="sortable">Status</th>
+                    <th class="no-sort">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+ 
+<div class="modal-overlay hidden" id="chefModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <span class="modal-title" id="chef-title">Create Chef</span>
+            <button class="modal-close" type="button" onclick="closeChefModal()">&times;</button>
+        </div>
+        <div class="form-row col2">
+            <div class="form-group">
+                <label>Code <span class="field-required">*</span></label>
+                <input type="text" id="ChefCode" maxlength="40" class="form-control" placeholder="e.g. C001" disabled>
+                <div class="field-error hidden" id="ChefCodeError"></div>
+            </div>
+            <div class="form-group">
+                <label>Name <span class="field-required">*</span></label>
+                <input type="text" id="ChefName" maxlength="300" class="form-control" placeholder="Enter the Name" autocomplete="off">
+                <div class="field-error hidden" id="ChefNameError"></div>
+            </div>
+        </div>
+        <div class="form-row col2">
+            <div class="form-group">
+                <label>Mobile No <span class="field-required">*</span></label>
+                <input type="text" id="MobileNo" class="form-control" maxlength="40" placeholder="Enter Mobile Number" inputmode ="numeric" autocomplete="off">
+                <div class="field-error hidden" id="MobileNoError"></div>
+            </div>
+            <div class="form-group">
+                <label>Email ID <span class="field-required">*</span></label>
+                <input type="email" id="Email" class="form-control" maxlength="300" placeholder="Enter the MailId" autocomplete="off">
+                <div class="field-error hidden" id="EmailError"></div>
+            </div>
+        </div>
+        <div class="form-row col2">
+            <div class="form-group">
+                <label>Chef Type</label>
+                <input type="text" id="ChefType" class="form-control" maxlength="100" placeholder="Enter the Chef Type" autocomplete="off">
+                <div class="field-error hidden" id="ChefTypeError"></div>
+            </div>
+            <div class="form-group">
+                <label>Specialization</label>
+                <input type="text" id="Specialization" class="form-control" maxlength="500" placeholder="Enter the Specialization" autocomplete="off">
+                <div class="field-error hidden" id="SpecializationError"></div>
+            </div>
+        </div>
+        <input type="hidden" id="chefId" />
+        <div class="actions">
+            <button type="button" class="btn btn-light" onclick="clearChefForm()">Clear</button>
+            <button class="btn btn-primary" id="btnSaveChef" onclick="saveChef()">Save</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/Chef.js" asp-append-version="true"></script>
+}
+
+

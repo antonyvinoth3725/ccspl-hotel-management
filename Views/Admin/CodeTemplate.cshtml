@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Code Template";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/codetemplate.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Code Template</div>
+        <div class="page-subtitle">Manage running number formats, prefixes and suffixes in a compact template grid</div>
+    </div>
+    <div class="page-header-actions">
+        <button type="button" class="btn btn-primary" id="btnSaveCodeTemplates" onclick="saveAllCodeTemplates()">Save All</button>
+    </div>
+</div>
+
+<div id="codeTemplatePanel" class="card">
+    <div class="panel-header">
+        <div class="panel-title">Manage Code Templates</div>
+        <div class="panel-actions">
+            <div class="app-header-filter">
+                <input type="text" id="codeTemplateSearch" class="tbl-search" data-table="codeTemplateTable" placeholder="Search code templates">
+            </div>
+        </div>
+    </div>
+    
+    <div class="pageloaderpanel hidden" id="codeTemplateLoader">
+        <div class="spinner"></div>
+        <div class="loader-text">Loading code templates...</div>
+    </div>
+
+    <div class="code-template-empty hidden" id="codeTemplateEmpty">
+        No code templates found.
+    </div>
+
+    <div class="table-wrap code-template-wrap" id="codeTemplateWrap">
+        <table class="tbl code-template-table" id="codeTemplateTable" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="sortable">#</th>
+                    <th class="sortable">Name</th>
+                    <th class="sortable">No Of Digit</th>
+                    <th class="sortable">Start Value</th>
+                    <th class="sortable">Prefix</th>
+                    <th class="sortable">Current Value</th>
+                    <th class="sortable">Suffix</th>
+                    <th class="sortable">Is Year Type</th>
+                </tr>
+            </thead>
+            <tbody id="codeTemplateBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/codetemplate.js" asp-append-version="true"></script>
+}
+
+

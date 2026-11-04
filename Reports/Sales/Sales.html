@@ -1,0 +1,303 @@
+<style>
+  .sales-compact {
+    --navy: #124d2b;
+    --blue: #1a6e3c;
+    --teal: #2d8a52;
+    --sky: #e8f5ee;
+    --ink: #173126;
+    --muted: #66776d;
+    --line: #d7e5dc;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(18, 77, 43, .08);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  .sales-compact * { box-sizing: border-box; }
+
+  .sales-compact-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    padding: 20px 24px;
+    color: #fff;
+    background: linear-gradient(110deg, var(--navy), var(--blue));
+  }
+
+  .sales-compact-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+  }
+
+  .sales-compact-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    color: var(--navy);
+    background: #fff;
+    border-radius: 12px;
+    font-size: 22px;
+    font-weight: 900;
+  }
+
+  .sales-compact-eyebrow {
+    margin-bottom: 3px;
+    color: #9edbe4;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+  }
+
+  .sales-compact-title {
+    margin: 0;
+    overflow: hidden;
+    color: #fff;
+    font-size: 25px;
+    line-height: 1.15;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sales-compact-description {
+    margin: 4px 0 0;
+    color: rgba(255,255,255,.72);
+    font-size: 12px;
+  }
+
+  .sales-compact-date {
+    flex: 0 0 auto;
+    padding: 9px 12px;
+    color: #dceff2;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.17);
+    border-radius: 9px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .sales-compact-date strong {
+    margin-left: 5px;
+    color: #fff;
+    font-size: 12px;
+  }
+
+  .sales-compact-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    padding: 16px 18px;
+    background: #f7fafb;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .sales-compact-kpi {
+    position: relative;
+    min-width: 0;
+    padding: 14px 15px 14px 19px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+
+  .sales-compact-kpi::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: var(--blue);
+  }
+
+  .sales-compact-kpi:nth-child(2)::before { background: var(--teal); }
+  .sales-compact-kpi:nth-child(3)::before { background: #d99b32; }
+  .sales-compact-kpi:nth-child(4)::before { background: #c45b64; }
+
+  .sales-compact-kpi-label {
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .7px;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .sales-compact-kpi-value {
+    margin-top: 5px;
+    overflow: hidden;
+    color: var(--navy);
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sales-compact-table-section {
+    min-width: 0;
+    padding: 18px;
+  }
+
+  .sales-compact-table-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 11px;
+  }
+
+  .sales-compact-table-title {
+    margin: 0;
+    color: var(--navy);
+    font-size: 16px;
+  }
+
+  .sales-compact-table-note {
+    color: var(--muted);
+    font-size: 10px;
+  }
+
+  .sales-compact .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+
+  .sales-compact .table {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .sales-compact .table th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 11px 12px;
+    color: #fff;
+    background: var(--navy);
+    border-right: 1px solid rgba(255,255,255,.12);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .55px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .sales-compact .table td {
+    padding: 10px 12px;
+    color: #2b3c44;
+    background: #fff;
+    border-right: 1px solid #edf2f3;
+    border-bottom: 1px solid #e5edef;
+  }
+
+  .sales-compact .table tbody tr:nth-child(even) td { background: #f7fbfc; }
+  .sales-compact .table tbody tr:hover td { background: var(--sky); }
+  .sales-compact .table tbody tr:last-child td { border-bottom: 0; }
+
+  .sales-compact .report-col-number { text-align: right; }
+  .sales-compact .report-col-date { text-align: center; white-space: nowrap; }
+  .sales-compact .report-col-text { text-align: left; }
+
+  .sales-compact-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 18px;
+    color: var(--muted);
+    background: #f7fafb;
+    border-top: 1px solid var(--line);
+    font-size: 9px;
+  }
+
+  @media (max-width: 850px) {
+    .sales-compact-head { align-items: flex-start; flex-direction: column; }
+    .sales-compact-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 520px) {
+    .sales-compact-head { padding: 17px; }
+    .sales-compact-icon { display: none; }
+    .sales-compact-title { font-size: 21px; }
+    .sales-compact-kpis { grid-template-columns: 1fr; padding: 12px; }
+    .sales-compact-table-section { padding: 12px; }
+    .sales-compact-table-head,
+    .sales-compact-foot { align-items: flex-start; flex-direction: column; }
+  }
+
+  @media print {
+    .sales-compact { border: 0; border-radius: 0; box-shadow: none; }
+    .sales-compact .table-wrap { overflow: visible; }
+    .sales-compact .table { width: 100%; font-size: 8px; white-space: normal; }
+    .sales-compact .table th,
+    .sales-compact .table td { padding: 6px; }
+    .sales-compact .table tbody tr { break-inside: avoid; }
+  }
+</style>
+
+<article class="sales-compact">
+  <header class="sales-compact-head">
+    <div class="sales-compact-title-wrap">
+      <div class="sales-compact-icon">↗</div>
+      <div>
+        <div class="sales-compact-eyebrow">Sales Performance</div>
+        <h1 class="sales-compact-title">{{report.displayName}}</h1>
+        <p class="sales-compact-description">Revenue, tax and receivable summary for the selected period.</p>
+      </div>
+    </div>
+    <div class="sales-compact-date">Generated <strong>{{meta.executedAt|date}}</strong></div>
+  </header>
+
+  <section class="sales-compact-kpis">
+    <div class="sales-compact-kpi">
+      <div class="sales-compact-kpi-label">Total Revenue</div>
+      <div class="sales-compact-kpi-value">S${{sumTotalAmount|currency}}</div>
+    </div>
+    <div class="sales-compact-kpi">
+      <div class="sales-compact-kpi-label">Result Rows</div>
+      <div class="sales-compact-kpi-value">{{meta.rowCount|number}}</div>
+    </div>
+    <div class="sales-compact-kpi">
+      <div class="sales-compact-kpi-label">Tax Amount</div>
+      <div class="sales-compact-kpi-value">S${{sumTaxAmount|currency}}</div>
+    </div>
+    <div class="sales-compact-kpi">
+      <div class="sales-compact-kpi-label">Receivables</div>
+      <div class="sales-compact-kpi-value">S${{sumBalanceAmount|currency}}</div>
+    </div>
+  </section>
+
+  <section class="sales-compact-table-section">
+    <div class="sales-compact-table-head">
+      <h2 class="sales-compact-table-title">Sales Breakdown</h2>
+      <span class="sales-compact-table-note">Scroll the table horizontally to view additional columns.</span>
+    </div>
+    {{table}}
+  </section>
+
+  <footer class="sales-compact-foot">
+    <span>Gayatri Catering · Sales performance report</span>
+    <span>{{meta.rowCount|number}} row(s)</span>
+  </footer>
+</article>

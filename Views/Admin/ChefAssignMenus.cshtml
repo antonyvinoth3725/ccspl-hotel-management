@@ -1,0 +1,140 @@
+@{
+    ViewData["Title"] = "Assign Menus";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/select2/dist/css/select2.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/admin/chefassignmenus.css" asp-append-version="true">
+}
+
+<div class="page-header cam-page-header">
+    <div>
+        <div class="page-title">Assign Menus to Chef</div>
+        <div class="page-subtitle">Select orders, review combined menu quantities and assign items to the chef</div>
+    </div>
+    <div class="cam-header-actions">
+        <button type="button" class="btn btn-light cam-action-history" id="camHistoryBtn" onclick="toggleCamHistory()"><i class="fa-solid fa-clock-rotate-left"></i> Assigned Menus</button>
+        <a href="/Admin/Chef" class="btn btn-light cam-back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Chef Master</a>
+        @if (ViewData["AssignmentId"] != null)
+        {
+            <a href="/Admin/Chef/AssignMenus/@ViewData["ChefId"]" class="btn btn-light cam-exit-edit-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Exit Edit Mode</a>
+            <button type="button" class="btn btn-light cam-delete-btn" id="camDeleteBtn" onclick="deleteChefAssignment()"><i class="fa-solid fa-trash-can"></i> Delete Assignment</button>
+        }
+    </div>
+</div>
+
+<input type="hidden" id="camChefId" value="@ViewData["ChefId"]" />
+<input type="hidden" id="camAssignmentId" value="@ViewData["AssignmentId"]" />
+<input type="hidden" id="camChefMobile" value="@ViewData["ChefMobileNo"]" />
+<input type="hidden" id="camChefEmail" value="@ViewData["ChefEmailId"]" />
+
+<div class="card cam-chef-card">
+    <div class="cam-chef-avatar" id="camChefAvatar">C</div>
+    <div class="cam-chef-info">
+        <div class="cam-chef-name" id="camChefName">@ViewData["ChefName"]</div>
+        <div class="cam-chef-meta">
+            <span class="badge-pill badge-pill--muted">Code: @ViewData["ChefCode"]</span>
+            <span class="badge-pill badge-pill--muted" id="camChefTypeBadge">@ViewData["ChefType"]</span>
+            <span class="badge-pill badge-pill--muted" id="camChefSpecBadge">@ViewData["ChefSpecialization"]</span>
+        </div>
+    </div>
+</div>
+
+<div class="card cam-history-card hidden" id="camHistoryCard">
+    <div class="panel-header">
+        <div>
+            <div class="panel-title">Assigned Menus</div>
+            <div class="cam-history-subtitle">Review previous assignments and resend details to the chef.</div>
+        </div>
+        <button type="button" class="cam-history-close" onclick="toggleCamHistory(false)" aria-label="Close">&times;</button>
+    </div>
+    <div id="camHistoryList" class="cam-history-list"></div>
+</div>
+
+<div class="card cam-select-card">
+    <div class="panel-header">
+        <div class="panel-title" id="camSelectionTitle">Select Event Date &amp; Orders</div>
+    </div>
+    <div class="cam-select-grid">
+        <div class="form-group cam-eventdate-group">
+            <label>Event Date <span class="field-required">*</span></label>
+            <input type="date" id="camEventDate" class="form-control">
+        </div>
+        <div class="form-group cam-orders-group">
+            <label>Select Orders <span class="field-required">*</span></label>
+            <select id="camOrdersSelect" class="cam-orders-select" multiple data-placeholder="Search and select orders..."></select>
+        </div>
+    </div>
+</div>
+
+<div class="card cam-menu-card" id="camMenuCard">
+    <div class="panel-header cam-menu-panel-header">
+        <div class="panel-title">Menu Items Summary</div>
+        <div class="cam-menu-search">
+            <input type="search" id="camMenuSearch" class="form-control" placeholder="Search menu items..." autocomplete="off">
+        </div>
+        <div class="cam-menu-stats" id="camMenuStats">
+            <span class="badge-pill badge-pill--success" id="camStatItems">0 items</span>
+            <span class="badge-pill badge-pill--warning" id="camStatQty">0 qty selected</span>
+        </div>
+    </div>
+
+    <div class="cam-menu-empty" id="camMenuEmpty">
+        <span class="cam-menu-empty-icon" aria-hidden="true">&#127860;</span>
+        <div class="cam-menu-empty-title">No menu items yet</div>
+        <div class="cam-menu-empty-text">Select one or more orders above to see the combined menu quantities here.</div>
+    </div>
+
+    <div class="cam-menu-groups hidden" id="camMenuGroups"></div>
+</div>
+
+<div class="cam-sticky-footer" id="camStickyFooter">
+    <div class="cam-footer-summary">
+        <div class="cam-footer-item">
+            <span class="cam-footer-label">Menu Items</span>
+            <span class="cam-footer-value" id="camFooterItems">0</span>
+        </div>
+        <div class="cam-footer-item">
+            <span class="cam-footer-label">Total Qty</span>
+            <span class="cam-footer-value" id="camFooterQty">0</span>
+        </div>
+        <div class="cam-footer-item">
+            <span class="cam-footer-label">Event Date</span>
+            <span class="cam-footer-value" id="camFooterDate">Not set</span>
+        </div>
+    </div>
+    <div class="cam-footer-actions">
+        <button type="button" class="btn btn-light cam-action-cancel" data-gc-button-decoration="off" onclick="window.location.href='/Admin/Chef'"><i class="fa-solid fa-xmark"></i><span>Cancel</span></button>
+        <button type="button" class="btn btn-primary cam-action-send" data-gc-button-decoration="off" id="camSaveSendBtn" onclick="submitChefAssignment()"><i class="fa-solid fa-paper-plane"></i><span>Save &amp; Send to Chef</span></button>
+    </div>
+</div>
+
+<div class="cam-send-overlay hidden" id="camSendModal" role="dialog" aria-modal="true" aria-labelledby="camSendTitle">
+    <div class="cam-send-modal">
+        <div class="cam-send-icon"><i class="fa-solid fa-paper-plane"></i></div>
+        <button type="button" class="cam-send-close" onclick="closeCamSendModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+        <div class="cam-send-title" id="camSendTitle">Send assignment to chef</div>
+        <div class="cam-send-subtitle">Assignment saved successfully. Choose how you want to share the PDF with <strong>@ViewData["ChefName"]</strong>.</div>
+        <div class="cam-contact-strip">
+            <span><i class="fa-solid fa-envelope"></i> @(string.IsNullOrWhiteSpace(Convert.ToString(ViewData["ChefEmailId"])) ? "Email not available" : ViewData["ChefEmailId"])</span>
+            <span><i class="fa-brands fa-whatsapp"></i> @(string.IsNullOrWhiteSpace(Convert.ToString(ViewData["ChefMobileNo"])) ? "Mobile not available" : ViewData["ChefMobileNo"])</span>
+        </div>
+        <div class="cam-send-options">
+            <button type="button" class="cam-send-option cam-send-email" data-gc-button-decoration="off" onclick="sendCamSavedAssignment('email', this)">
+                <span class="cam-option-icon"><i class="fa-solid fa-envelope"></i></span><span><strong>Email</strong><small>Send as attachment</small></span>
+            </button>
+            <button type="button" class="cam-send-option cam-send-whatsapp" data-gc-button-decoration="off" onclick="sendCamSavedAssignment('whatsapp', this)">
+                <span class="cam-option-icon"><i class="fa-brands fa-whatsapp"></i></span><span><strong>WhatsApp</strong><small>Prepare file &amp; open chat</small></span>
+            </button>
+            <button type="button" class="cam-send-option cam-send-both" data-gc-button-decoration="off" onclick="sendCamSavedAssignment('both', this)">
+                <span class="cam-option-icon"><i class="fa-solid fa-share-nodes"></i></span><span><strong>Both</strong><small>Email and WhatsApp</small></span>
+            </button>
+        </div>
+        <button type="button" class="btn btn-light cam-send-later" onclick="closeCamSendModal()"><i class="fa-solid fa-clock"></i> Send later</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/select2/dist/js/select2.min.js" asp-append-version="true"></script>
+    <script src="~/js/admin/chefassignmenus.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Packages";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/packages.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Package Configuration</div>
+        <div class="page-subtitle">Configure catering packages, pricing and dish inclusions</div>
+    </div>
+</div>
+
+<div class="pageloaderfull hidden">
+    <div class="spinner"></div>
+    <div class="loader-text">Loading packages...</div>
+</div>
+
+<div id="packagesListPanel" class="card">
+    <div class="panel-header">
+        <div class="panel-title">Manage Packages</div>
+        <div class="panel-actions">
+            <div class="app-header-filter">
+                <input type="text" id="packagesSearch" class="tbl-search" data-table="packagesTable" placeholder="Search packages...">
+            </div>
+            <a class="btn btn-orange btn-add" data-permission="create" href="/Admin/Packages/create">+ Add Package</a>
+        </div>
+    </div>
+        <div class="pageloaderpanel hidden">
+        <div class="spinner"></div>
+        <div class="loader-text">Loading packages...</div>
+    </div>
+    <div class="table-wrap">
+        <table class="tbl" id="packagesTable" data-page-size="10">
+            <thead>
+                <tr><th class="sortable">#</th><th class="sortable">Package Name</th><th class="sortable num">Price</th><th class="sortable">Active</th><th class="no-sort">Actions</th></tr>
+            </thead>
+            <tbody>
+                <!-- rows rendered by ~/js/admin/packages.js -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/packages.js" asp-append-version="true"></script>
+}
+
+

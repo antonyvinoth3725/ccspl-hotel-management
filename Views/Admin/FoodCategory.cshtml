@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Food Categories";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin/foodCategory.css" asp-append-version="true">
+}
+
+<div class="page-header">
+    <div>
+        <div class="page-title">Food Categories</div>
+        <div class="page-subtitle">Manage food menu categories for menu organization</div>
+    </div>
+</div>
+
+<div class="pageloaderfull hidden">
+    <div class="spinner"></div>
+    <div class="loader-text">Loading categories...</div>
+</div>
+
+<div id="foodCategoryListPanel" class="card">
+    <div class="panel-header">
+        <div class="panel-title">Manage Food Categories</div>
+        <div class="panel-actions">
+            <div class="app-header-filter">
+                <input type="text" id="foodCategorySearch" class="tbl-search" data-table="foodCategoryList" placeholder="Search categories...">
+            </div>
+            <button class="btn btn-orange btn-add" id="btnAddFoodCategory" data-permission="create" onclick="openFoodCategoryModal()">+ Add Category</button>
+        </div>
+    </div>
+        <div class="pageloaderpanel hidden">
+        <div class="spinner"></div>
+        <div class="loader-text">Loading categories...</div>
+    </div>
+    <div class="table-wrap">
+        <table class="tbl" id="foodCategoryList" data-page-size="10">
+            <thead>
+                <tr>
+                    <th class="sortable">#</th>
+                    <th class="sortable">Code</th>
+                    <th class="sortable">Name</th>
+                    <th class="sortable">Status</th>
+                    <th class="no-sort">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal-overlay hidden" id="foodCategoryModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <span class="modal-title" id="modal-title">Create / Edit Food Category</span>
+            <button class="modal-close" type="button" onclick="closeFoodCategoryModal()">&times;</button>
+        </div>
+        <div class="form-group">
+            <label>Code <span class="field-required">*</span></label>
+                <input type="text" id="categoryCode" maxlength="50" class="form-control" placeholder="Category code (eg. VEG)" disabled />
+            <div class="field-error hidden" id="categoryCodeError"></div>
+        </div>
+        <div class="form-group">
+            <label>Name <span class="field-required">*</span></label>
+            <input type="text" id="categoryName" maxlength="100" class="form-control" placeholder="Enter category name" />
+            <div class="field-error hidden" id="categoryNameError"></div>
+        </div>
+        <div class="form-group">
+            <label>Max Choice <span class="field-required">*</span></label>
+            <input type="number" id="categoryMaxChoice" min="0" step="1" class="form-control" placeholder="Enter maximum choices" />
+            <div class="field-error hidden" id="categoryMaxChoiceError"></div>
+        </div>
+        <input type="hidden" id="categoryId" />
+        <div class="actions">
+            <button type="button" class="btn btn-light" onclick="clearFoodCategoryForm(true)">Clear</button>
+            <button type="button" id="saveCategoryBtn" class="btn btn-primary" onclick="saveFoodCategory()">Save</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/table-utils.js" asp-append-version="true"></script>
+    <script src="~/js/admin/foodCategory.js" asp-append-version="true"></script>
+}
+
+

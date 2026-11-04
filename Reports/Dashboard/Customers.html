@@ -1,0 +1,135 @@
+<style>
+  .cust-report {
+    --ink: #173126;
+    --muted: #68786e;
+    --line: #d8e6dd;
+    --teal: #1a6e3c;
+    --cyan: #2d8a52;
+    --blue: #247a45;
+    --amber: #e89132;
+    --rose: #d65b65;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--ink);
+    background: #f4f9f6;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 15px 36px rgba(18,77,43,.09);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  .cust-report * { box-sizing: border-box; }
+  .cust-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: center;
+    padding: 28px 32px;
+    color: #fff;
+    background: linear-gradient(120deg, #124d2b, var(--teal));
+  }
+
+  .cust-kicker { margin-bottom: 7px; color: #b9ebcb; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+  .cust-title { margin: 0; font-size: 30px; line-height: 1.1; }
+  .cust-subtitle { margin: 8px 0 0; color: #d9eee1; font-size: 12px; }
+  .cust-date { padding: 11px 14px; border: 1px solid rgba(255,255,255,.22); border-radius: 10px; font-size: 10px; text-transform: uppercase; }
+  .cust-date strong { display: block; margin-top: 4px; color: #fff; font-size: 12px; text-transform: none; }
+  .cust-content { padding: 22px; }
+
+  .cust-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 13px; margin-bottom: 17px; }
+  .cust-kpi { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 13px; }
+  .cust-kpi-label { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .9px; text-transform: uppercase; }
+  .cust-kpi-value { margin-top: 9px; color: var(--tone); font-size: 23px; font-weight: 800; white-space: nowrap; }
+
+  .cust-section-head { display: flex; justify-content: space-between; gap: 18px; align-items: baseline; margin: 4px 0 13px; }
+  .cust-section-title { margin: 0; font-size: 17px; }
+  .cust-section-note { color: var(--muted); font-size: 10px; }
+  .cust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(325px, 1fr)); gap: 14px; }
+
+  .cust-card { min-width: 0; padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 14px; }
+  .cust-card-head { display: flex; justify-content: space-between; gap: 15px; align-items: flex-start; }
+  .cust-person { display: flex; gap: 11px; min-width: 0; align-items: center; }
+  .cust-avatar { display: grid; flex: 0 0 auto; width: 42px; height: 42px; place-items: center; color: #fff; background: linear-gradient(145deg, var(--teal), var(--cyan)); border-radius: 12px; font-size: 16px; font-weight: 800; }
+  .cust-name { overflow: hidden; font-size: 15px; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+  .cust-contact { margin-top: 3px; overflow: hidden; color: var(--muted); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+  .cust-orders { flex: 0 0 auto; padding: 6px 9px; color: var(--blue); background: #edf2ff; border-radius: 8px; font-size: 10px; font-weight: 800; }
+
+  .cust-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+  .cust-stat { padding: 10px; background: #f6f9f9; border-radius: 8px; }
+  .cust-stat-label { color: var(--muted); font-size: 8px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
+  .cust-stat-value { margin-top: 5px; overflow: hidden; font-size: 11px; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+
+  .cust-value-head { display: flex; justify-content: space-between; gap: 12px; margin: 15px 0 7px; color: var(--muted); font-size: 9px; }
+  .cust-value-head strong { color: var(--ink); }
+  .cust-track { height: 9px; overflow: hidden; background: #e8efef; border-radius: 999px; }
+  .cust-fill { width: 0; max-width: 100%; height: 100%; background: linear-gradient(90deg, var(--teal), var(--cyan)); border-radius: inherit; }
+  .cust-empty { grid-column: 1 / -1; padding: 58px 20px; color: var(--muted); background: #fff; border: 1px dashed var(--line); border-radius: 12px; text-align: center; }
+  .cust-footer { display: flex; justify-content: space-between; gap: 20px; padding: 13px 25px; color: var(--muted); background: #fff; border-top: 1px solid var(--line); font-size: 10px; }
+
+  @media (max-width: 600px) {
+    .cust-head, .cust-footer, .cust-section-head { align-items: flex-start; flex-direction: column; }
+    .cust-head { padding: 23px 20px; }
+    .cust-content { padding: 14px; }
+    .cust-grid { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    .cust-report { border: 0; box-shadow: none; }
+    .cust-grid { grid-template-columns: repeat(2, 1fr); }
+    .cust-card { break-inside: avoid; }
+  }
+</style>
+
+<article class="cust-report">
+  <header class="cust-head">
+    <div><div class="cust-kicker">Customer Intelligence</div><h1 class="cust-title">{{report.displayName}}</h1><p class="cust-subtitle">Customer activity, sales value and receivable position for the selected reporting period.</p></div>
+    <div class="cust-date">Generated <strong>{{meta.executedAt|date}}</strong></div>
+  </header>
+
+  <main class="cust-content">
+    <section class="cust-kpis">
+      <div class="cust-kpi" style="--tone:var(--teal)"><div class="cust-kpi-label">Active Customers</div><div class="cust-kpi-value">{{meta.rowCount|number}}</div></div>
+      <div class="cust-kpi" data-report-column="TotalOrders" style="--tone:var(--blue)"><div class="cust-kpi-label">Total Orders</div><div class="cust-kpi-value">{{sumTotalOrders|number}}</div></div>
+      <div class="cust-kpi" data-report-column="TotalSpent" style="--tone:var(--cyan)"><div class="cust-kpi-label">Customer Value</div><div class="cust-kpi-value">S${{sumTotalAmount|currency}}</div></div>
+      <div class="cust-kpi" data-report-column="Outstanding" style="--tone:var(--rose)"><div class="cust-kpi-label">Outstanding</div><div class="cust-kpi-value">S${{sumBalanceAmount|currency}}</div></div>
+    </section>
+
+    <div class="cust-section-head"><h2 class="cust-section-title">Customer Portfolio</h2><span class="cust-section-note">Spending bars are scaled against the highest-value customer.</span></div>
+    <section class="cust-grid">
+      {{#rows}}
+      <article class="cust-card">
+        <div class="cust-card-head">
+          <div class="cust-person">
+            <div class="cust-avatar">C</div>
+            <div>
+              <div class="cust-name" data-report-column="CustomerName">{{CustomerName}}</div>
+              <div class="cust-contact">
+                <span data-report-column="MobileNo">{{MobileNo}}</span>
+                <span data-report-column="EmailId"> &middot; {{EmailId}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="cust-orders" data-report-column="TotalOrders">{{TotalOrders|number}} orders</div>
+        </div>
+
+        <div class="cust-stats">
+          <div class="cust-stat" data-report-column="TotalPax"><div class="cust-stat-label">Total Pax</div><div class="cust-stat-value">{{TotalPax|number}}</div></div>
+          <div class="cust-stat" data-report-column="PaidAmount"><div class="cust-stat-label">Collected</div><div class="cust-stat-value">S${{PaidAmount|currency}}</div></div>
+          <div class="cust-stat" data-report-column="Outstanding"><div class="cust-stat-label">Outstanding</div><div class="cust-stat-value">S${{Outstanding|currency}}</div></div>
+        </div>
+
+        <div class="cust-value-head">
+          <span data-report-column="LastOrderDate">Last order: <strong>{{LastOrderDate|date}}</strong></span>
+          <span data-report-column="TotalSpent">S${{TotalSpent|currency}}</span>
+        </div>
+        <div class="cust-track"><div class="cust-fill" data-report-column="CustomerValuePercentage" style="width: {{CustomerValuePercentage}}%;"></div></div>
+      </article>
+      {{/rows}}
+      {{#emptyRows}}<div class="cust-empty">No customer activity found for the selected filters.</div>{{/emptyRows}}
+    </section>
+  </main>
+
+  <footer class="cust-footer"><span>Gayatri Catering &middot; Customer portfolio report</span><span>{{meta.rowCount|number}} customer(s)</span></footer>
+</article>
